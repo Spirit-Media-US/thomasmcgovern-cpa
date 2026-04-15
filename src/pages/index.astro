@@ -802,13 +802,20 @@ const carouselSlides = [
   /* ===== TESTIMONIALS ===== */
   .testimonials-section {
     background-color: #ffffff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    position: relative;
+  }
+  .testimonials-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=1200&auto=format');
     background-size: 60% auto;
     background-position: center center;
     background-repeat: no-repeat;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    position: relative;
+    opacity: 0.15;
+    pointer-events: none;
   }
   .testimonials-map-wrapper {
     position: relative;
