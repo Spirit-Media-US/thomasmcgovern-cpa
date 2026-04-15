@@ -273,44 +273,57 @@ const carouselSlides = [
 
     <!-- TESTIMONIALS -->
     <section class="testimonials-section">
-      <div class="testimonials-overlay"></div>
-      <div class="container-site relative z-10">
+      <div class="container-site" style="position: relative; z-index: 1;">
         <div class="text-center">
           <p class="eyebrow mb-2">WHAT OTHER SAYS</p>
           <h2 class="heading-section mb-10">Testimonials</h2>
         </div>
 
-        <div class="relative">
-          <!-- Map background -->
-          <div class="testimonials-map" aria-hidden="true">
-            <img src="https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=600&auto=format" alt="" class="w-full max-w-xl object-contain" />
+        <!-- Map background wrapper -->
+        <div class="testimonials-map-wrapper">
+          <div class="testimonials-slider-wrapper">
+            <!-- Arrow left -->
+            <button class="testi-arrow testi-prev" id="testi-prev" aria-label="Previous">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+
+            <!-- Slides -->
+            <div class="testi-viewport">
+              <div class="testi-track" id="testi-track">
+                <!-- Slide 1: 2 reviews -->
+                <div class="testi-slide">
+                  <div class="testi-card">
+                    <p class="testi-quote">&ldquo;A must-read for anyone who cares about the future of college sports.&rdquo;</p>
+                    <p class="testi-name">Dr. Jane Smith</p>
+                    <p class="testi-title">Sports Economist</p>
+                  </div>
+                  <div class="testi-card">
+                    <p class="testi-quote">&ldquo;This book masterfully explains the challenges facing intercollegiate athletics and why action is needed now.&rdquo;</p>
+                    <p class="testi-name">John Doe</p>
+                    <p class="testi-title">University President</p>
+                  </div>
+                </div>
+                <!-- Slide 2: 1 review -->
+                <div class="testi-slide">
+                  <div class="testi-card">
+                    <p class="testi-quote">&ldquo;Eye-opening and thought-provoking. A game-changer for understanding college athletics.&rdquo;</p>
+                    <p class="testi-name">Sarah T.</p>
+                    <p class="testi-title">Reader</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Arrow right -->
+            <button class="testi-arrow testi-next" id="testi-next" aria-label="Next">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
 
-          <div id="testimonial-slider" class="relative max-w-3xl mx-auto">
-            {testimonials.map((t, i) => (
-              <div class:list={['testimonial-slide', { hidden: i !== 0 }]} data-index={i}>
-                <blockquote class="text-center px-8">
-                  <p class="testimonial-quote">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <footer>
-                    <p class="testimonial-name">{t.name}</p>
-                    <p class="testimonial-role">{t.role}</p>
-                  </footer>
-                </blockquote>
-              </div>
-            ))}
-
-            <!-- Navigation dots -->
-            <div class="flex justify-center gap-3 mt-8">
-              {testimonials.map((_, i) => (
-                <button
-                  class:list={['testimonial-dot w-3 h-3 rounded-full transition-colors', i === 0 ? 'bg-primary' : 'bg-gray-300']}
-                  data-dot={i}
-                  aria-label={`Testimonial ${i + 1}`}
-                />
-              ))}
-            </div>
+          <!-- Dots -->
+          <div class="testi-dots">
+            <button class="testi-dot active" data-slide="0"></button>
+            <button class="testi-dot" data-slide="1"></button>
           </div>
         </div>
       </div>
@@ -368,32 +381,37 @@ const carouselSlides = [
 </Layout>
 
 <script>
-  // Testimonial slider
-  let current = 0;
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const dots = document.querySelectorAll('.testimonial-dot');
+  // Testimonial slider — loop with arrows
+  (function() {
+    const track = document.getElementById('testi-track');
+    const prevBtn = document.getElementById('testi-prev');
+    const nextBtn = document.getElementById('testi-next');
+    const dots = document.querySelectorAll('.testi-dot');
+    if (!track) return;
 
-  function showSlide(idx: number) {
-    slides.forEach((s, i) => {
-      (s as HTMLElement).classList.toggle('hidden', i !== idx);
-    });
-    dots.forEach((d, i) => {
-      d.classList.toggle('bg-primary', i === idx);
-      d.classList.toggle('bg-gray-300', i !== idx);
-    });
-    current = idx;
-  }
+    let pos = 0;
+    const total = 2;
 
-  dots.forEach(d => {
-    d.addEventListener('click', () => {
-      showSlide(Number((d as HTMLElement).dataset.dot));
-    });
-  });
+    function slideTo(p: number) {
+      pos = ((p % total) + total) % total;
+      track.style.transition = 'transform 0.5s ease';
+      track.style.transform = `translateX(-${pos * (100 / total)}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === pos));
+    }
 
-  // Auto-advance every 5 seconds
-  setInterval(() => {
-    showSlide((current + 1) % slides.length);
-  }, 5000);
+    prevBtn?.addEventListener('click', () => slideTo(pos - 1));
+    nextBtn?.addEventListener('click', () => slideTo(pos + 1));
+    dots.forEach(d => {
+      d.addEventListener('click', () => slideTo(Number((d as HTMLElement).dataset.slide)));
+    });
+
+    // Auto-advance every 5 seconds
+    let interval = setInterval(() => slideTo(pos + 1), 5000);
+    track.parentElement?.parentElement?.addEventListener('mouseenter', () => clearInterval(interval));
+    track.parentElement?.parentElement?.addEventListener('mouseleave', () => {
+      interval = setInterval(() => slideTo(pos + 1), 5000);
+    });
+  })();
 
   // Counter animation
   function animateCounters() {
@@ -786,41 +804,101 @@ const carouselSlides = [
     background-color: #f5f5f5;
     padding-top: 80px;
     padding-bottom: 80px;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: 120%;
     position: relative;
   }
-  .testimonials-overlay {
+  .testimonials-map-wrapper {
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=800&auto=format');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  .testimonials-map-wrapper::before {
+    content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle closest-side at bottom center, rgba(245,245,245,0.72), rgba(245,245,245,0.72));
+    background: linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55));
     pointer-events: none;
   }
-  .testimonials-map {
-    position: absolute;
-    inset: 0;
+  .testimonials-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .testi-arrow {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    color: #616161;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.3;
-    pointer-events: none;
+    transition: background 0.2s;
+    z-index: 2;
   }
-  .testimonial-quote {
+  .testi-arrow:hover {
+    background: #e0e0e0;
+  }
+  .testi-viewport {
+    flex: 1;
+    overflow: hidden;
+  }
+  .testi-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .testi-slide {
+    flex: 0 0 100%;
+    display: flex;
+    gap: 30px;
+    padding: 20px 10px;
+  }
+  .testi-card {
+    flex: 1;
+    padding: 20px;
+  }
+  .testi-quote {
     font-family: var(--font-script);
     font-size: 27px;
-    color: var(--color-body);
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
+    color: #212121;
+    line-height: 1.4;
+    margin-bottom: 16px;
   }
-  .testimonial-name {
+  .testi-name {
     font-family: var(--font-narrow);
     font-size: 18px;
     font-weight: 700;
+    color: #212121;
   }
-  .testimonial-role {
+  .testi-title {
     font-size: 14px;
-    color: #6b7280;
+    color: #616161;
+  }
+  .testi-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .testi-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: #d4d4d4;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s;
+  }
+  .testi-dot.active {
+    background: #616161;
   }
 
   /* ===== BLOG ===== */
@@ -1048,8 +1126,22 @@ const carouselSlides = [
     .scenario-card {
       width: 100%;
     }
-    .testimonial-quote {
+    .testi-quote {
       font-size: 15px;
+    }
+    .testi-name {
+      font-size: 13px;
+    }
+    .testi-title {
+      font-size: 12px;
+    }
+    .testi-slide {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .testi-arrow {
+      width: 36px;
+      height: 36px;
     }
     .blog-card {
       width: 100%;
