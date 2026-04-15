@@ -68,11 +68,11 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
     <!-- FEATURED IN LOGOS -->
     <section class="featured-strip">
       <div class="featured-strip-inner">
-        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-barnes" />
-        <img src={bookshopUrl} alt="Bookshop" class="featured-logo fl-bookshop" />
-        <img src={amazonUrl} alt="Amazon" class="featured-logo fl-amazon" />
-        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-barnes" />
-        <img src={bookshopUrl} alt="Bookshop" class="featured-logo fl-bookshop" />
+        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-large" />
+        <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
+        <img src={amazonUrl} alt="Amazon" class="featured-logo fl-large" />
+        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-large" />
+        <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
       </div>
     </section>
 
@@ -526,9 +526,12 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
     gap: 40px;
   }
   .featured-logo {
-    width: 25%;
+    width: 15%;
     height: auto;
     object-fit: contain;
+  }
+  .fl-large {
+    width: 25%;
   }
 
   /* ===== ABOUT ME ===== */
