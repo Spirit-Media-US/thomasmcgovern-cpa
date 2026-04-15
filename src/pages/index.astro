@@ -216,11 +216,14 @@ const carouselSlides = [
       </div>
     </section>
 
+    <!-- FOOTBALL BANNER -->
+    <section class="football-banner"></section>
+
     <!-- THE ISSUES -->
     <section class="issues-section">
       <div class="container-site relative z-10">
-        <p class="eyebrow mb-2" style="color: #ffc107;">MORE INFO ABOUT THE BOOK</p>
-        <h2 class="heading-section" style="color: #fff; margin-bottom: 40px;">The Issues</h2>
+        <p class="eyebrow mb-2">MORE INFO ABOUT THE BOOK</p>
+        <h2 class="heading-section" style="margin-bottom: 40px;">The Issues</h2>
 
         <!-- Infographic -->
         <div class="mt-8 mb-8">
@@ -723,24 +726,28 @@ const carouselSlides = [
   }
 
   /* ===== ISSUES SECTION ===== */
-  .issues-section {
-    padding-top: 150px;
-    padding-bottom: 100px;
+  /* ===== FOOTBALL BANNER ===== */
+  .football-banner {
+    height: 400px;
     background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=1920&auto=format');
     background-position: center right;
     background-size: cover;
     background-blend-mode: multiply;
     position: relative;
   }
-  .issues-section::before {
-    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
+  .football-banner::before {
+    content: '';
     position: absolute;
-    content: "";
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
+    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
     pointer-events: none;
+  }
+
+  .issues-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #f5f5f5;
+    position: relative;
   }
   .issues-row {
     display: flex;
