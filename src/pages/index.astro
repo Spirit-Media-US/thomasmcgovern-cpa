@@ -157,16 +157,17 @@ const carouselSlides = [
           </div>
         </div>
 
-        <!-- Quote block -->
-        <div style="margin-top: 48px; border: none; box-shadow: none; background: transparent;">
-          <p class="quote-text">
-            &ldquo;College sports are at a crossroads, and how we address these challenges will define the future of intercollegiate athletics for generations to come.&rdquo;
-          </p>
-          <p class="quote-attribution">- Thomas A. McGovern</p>
-        </div>
+        <!-- Quote + Chapters Preview in one block -->
+        <div class="quote-chapters-block">
+          <div class="quote-inner">
+            <p class="quote-text">
+              &ldquo;College sports are at a crossroads, and how we address these challenges will define the future of intercollegiate athletics for generations to come.&rdquo;
+            </p>
+            <p class="quote-attribution">- Thomas A. McGovern</p>
+          </div>
 
-        <!-- Chapters Preview: 3 columns — text left, book center, cards right -->
-        <div class="chapters-3col">
+          <!-- 3 columns below quote -->
+          <div class="chapters-3col">
           <!-- Left: Chapters Preview text + button -->
           <div class="chapters-left">
             <h3 class="heading-sub mb-5">Chapters Preview</h3>
@@ -210,6 +211,7 @@ const carouselSlides = [
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -654,6 +656,15 @@ const carouselSlides = [
     font-size: 16px;
     color: var(--color-body);
     margin-top: 4px;
+  }
+  .quote-chapters-block {
+    margin-top: 48px;
+    background: #fff;
+    box-shadow: 1px 1px 10px 1px rgba(33, 33, 33, 0.11);
+    padding: 30px;
+  }
+  .quote-inner {
+    margin-bottom: 40px;
   }
   .chapters-3col {
     margin-top: 70px;
