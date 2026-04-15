@@ -52,7 +52,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
   </head>
   <body>
     <!-- TOP BAR — transparent, overlays hero -->
-    <div class="topbar" style="background: rgba(4, 47, 82, 0); position: sticky; top: 0; z-index: 999; padding: 0;">
+    <div class="topbar" style="background: rgba(4, 47, 82, 0); position: relative; z-index: 999; padding: 0;">
       <div class="container-site flex items-center justify-between" style="padding: 10px;">
         <!-- Left: social icons -->
         <div class="flex items-center gap-2.5">
@@ -78,7 +78,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
     </div>
 
     <!-- NAV — transparent, overlays hero with negative margin -->
-    <nav id="main-nav" class="transition-all duration-300" style="background: rgba(4, 47, 82, 0); position: sticky; top: 0; z-index: 999; padding: 20px 0; border-top: 1px solid rgba(245, 245, 245, 0.12); margin-bottom: -205px;">
+    <nav id="main-nav" class="transition-all duration-300" style="background: rgba(4, 47, 82, 0); position: relative; z-index: 999; padding: 20px 0; border-top: 1px solid rgba(245, 245, 245, 0.12); margin-bottom: -205px;">
       <div class="container-site flex items-center justify-between" style="padding: 0;">
         <!-- Left: Logo (50% width, matching original #brxe-axqpvo) -->
         <div style="width: 50%;">
