@@ -165,47 +165,48 @@ const carouselSlides = [
           <p class="quote-attribution">- Thomas A. McGovern</p>
         </div>
 
-        <!-- Chapters Preview: text+button left, book cover right, icon cards below -->
-        <div class="chapters-row">
-          <div class="chapters-text">
+        <!-- Chapters Preview: 3 columns — text left, book center, cards right -->
+        <div class="chapters-3col">
+          <!-- Left: Chapters Preview text + button -->
+          <div class="chapters-left">
             <h3 class="heading-sub mb-5">Chapters Preview</h3>
             <p class="text-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
             <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary mt-5 inline-block">Buy the Book</a>
           </div>
-          <div class="chapters-image">
+          <!-- Center: Book cover -->
+          <div class="chapters-center">
             <img
               src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
               alt="Road to the Final Hour book cover"
             />
           </div>
-        </div>
-
-        <!-- 3 Chapter icon cards -->
-        <div class="chapter-cards">
-          <div class="chapter-card card-shadow">
-            <div class="chapter-card-inner">
-              <span class="chapter-icon">&#10004;</span>
-              <div>
-                <h4 class="chapter-card-title"><em>The Labor Issue</em></h4>
-                <p class="chapter-card-text">Examines the push to classify college athletes as employees and its implications.</p>
+          <!-- Right: 3 chapter cards stacked -->
+          <div class="chapters-right">
+            <div class="chapter-card card-shadow">
+              <div class="chapter-card-inner">
+                <span class="chapter-icon">&#10004;</span>
+                <div>
+                  <h4 class="chapter-card-title"><em>The Labor Issue</em></h4>
+                  <p class="chapter-card-text">Examines the push to classify college athletes as employees and its implications.</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="chapter-card card-shadow">
-            <div class="chapter-card-inner">
-              <span class="chapter-icon">&#10004;</span>
-              <div>
-                <h4 class="chapter-card-title"><em>Effects of Taxation</em></h4>
-                <p class="chapter-card-text">Unpacks how UBTI and loss of tax-exempt status could cripple the industry.</p>
+            <div class="chapter-card card-shadow">
+              <div class="chapter-card-inner">
+                <span class="chapter-icon">&#10004;</span>
+                <div>
+                  <h4 class="chapter-card-title"><em>Effects of Taxation</em></h4>
+                  <p class="chapter-card-text">Unpacks how UBTI and loss of tax-exempt status could cripple the industry.</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="chapter-card card-shadow">
-            <div class="chapter-card-inner">
-              <span class="chapter-icon">&#10004;</span>
-              <div>
-                <h4 class="chapter-card-title"><em>The Bigger Issue</em></h4>
-                <p class="chapter-card-text">Explores the ideological battle over the value of college sports in society.</p>
+            <div class="chapter-card card-shadow">
+              <div class="chapter-card-inner">
+                <span class="chapter-icon">&#10004;</span>
+                <div>
+                  <h4 class="chapter-card-title"><em>The Bigger Issue</em></h4>
+                  <p class="chapter-card-text">Explores the ideological battle over the value of college sports in society.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -614,14 +615,26 @@ const carouselSlides = [
     margin-top: 8px;
   }
 
-  /* ===== BOOK SECTION ===== */
+  /* ===== BOOK SECTION — matches original #brxe-ujxxku ===== */
   .book-section {
     background-color: #f5f5f5;
     padding-top: 80px;
-    padding-bottom: 0;
+    padding-bottom: 80px;
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1920&auto=format');
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: 120%;
+    position: relative;
+  }
+  .book-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle closest-side at bottom center, rgba(245, 245, 245, 0.21), rgba(245, 245, 245, 0.21));
+    pointer-events: none;
+  }
+  .book-section > * {
+    position: relative;
   }
   .book-overview {
     display: flex;
@@ -653,34 +666,35 @@ const carouselSlides = [
     color: var(--color-body);
     margin-top: 4px;
   }
-  .chapters-row {
+  .chapters-3col {
     margin-top: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0;
+    gap: 0;
   }
-  .chapters-text {
-    width: 50%;
+  .chapters-left {
+    width: 30%;
+    padding-right: 20px;
   }
-  .chapters-image {
-    width: 50%;
+  .chapters-center {
+    width: 30%;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
-  .chapters-image img {
+  .chapters-center img {
     max-width: 100%;
     height: auto;
   }
-  .chapter-cards {
-    padding: 20px;
+  .chapters-right {
+    width: 40%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
+    padding: 20px;
   }
   .chapter-card {
-    width: calc(33.333% - 14px);
     background: #fff;
     padding: 20px;
   }
