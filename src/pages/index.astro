@@ -72,200 +72,208 @@ const featuredLogos = [
     </section>
 
     <!-- FEATURED IN LOGOS -->
-    <section class="flex items-center justify-center bg-light-bg" style="height: 15vh; padding: 10px 0;">
+    <section class="featured-strip">
       <div class="container-site">
-        <div class="flex items-center justify-center gap-8 lg:gap-12 flex-wrap">
+        <div class="featured-strip-inner">
           {featuredLogos.map(logo => (
-            <img src={logo.url} alt={logo.name} class="h-6 lg:h-10 w-auto object-contain" />
+            <img src={logo.url} alt={logo.name} class="featured-logo" />
           ))}
         </div>
       </div>
     </section>
 
     <!-- ABOUT ME -->
-    <section id="about-me" class="bg-white" style="padding-top: 80px; padding-bottom: 80px;">
+    <section id="about-me" class="about-section">
       <div class="container-site">
         <p class="eyebrow mb-2">WHAT I DO</p>
         <h2 class="heading-section mb-0">About <span>&nbsp;</span>Me</h2>
 
         <hr class="section-divider" />
 
-        <div class="flex flex-col lg:flex-row gap-12 items-start">
-          <!-- Left: headshot + featured -->
-          <div class="w-full lg:w-[57%]">
-            <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&auto=format"
-              alt="Thomas A. McGovern"
-              class="w-full object-cover"
-              style="height: 530px; object-position: 0% 15%;"
-            />
-            <div class="w-full p-5 text-white" style="background: linear-gradient(#042a49, #2196f3);">
-              <p class="text-footer-text text-[13px] font-light" style="font-family: var(--font-body);">Featured In:</p>
-              <div class="flex items-center gap-6 mt-3 flex-wrap">
-                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?h=30&auto=format" alt="ESPN" class="h-6 w-auto" />
-                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?h=30&auto=format" alt="WSJ" class="h-6 w-auto" />
-                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?h=30&auto=format" alt="USA Today" class="h-6 w-auto" />
-                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?h=30&auto=format" alt="Forbes" class="h-6 w-auto" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: bio text -->
-          <div class="w-full lg:w-2/5">
+        <div class="about-row">
+          <!-- Left: bio text (57%) -->
+          <div class="about-left">
             <h3 class="heading-sub mb-5">About Me</h3>
             <p class="text-body">
               Thomas A. McGovern is a Certified Public Accountant (CPA) and holds the Chartered Financial Analyst (CFA) designation. His extensive career includes twenty years as a Wall Street investment banker and equity research analyst. He has been involved in the higher education sector as a member of the board of directors of the University of Virginia's Manhattan alumni group, the Virginia Club of New York, and President of the Board of Governors of the St. Elmos national organization. Thomas McGovern earned a Master of Business Administration (MBA) from the Darden Graduate School of Business at the University of Virginia and an AB in Economics from Hamilton College where he graduated summa cum laude.
             </p>
+
+            <hr class="section-divider" />
+
+            <h3 class="heading-sub mb-5">Featured In:</h3>
+            <div class="featured-carousel">
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?h=40&auto=format" alt="ESPN" class="carousel-logo" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?h=40&auto=format" alt="Wall Street Journal" class="carousel-logo" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?h=40&auto=format" alt="USA Today" class="carousel-logo" />
+            </div>
+          </div>
+
+          <!-- Right: headshot (40%) -->
+          <div class="about-right">
+            <div class="about-photo-wrapper">
+              <img
+                src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&auto=format"
+                alt="Thomas A. McGovern"
+                class="about-photo"
+              />
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- STATS -->
-    <section class="bg-white" style="padding-bottom: 80px;">
+    <section class="stats-section">
       <div class="container-site">
-        <div class="flex flex-row flex-wrap justify-between">
-          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
-            <div>
-              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">+</span>
-            </div>
-            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Years of Experienced</p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="25">25</span><span class="stat-suffix">+</span></div>
+            <p class="stat-label">Years of Experienced</p>
           </div>
-          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
-            <div>
-              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">+</span>
-            </div>
-            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Books Written</p>
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="3">3</span><span class="stat-suffix">+</span></div>
+            <p class="stat-label">Books Written</p>
           </div>
-          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
-            <div>
-              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">K +</span>
-            </div>
-            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Happy Readers</p>
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="3">3</span><span class="stat-suffix">K +</span></div>
+            <p class="stat-label">Happy Readers</p>
           </div>
-          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
-            <div>
-              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">+</span>
-            </div>
-            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Awards Recognitions</p>
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="12">12</span><span class="stat-suffix">+</span></div>
+            <p class="stat-label">Awards Recognitions</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- BOOK SECTION -->
-    <section class="relative bg-light-bg" style="padding-top: 80px; padding-bottom: 0; background-position: bottom center; background-repeat: no-repeat; background-size: 120%;">
+    <section class="book-section">
       <div class="container-site">
         <p class="eyebrow mb-2">SHOWCASE</p>
         <h2 class="heading-section">About the <span>&nbsp;</span>Book</h2>
 
-        <!-- Overview subsection -->
-        <div class="mt-12">
-          <h3 class="heading-sub-sm mb-5">Overview</h3>
-          <p class="text-body">
-            Discover Road to the Final Hour, an in-depth exploration of the forces threatening to reshape college athletics. From taxation to professionalization, this book unpacks the complexities of the current landscape and provides a compelling case for preserving the spirit of college sports.
-          </p>
+        <!-- Overview: image left + text right -->
+        <div class="book-overview card-shadow-light">
+          <div class="book-overview-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=800&auto=format');"></div>
+          <div class="book-overview-text">
+            <h3 class="heading-sub-sm mb-5">Overview</h3>
+            <p class="text-body">
+              Discover Road to the Final Hour, an in-depth exploration of the forces threatening to reshape college athletics. From taxation to professionalization, this book unpacks the complexities of the current landscape and provides a compelling case for preserving the spirit of college sports.
+            </p>
+          </div>
         </div>
 
         <!-- Quote block -->
         <div class="card-shadow-light mt-12 p-0">
-          <p class="text-[15px] lg:text-[28px]" style="font-family: var(--font-script); color: var(--color-body); margin-top: 20px;">
+          <p class="quote-text">
             &ldquo;College sports are at a crossroads, and how we address these challenges will define the future of intercollegiate athletics for generations to come.&rdquo;
           </p>
-          <p class="text-[16px] mt-1" style="font-family: var(--font-body);">- Thomas A. McGovern</p>
+          <p class="quote-attribution">- Thomas A. McGovern</p>
         </div>
 
-        <div class="mt-12">
-          <h3 class="heading-sub mb-5">Chapters Preview</h3>
-          <p class="text-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
-          <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary mt-5 inline-block">Buy the Book</a>
-        </div>
-
-        <!-- 3 Chapter cards -->
-        <div class="mt-12 flex flex-row flex-wrap gap-5" style="padding: 20px; row-gap: 20px;">
-          <div class="w-full md:w-[30%] bg-white p-5 card-shadow">
-            <div class="flex items-start gap-2.5">
-              <span class="text-[30px] text-accent">&#9878;</span>
-              <div>
-                <h4 style="font-family: var(--font-body); font-size: 18px; font-weight: 600;">The Labor Issue</h4>
-                <p class="text-body text-sm mt-2" style="font-size: 16px;">Examines the push to classify college athletes as employees and its implications.</p>
-              </div>
-            </div>
+        <!-- Chapters Preview: text+button left, book cover right, icon cards below -->
+        <div class="chapters-row">
+          <div class="chapters-text">
+            <h3 class="heading-sub mb-5">Chapters Preview</h3>
+            <p class="text-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
+            <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary mt-5 inline-block">Buy the Book</a>
           </div>
-          <div class="w-full md:w-[30%] bg-white p-5 card-shadow">
-            <div class="flex items-start gap-2.5">
-              <span class="text-[30px] text-accent">&#128176;</span>
-              <div>
-                <h4 style="font-family: var(--font-body); font-size: 18px; font-weight: 600;">Effects of Taxation</h4>
-                <p class="text-body text-sm mt-2" style="font-size: 16px;">Unpacks how UBTI and loss of tax-exempt status could cripple the industry.</p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full md:w-[30%] bg-white p-5 card-shadow">
-            <div class="flex items-start gap-2.5">
-              <span class="text-[30px] text-accent">&#127942;</span>
-              <div>
-                <h4 style="font-family: var(--font-body); font-size: 18px; font-weight: 600;">The Bigger Issue</h4>
-                <p class="text-body text-sm mt-2" style="font-size: 16px;">Explores the ideological battle over the value of college sports in society.</p>
-              </div>
-            </div>
+          <div class="chapters-image">
+            <img
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
+              alt="Road to the Final Hour book cover"
+            />
           </div>
         </div>
 
-      </div>
-
-      <!-- Issues split section 1: image left, text right -->
-      <div class="container-site" style="margin-top: 70px;">
-        <div class="flex flex-col lg:flex-row items-center bg-white card-shadow-light">
-          <div class="w-full lg:w-1/2 h-[350px]" style="background: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=800&auto=format') center center / cover no-repeat;"></div>
-          <div class="w-full lg:w-1/2 bg-white p-5">
-            <h3 class="heading-sub">What Happens When College Athletics Lose Tax-Exempt Status?</h3>
-            <p class="text-body mt-5">
-              The imposition of Unrelated Business Income Tax (UBTI) could drastically alter the financial foundation of college sports. A 21% federal corporate tax, combined with state taxes, would reduce funds available for non revenue sports and student-athlete scholarships.
-            </p>
+        <!-- 3 Chapter icon cards -->
+        <div class="chapter-cards">
+          <div class="chapter-card card-shadow">
+            <div class="chapter-card-inner">
+              <span class="chapter-icon">&#10004;</span>
+              <div>
+                <h4 class="chapter-card-title"><em>The Labor Issue</em></h4>
+                <p class="chapter-card-text">Examines the push to classify college athletes as employees and its implications.</p>
+              </div>
+            </div>
+          </div>
+          <div class="chapter-card card-shadow">
+            <div class="chapter-card-inner">
+              <span class="chapter-icon">&#10004;</span>
+              <div>
+                <h4 class="chapter-card-title"><em>Effects of Taxation</em></h4>
+                <p class="chapter-card-text">Unpacks how UBTI and loss of tax-exempt status could cripple the industry.</p>
+              </div>
+            </div>
+          </div>
+          <div class="chapter-card card-shadow">
+            <div class="chapter-card-inner">
+              <span class="chapter-icon">&#10004;</span>
+              <div>
+                <h4 class="chapter-card-title"><em>The Bigger Issue</em></h4>
+                <p class="chapter-card-text">Explores the ideological battle over the value of college sports in society.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Issues split section 2: text left, image right -->
-      <div class="container-site mt-0">
+    <!-- THE ISSUES -->
+    <section class="issues-section">
+      <div class="container-site relative z-10">
+        <p class="eyebrow mb-2">MORE INFO ABOUT THE BOOK</p>
+        <h2 class="heading-section">The Issues</h2>
+
+        <!-- Infographic -->
+        <div class="mt-8 mb-8">
+          <img
+            src="https://cdn.sanity.io/images/fkqsnbt5/production/be37419005c1c164a021dca8ff787c180c7f8f04-1200x456.png?w=1000&auto=format"
+            alt="Before Infographic"
+            class="w-full"
+          />
+        </div>
+
+        <!-- Tax-exempt status -->
+        <h3 class="heading-sub">What Happens When College Athletics Lose Tax-Exempt Status?</h3>
+        <p class="text-body mt-5">
+          The imposition of Unrelated Business Income Tax (UBTI) could drastically alter the financial foundation of college sports. A 21% federal corporate tax, combined with state taxes, would reduce funds available for non revenue sports and student-athlete scholarships.
+        </p>
+
         <hr class="section-divider-thin" />
-        <div class="flex flex-col lg:flex-row items-center bg-white card-shadow-light">
-          <div class="w-full lg:w-1/2 bg-white p-5">
+
+        <!-- Cultural significance: image left + text right -->
+        <div class="issues-row card-shadow-light">
+          <div class="issues-row-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=800&auto=format');"></div>
+          <div class="issues-row-text">
             <h3 class="heading-sub" style="width: 75%;">Cultural Significance of College Athletics</h3>
             <p class="text-body mt-5">
               &ldquo;More Than a Game&rdquo; College athletics produce Olympians, foster teamwork, and teach life skills. Cutting programs would not only hurt athletes but also the broader educational mission of U.S. universities.
             </p>
           </div>
-          <div class="w-full lg:w-1/2 h-[350px]" style="background: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=800&auto=format') center center / cover no-repeat;"></div>
         </div>
-      </div>
 
-      <!-- Scenario cards -->
-      <div class="container-site">
         <hr class="section-divider-thin" />
 
+        <!-- Scenario cards -->
         <h3 class="heading-sub-sm mb-5">Two Scenarios for Professionalization</h3>
 
-        <div class="flex flex-row flex-wrap justify-between gap-0 mt-5" style="align-items: stretch;">
-          <div class="w-full lg:w-[49%] bg-white p-8" style="box-shadow: 1px 1px 1px 1px #9e9e9e;">
+        <div class="scenario-row">
+          <div class="scenario-card">
             <p class="heading-gray">Scenario 1</p>
             <p class="text-body mt-2.5">Professionalizing only revenue sports like football and basketball.</p>
           </div>
-          <div class="w-full lg:w-[49%] bg-white p-8" style="box-shadow: 1px 1px 1px 1px #9e9e9e;">
+          <div class="scenario-card">
             <p class="heading-gray">Scenario 2</p>
             <p class="text-body mt-2.5">Professionalizing all intercollegiate sports, with catastrophic financial consequences.</p>
           </div>
         </div>
       </div>
-
-      <!-- Bottom padding for this section -->
-      <div class="container-site text-center" style="padding-bottom: 80px;"></div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="bg-light-bg relative" style="padding-top: 80px; padding-bottom: 80px; background-position: bottom center; background-repeat: no-repeat; background-size: 120%;">
-      <div class="absolute inset-0" style="background: radial-gradient(circle closest-side at bottom center, rgba(245,245,245,0.72), rgba(245,245,245,0.72)); pointer-events: none;"></div>
+    <section class="testimonials-section">
+      <div class="testimonials-overlay"></div>
       <div class="container-site relative z-10">
         <div class="text-center">
           <p class="eyebrow mb-2">WHAT OTHER SAYS</p>
@@ -274,7 +282,7 @@ const featuredLogos = [
 
         <div class="relative">
           <!-- Map background -->
-          <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none" aria-hidden="true">
+          <div class="testimonials-map" aria-hidden="true">
             <img src="https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=600&auto=format" alt="" class="w-full max-w-xl object-contain" />
           </div>
 
@@ -282,12 +290,12 @@ const featuredLogos = [
             {testimonials.map((t, i) => (
               <div class:list={['testimonial-slide', { hidden: i !== 0 }]} data-index={i}>
                 <blockquote class="text-center px-8">
-                  <p class="text-[15px] lg:text-[27px] leading-relaxed mb-6" style={`font-family: var(--font-script); color: var(--color-body);`}>
+                  <p class="testimonial-quote">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                   <footer>
-                    <p class="text-[13px] lg:text-[18px] font-bold" style="font-family: var(--font-narrow);">{t.name}</p>
-                    <p class="text-[12px] lg:text-[14px] text-gray-500">{t.role}</p>
+                    <p class="testimonial-name">{t.name}</p>
+                    <p class="testimonial-role">{t.role}</p>
                   </footer>
                 </blockquote>
               </div>
@@ -309,20 +317,20 @@ const featuredLogos = [
     </section>
 
     <!-- BLOG POSTS -->
-    <section class="bg-light-bg" style="padding-top: 80px; padding-bottom: 80px;">
+    <section class="blog-section">
       <div class="container-site">
         <div class="text-center">
           <p class="eyebrow mb-2">ARCHIVES</p>
           <h2 class="heading-section mb-10">Blog & News</h2>
         </div>
 
-        <div class="flex flex-row flex-wrap gap-5" style="justify-content: flex-start; align-items: stretch;">
+        <div class="blog-grid">
           {blogPosts.map(post => (
-            <div class="bg-white w-full md:w-[30%]">
-              <div class="h-[250px] bg-cover bg-center" style={`background-image: url('${post.image}');`}></div>
+            <div class="blog-card">
+              <div class="blog-card-image" style={`background-image: url('${post.image}');`}></div>
               <div class="p-5">
-                <h3 class="text-[15px] lg:text-[23px] font-semibold leading-snug" style="font-family: var(--font-body); color: var(--color-primary); line-height: 1.2em;">{post.title}</h3>
-                <a href="/blogs" class="btn-primary mt-5 inline-block text-[15px]" style="padding: 5px 10px; font-size: 15px;">Read more ...</a>
+                <h3 class="blog-card-title">{post.title}</h3>
+                <a href="/blogs" class="btn-primary blog-card-btn">Read more ...</a>
               </div>
             </div>
           ))}
@@ -331,21 +339,20 @@ const featuredLogos = [
     </section>
 
     <!-- NEWSLETTER -->
-    <section class="relative" style="padding-top: 80px; padding-bottom: 80px; background: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&auto=format') center center / cover no-repeat;">
-      <div class="absolute inset-0" style="background: linear-gradient(#03213a, rgba(1, 83, 121, 0.79)); pointer-events: none;"></div>
+    <section class="newsletter-section">
+      <div class="newsletter-overlay"></div>
       <div class="container-site relative z-10">
-        <div class="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-8">
+        <div class="newsletter-row">
           <div>
-            <p class="text-footer-text text-[27px]" style="font-family: var(--font-narrow);">Stay updated with upcoming book events, author appearances, and media features.</p>
+            <p class="newsletter-heading">Stay updated with upcoming book events, author appearances, and media features.</p>
           </div>
-          <div class="w-full lg:w-[85%] flex items-end lg:justify-end">
-            <form class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+          <div class="newsletter-form-wrapper">
+            <form class="newsletter-form">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Your Email"
                 required
-                class="flex-1 px-4 py-3 text-body border-0 focus:outline-none focus:ring-2 focus:ring-accent"
-                style="font-size: 16px;"
+                class="newsletter-input"
               />
               <button
                 type="submit"
@@ -387,6 +394,44 @@ const featuredLogos = [
   setInterval(() => {
     showSlide((current + 1) % slides.length);
   }, 5000);
+
+  // Counter animation
+  function animateCounters() {
+    const counters = document.querySelectorAll('.stat-count');
+    counters.forEach(counter => {
+      const el = counter as HTMLElement;
+      const target = parseInt(el.dataset.target || '0');
+      const duration = 1000;
+      const startTime = performance.now();
+
+      function update(currentTime: number) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(progress * target);
+        el.textContent = String(value || 1);
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = String(target);
+        }
+      }
+      requestAnimationFrame(update);
+    });
+  }
+
+  // Trigger counters when stats section is visible
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(statsSection);
+  }
 </script>
 
 <style>
@@ -465,6 +510,388 @@ const featuredLogos = [
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4));
   }
 
+  /* ===== FEATURED IN STRIP ===== */
+  .featured-strip {
+    height: 15vh;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .featured-strip-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .featured-logo {
+    height: 1.5rem;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* ===== ABOUT ME ===== */
+  .about-section {
+    background: #fff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .about-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .about-left {
+    width: 57%;
+  }
+  .about-right {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-photo-wrapper {
+    width: 100%;
+    padding: 20px;
+    background-image: linear-gradient(#042a49, #2196f3);
+  }
+  .about-photo {
+    width: 100%;
+    height: 530px;
+    object-fit: cover;
+    object-position: 0% 15%;
+  }
+  .featured-carousel {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .carousel-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* ===== STATS ===== */
+  .stats-section {
+    background: #fff;
+    padding-bottom: 80px;
+  }
+  .stats-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .stat-item {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stat-number {
+    font-family: var(--font-body);
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-narrow);
+    font-size: 25px;
+    font-weight: 700;
+    margin-top: -25px;
+  }
+
+  /* ===== BOOK SECTION ===== */
+  .book-section {
+    background-color: #f5f5f5;
+    padding-top: 80px;
+    padding-bottom: 0;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 120%;
+  }
+  .book-overview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+    margin-top: 2rem;
+  }
+  .book-overview-image {
+    width: 50%;
+    height: 350px;
+    background-size: cover;
+    background-position: center center;
+  }
+  .book-overview-text {
+    width: 50%;
+    background: #fff;
+    padding: 20px;
+  }
+  .quote-text {
+    font-family: var(--font-script);
+    font-size: 28px;
+    color: var(--color-body);
+    margin-top: 20px;
+  }
+  .quote-attribution {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-body);
+    margin-top: 4px;
+  }
+  .chapters-row {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+  }
+  .chapters-text {
+    width: 50%;
+  }
+  .chapters-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+  .chapters-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  .chapter-cards {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .chapter-card {
+    width: calc(33.333% - 14px);
+    background: #fff;
+    padding: 20px;
+  }
+  .chapter-card-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .chapter-icon {
+    font-size: 20px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .chapter-card-title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .chapter-card-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-body);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  /* ===== ISSUES SECTION ===== */
+  .issues-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #f5f5f5;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 120%;
+    position: relative;
+  }
+  .issues-section::before {
+    background-image: radial-gradient(circle closest-side at bottom center, rgba(245, 245, 245, 0.72), rgba(245, 245, 245, 0.72));
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  .issues-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+  }
+  .issues-row-image {
+    width: 50%;
+    height: 350px;
+    background-size: cover;
+    background-position: center center;
+  }
+  .issues-row-text {
+    width: 50%;
+    background: #fff;
+    padding: 20px;
+  }
+  .scenario-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+  }
+  .scenario-card {
+    width: 49%;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 1px 1px 1px 1px #9e9e9e;
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-section {
+    background-color: #f5f5f5;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 120%;
+    position: relative;
+  }
+  .testimonials-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle closest-side at bottom center, rgba(245,245,245,0.72), rgba(245,245,245,0.72));
+    pointer-events: none;
+  }
+  .testimonials-map {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .testimonial-quote {
+    font-family: var(--font-script);
+    font-size: 27px;
+    color: var(--color-body);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-name {
+    font-family: var(--font-narrow);
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .testimonial-role {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  /* ===== BLOG ===== */
+  .blog-section {
+    background: #f5f5f5;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .blog-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .blog-card {
+    background: #fff;
+    width: 30%;
+  }
+  .blog-card-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+  }
+  .blog-card-title {
+    font-family: var(--font-body);
+    font-size: 23px;
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1.2em;
+  }
+  .blog-card-btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 15px;
+  }
+
+  /* ===== NEWSLETTER ===== */
+  .newsletter-section {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&auto=format') center center / cover no-repeat;
+  }
+  .newsletter-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
+    pointer-events: none;
+  }
+  .newsletter-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .newsletter-heading {
+    font-family: var(--font-narrow);
+    font-size: 27px;
+    color: #f5f5f5;
+  }
+  .newsletter-form-wrapper {
+    width: 85%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .newsletter-form {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
+    max-width: 28rem;
+  }
+  .newsletter-input {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 0;
+    outline: none;
+    font-family: var(--font-body);
+  }
+  .newsletter-input:focus {
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 991px) {
+    .featured-strip-inner {
+      gap: 1.5rem;
+    }
+    .featured-logo {
+      height: 2rem;
+    }
+  }
+
   @media (max-width: 478px) {
     .hero-section {
       height: auto;
@@ -493,6 +920,121 @@ const featuredLogos = [
     }
     .hero-image img {
       max-width: 280px;
+    }
+    .featured-strip {
+      height: 8vh;
+      padding: 5px 20px;
+    }
+    .featured-logo {
+      height: 1rem;
+    }
+    .about-section {
+      padding: 40px 20px;
+    }
+    .about-left {
+      width: 100%;
+    }
+    .about-right {
+      width: 100%;
+    }
+    .about-photo {
+      height: 350px;
+    }
+    .featured-carousel {
+      gap: 30px;
+    }
+    .carousel-logo {
+      height: 30px;
+    }
+    .stats-section {
+      padding: 0 20px 40px;
+    }
+    .stat-item {
+      width: 50%;
+    }
+    .stat-number {
+      font-size: 45px;
+    }
+    .stat-label {
+      font-size: 18px;
+    }
+    .book-overview {
+      flex-direction: column;
+    }
+    .book-overview-image {
+      width: 100%;
+    }
+    .book-overview-text {
+      width: 100%;
+    }
+    .quote-text {
+      font-size: 15px;
+    }
+    .chapters-row {
+      flex-direction: column;
+      margin-top: 50px;
+      row-gap: 20px;
+      padding-bottom: 40px;
+    }
+    .chapters-text {
+      width: 100%;
+    }
+    .chapters-image {
+      width: 100%;
+    }
+    .chapter-cards {
+      flex-direction: column;
+    }
+    .chapter-card {
+      width: 100%;
+    }
+    .issues-section {
+      padding: 40px 20px;
+    }
+    .issues-row {
+      flex-direction: column;
+    }
+    .issues-row-image {
+      width: 100%;
+    }
+    .issues-row-text {
+      width: 100%;
+    }
+    .scenario-card {
+      width: 100%;
+    }
+    .testimonial-quote {
+      font-size: 15px;
+    }
+    .blog-card {
+      width: 100%;
+    }
+    .blog-card-title {
+      font-size: 15px;
+    }
+    .newsletter-section {
+      padding: 40px 20px;
+    }
+    .newsletter-row {
+      flex-direction: column;
+    }
+    .newsletter-form-wrapper {
+      width: 100%;
+    }
+    .newsletter-form {
+      flex-direction: column;
+    }
+  }
+
+  @media (min-width: 479px) and (max-width: 991px) {
+    .blog-card {
+      width: 49%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .featured-logo {
+      height: 2.5rem;
     }
   }
 </style>
