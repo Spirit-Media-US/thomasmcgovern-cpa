@@ -274,7 +274,7 @@ const carouselSlides = [
     <!-- TESTIMONIALS -->
     <section class="testimonials-section">
       <div class="container-site" style="position: relative; z-index: 1;">
-        <div class="text-center">
+        <div>
           <p class="eyebrow mb-2">WHAT OTHER SAYS</p>
           <h2 class="heading-section mb-10">Testimonials</h2>
         </div>
@@ -802,23 +802,23 @@ const carouselSlides = [
   /* ===== TESTIMONIALS ===== */
   .testimonials-section {
     background-color: #f5f5f5;
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=1200&auto=format');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
     padding-top: 80px;
     padding-bottom: 80px;
     position: relative;
   }
-  .testimonials-map-wrapper {
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=800&auto=format');
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    position: relative;
-  }
-  .testimonials-map-wrapper::before {
+  .testimonials-section::before {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55));
     pointer-events: none;
+  }
+  .testimonials-map-wrapper {
+    position: relative;
   }
   .testimonials-slider-wrapper {
     position: relative;
@@ -830,7 +830,7 @@ const carouselSlides = [
     flex-shrink: 0;
     width: 50px;
     height: 50px;
-    background: #f5f5f5;
+    background: transparent;
     border: none;
     border-radius: 50%;
     color: #616161;
@@ -842,7 +842,7 @@ const carouselSlides = [
     z-index: 2;
   }
   .testi-arrow:hover {
-    background: #e0e0e0;
+    background: rgba(0,0,0,0.05);
   }
   .testi-viewport {
     flex: 1;
@@ -861,6 +861,7 @@ const carouselSlides = [
   .testi-card {
     flex: 1;
     padding: 20px;
+    background: transparent;
   }
   .testi-quote {
     font-family: var(--font-script);
