@@ -230,18 +230,11 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
       const hamburger = document.getElementById('hamburger-icon');
       const closeIcon = document.getElementById('close-icon');
 
-      // Scroll: transparent → solid
-      function updateNav() {
-        if (window.scrollY > 50) {
-          nav.style.background = '#03213a';
-          nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-        } else {
-          nav.style.background = 'rgba(4, 47, 82, 0)';
-          nav.style.boxShadow = 'none';
-        }
+      // Keep nav always transparent
+      if (nav) {
+        nav.style.background = 'transparent';
+        nav.style.boxShadow = 'none';
       }
-      window.addEventListener('scroll', updateNav);
-      updateNav();
 
       // Mobile toggle
       toggle?.addEventListener('click', () => {
