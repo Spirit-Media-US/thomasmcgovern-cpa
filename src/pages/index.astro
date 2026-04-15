@@ -2,44 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 
-const stats = [
-  { value: '1+', label: 'Years Experience' },
-  { value: '1+', label: 'Books Written' },
-  { value: '1K+', label: 'Happy Readers' },
-  { value: '1+', label: 'Awards' },
-];
-
-const chapters = [
-  {
-    icon: '&#9878;', // scales
-    title: 'The Labor Issue',
-    text: 'Explore how employee classification could fundamentally change the relationship between athletes and universities, with far-reaching implications for the entire system.',
-  },
-  {
-    icon: '&#128176;', // money bag
-    title: 'Effects of Taxation',
-    text: 'Understand how UBTI (Unrelated Business Taxable Income) and the potential loss of tax-exempt status could reshape college athletics funding and finances.',
-  },
-  {
-    icon: '&#127942;', // trophy
-    title: 'The Bigger Issue',
-    text: 'Examine the ideological battle at the heart of college sports — where amateurism, commercialism, and the Olympic development pipeline collide.',
-  },
-];
-
 const testimonials = [
   {
-    quote: 'McGovern\'s analysis of the tax implications alone makes this book essential reading for anyone involved in college athletics administration.',
+    quote: 'A must-read for anyone who cares about the future of college sports.',
     name: 'Dr. Jane Smith',
     role: 'Sports Economist',
   },
   {
-    quote: 'A thorough and thought-provoking examination of the forces that could fundamentally transform college sports as we know them.',
+    quote: 'This book masterfully explains the challenges facing intercollegiate athletics and why action is needed now.',
     name: 'John Doe',
     role: 'University President',
   },
   {
-    quote: 'Finally, someone who breaks down these complex issues in a way that fans and administrators alike can understand and act upon.',
+    quote: 'Eye-opening and thought-provoking. A game-changer for understanding college athletics.',
     name: 'Sarah T.',
     role: 'Reader',
   },
@@ -48,18 +23,15 @@ const testimonials = [
 const blogPosts = [
   {
     title: '5 Myths About Professionalizing College Sports',
-    excerpt: 'Separating fact from fiction in the debate over paying college athletes and what it really means for the future of NCAA sports.',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=600&auto=format',
+    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/b89d10e302b00d8827e6f032cf74c0303fdae6db-1024x576.jpg?w=600&auto=format',
   },
   {
     title: 'The Tax Debate That Could Change NCAA Forever',
-    excerpt: 'How UBTI and tax-exempt status are becoming the central battleground for the future of college athletics funding.',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=600&auto=format',
+    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/aa049e72dd99d4499adee9b279aad23ea55a1ab2-640x427.jpg?w=600&auto=format',
   },
   {
-    title: 'Why Title IX Could Be the Sleeper Issue',
-    excerpt: 'As college sports inches toward professionalization, Title IX compliance becomes an even more complex and critical challenge.',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/b89d10e302b00d8827e6f032cf74c0303fdae6db-1024x576.jpg?w=600&auto=format',
+    title: 'Why Title IX Could Be the Sleeper Issue in the NCAA Professionalization Debate',
+    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/e6ee1ed4a3897a23de35c904a970b341106a934f-1024x682.jpg?w=600&auto=format',
   },
 ];
 
@@ -68,12 +40,9 @@ const featuredLogos = [
   { name: 'Wall Street Journal', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?h=50&auto=format' },
   { name: 'USA Today', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?h=50&auto=format' },
   { name: 'Forbes', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?h=50&auto=format' },
-];
-
-const retailers = [
-  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?h=40&auto=format', link: 'https://www.amazon.com/dp/B0DWDWWDY1' },
-  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?h=40&auto=format', link: '#' },
-  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?h=40&auto=format', link: '#' },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?h=40&auto=format' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?h=40&auto=format' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?h=40&auto=format' },
 ];
 ---
 
@@ -81,239 +50,299 @@ const retailers = [
   <main>
 
     <!-- HERO -->
-    <section class="relative min-h-[87vh] flex items-center overflow-hidden">
+    <section class="relative flex items-center overflow-hidden" style="height: 87vh; margin-top: -73px;">
       <!-- Background image + gradient -->
       <div class="absolute inset-0 z-0">
         <img
-          src="https://cdn.sanity.io/images/fkqsnbt5/production/e6ee1ed4a3897a23de35c904a970b341106a934f-1024x682.jpg?w=1600&auto=format"
+          src="https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&auto=format"
           alt=""
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover object-right"
         />
         <div class="absolute inset-0" style="background: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));"></div>
       </div>
 
-      <div class="container-site relative z-10 py-24 lg:py-0">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 class="text-[30px] lg:text-[45px] leading-[1.1] font-normal text-hero-heading mb-6" style="font-family: var(--font-heading);">
+      <div class="container-site relative z-10 pt-20">
+        <div class="flex flex-col lg:flex-row items-center gap-12" style="padding-top: 80px;">
+          <!-- Left: text -->
+          <div class="w-full lg:w-2/5 text-left" style="align-items: flex-start;">
+            <p class="text-footer-text text-[13px] font-light" style="font-family: var(--font-body);">WHAT I DO</p>
+            <h1 class="text-[30px] lg:text-[45px] font-normal text-hero-heading mt-2.5" style="font-family: var(--font-heading); line-height: 1.1em; border-left: 3px solid #e0e0e0; padding-left: 20px;">
               The Future of College Sports Hangs in the Balance
             </h1>
-            <p class="text-lg lg:text-xl text-white/90 mb-8 max-w-xl leading-relaxed">
+            <p class="text-footer-text text-[15px] lg:text-[18px] mt-5 leading-relaxed" style="font-family: var(--font-body);">
               Discover how taxation, professionalization, and legislation could transform the game forever.
             </p>
             <a
               href="https://www.amazon.com/dp/B0DWDWWDY1"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block px-8 py-3.5 bg-accent text-primary-dark font-bold uppercase rounded hover:bg-hero-heading transition-colors"
-              style="font-family: var(--font-narrow); font-size: 18px;"
+              class="btn-primary mt-5 inline-block"
             >Buy the Book</a>
           </div>
-          <div class="flex justify-center lg:justify-end">
+          <!-- Right: book cover -->
+          <div class="w-full lg:w-3/5 flex justify-center">
             <img
               src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=450&auto=format"
               alt="Road to the Final Hour book cover"
-              class="w-[280px] lg:w-[400px] rounded-lg shadow-2xl"
+              class="w-[280px] lg:w-[400px] shadow-2xl"
             />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED IN -->
-    <section class="bg-white py-10 border-b border-border">
+    <!-- FEATURED IN LOGOS -->
+    <section class="flex items-center justify-center bg-light-bg" style="height: 15vh; padding: 10px 0;">
       <div class="container-site">
-        <p class="text-center text-sm text-gray-500 uppercase tracking-widest mb-6" style="font-family: var(--font-narrow);">As Featured In</p>
-        <div class="flex items-center justify-center gap-10 lg:gap-16 flex-wrap opacity-60">
+        <div class="flex items-center justify-center gap-8 lg:gap-12 flex-wrap">
           {featuredLogos.map(logo => (
-            <img src={logo.url} alt={logo.name} class="h-8 lg:h-12 w-auto object-contain grayscale" />
+            <img src={logo.url} alt={logo.name} class="h-6 lg:h-10 w-auto object-contain" />
           ))}
         </div>
       </div>
     </section>
 
     <!-- ABOUT ME -->
-    <section id="about-me" class="py-16 lg:py-20 bg-white">
+    <section id="about-me" class="bg-white" style="padding-top: 80px; padding-bottom: 80px;">
       <div class="container-site">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="flex justify-center">
+        <p class="eyebrow mb-2">WHAT I DO</p>
+        <h2 class="heading-section mb-0">About <span>&nbsp;</span>Me</h2>
+
+        <hr class="section-divider" />
+
+        <div class="flex flex-col lg:flex-row gap-12 items-start">
+          <!-- Left: headshot + featured -->
+          <div class="w-full lg:w-[57%]">
             <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=500&auto=format"
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&auto=format"
               alt="Thomas A. McGovern"
-              class="rounded-2xl shadow-lg w-full max-w-md object-cover"
+              class="w-full object-cover"
+              style="height: 530px; object-position: 0% 15%;"
             />
-          </div>
-          <div>
-            <p class="eyebrow mb-3">About the Author</p>
-            <h2 class="heading-section mb-6">About Me</h2>
-            <div class="text-body space-y-4">
-              <p>
-                Thomas A. McGovern holds both CPA and CFA designations, bringing a unique analytical perspective to the intersection of finance and college athletics. With a twenty-year Wall Street career, he combines deep financial expertise with a passion for preserving the integrity of college sports.
-              </p>
-              <p>
-                Tom is actively involved with UVA alumni groups and the St. Elmos organization. He earned his MBA from the Darden Graduate School of Business at the University of Virginia and his AB in Economics from Hamilton College, graduating summa cum laude.
-              </p>
+            <div class="w-full p-5 text-white" style="background: linear-gradient(#042a49, #2196f3);">
+              <p class="text-footer-text text-[13px] font-light" style="font-family: var(--font-body);">Featured In:</p>
+              <div class="flex items-center gap-6 mt-3 flex-wrap">
+                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?h=30&auto=format" alt="ESPN" class="h-6 w-auto" />
+                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?h=30&auto=format" alt="WSJ" class="h-6 w-auto" />
+                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?h=30&auto=format" alt="USA Today" class="h-6 w-auto" />
+                <img src="https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?h=30&auto=format" alt="Forbes" class="h-6 w-auto" />
+              </div>
             </div>
+          </div>
+
+          <!-- Right: bio text -->
+          <div class="w-full lg:w-2/5">
+            <h3 class="heading-sub mb-5">About Me</h3>
+            <p class="text-body">
+              Thomas A. McGovern is a Certified Public Accountant (CPA) and holds the Chartered Financial Analyst (CFA) designation. His extensive career includes twenty years as a Wall Street investment banker and equity research analyst. He has been involved in the higher education sector as a member of the board of directors of the University of Virginia's Manhattan alumni group, the Virginia Club of New York, and President of the Board of Governors of the St. Elmos national organization. Thomas McGovern earned a Master of Business Administration (MBA) from the Darden Graduate School of Business at the University of Virginia and an AB in Economics from Hamilton College where he graduated summa cum laude.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- STATS -->
-    <section class="py-12 lg:py-16" style="background: linear-gradient(135deg, #042a49, #2196f3);">
+    <section class="bg-white" style="padding-bottom: 80px;">
       <div class="container-site">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center text-white">
-          {stats.map(stat => (
+        <div class="flex flex-row flex-wrap justify-between">
+          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
             <div>
-              <p class="text-[45px] lg:text-[60px] font-bold leading-none mb-2" style="font-family: var(--font-body);">{stat.value}</p>
-              <p class="text-[18px] lg:text-[25px] font-bold uppercase" style="font-family: var(--font-narrow);">{stat.label}</p>
+              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">+</span>
             </div>
-          ))}
+            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Years of Experienced</p>
+          </div>
+          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
+            <div>
+              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">+</span>
+            </div>
+            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Books Written</p>
+          </div>
+          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
+            <div>
+              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">K +</span>
+            </div>
+            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Happy Readers</p>
+          </div>
+          <div class="w-1/2 lg:w-1/4 flex flex-col items-start" style="row-gap: 0; column-gap: 0;">
+            <div>
+              <span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">1</span><span class="text-[45px] lg:text-[60px] font-bold" style="font-family: var(--font-body); line-height: 1;">+</span>
+            </div>
+            <p class="text-[18px] lg:text-[25px] font-bold" style="font-family: var(--font-narrow); margin-top: -25px;">Awards Recognitions</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- BOOK SECTION -->
-    <section class="py-16 lg:py-20 bg-light-bg">
+    <section class="relative bg-light-bg" style="padding-top: 80px; padding-bottom: 0; background-position: bottom center; background-repeat: no-repeat; background-size: 120%;">
       <div class="container-site">
-        <div class="text-center mb-12">
-          <p class="eyebrow mb-3">The Book</p>
-          <h2 class="heading-section">Road to the Final Hour</h2>
+        <p class="eyebrow mb-2">SHOWCASE</p>
+        <h2 class="heading-section">About the <span>&nbsp;</span>Book</h2>
+
+        <!-- Overview subsection -->
+        <div class="mt-12">
+          <h3 class="heading-sub-sm mb-5">Overview</h3>
+          <p class="text-body">
+            Discover Road to the Final Hour, an in-depth exploration of the forces threatening to reshape college athletics. From taxation to professionalization, this book unpacks the complexities of the current landscape and provides a compelling case for preserving the spirit of college sports.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <p class="text-body">
-              <em>Road to the Final Hour</em> examines the seismic forces threatening to reshape college athletics. From NIL payments and employee classification to tax-exempt status challenges, this book provides a comprehensive analysis of how professionalization could fundamentally alter the landscape of college sports in America.
-            </p>
-            <div class="mt-8 flex items-center gap-6 flex-wrap">
-              {retailers.map(r => (
-                <a href={r.link} target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity">
-                  <img src={r.url} alt={`Buy on ${r.name}`} class="h-8 w-auto object-contain" />
-                </a>
-              ))}
+        <!-- Quote block -->
+        <div class="card-shadow-light mt-12 p-0">
+          <p class="text-[15px] lg:text-[28px]" style="font-family: var(--font-script); color: var(--color-body); margin-top: 20px;">
+            &ldquo;College sports are at a crossroads, and how we address these challenges will define the future of intercollegiate athletics for generations to come.&rdquo;
+          </p>
+          <p class="text-[16px] mt-1" style="font-family: var(--font-body);">- Thomas A. McGovern</p>
+        </div>
+
+        <div class="mt-12">
+          <h3 class="heading-sub mb-5">Chapters Preview</h3>
+          <p class="text-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
+          <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary mt-5 inline-block">Buy the Book</a>
+        </div>
+
+        <!-- 3 Chapter cards -->
+        <div class="mt-12 flex flex-row flex-wrap gap-5" style="padding: 20px; row-gap: 20px;">
+          <div class="w-full md:w-[30%] bg-white p-5 card-shadow">
+            <div class="flex items-start gap-2.5">
+              <span class="text-[30px] text-accent">&#9878;</span>
+              <div>
+                <h4 style="font-family: var(--font-body); font-size: 18px; font-weight: 600;">The Labor Issue</h4>
+                <p class="text-body text-sm mt-2" style="font-size: 16px;">Examines the push to classify college athletes as employees and its implications.</p>
+              </div>
             </div>
           </div>
-          <div class="flex justify-center">
-            <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=400&auto=format"
-              alt="Road to the Final Hour book cover"
-              class="w-[300px] rounded-lg shadow-xl"
-            />
+          <div class="w-full md:w-[30%] bg-white p-5 card-shadow">
+            <div class="flex items-start gap-2.5">
+              <span class="text-[30px] text-accent">&#128176;</span>
+              <div>
+                <h4 style="font-family: var(--font-body); font-size: 18px; font-weight: 600;">Effects of Taxation</h4>
+                <p class="text-body text-sm mt-2" style="font-size: 16px;">Unpacks how UBTI and loss of tax-exempt status could cripple the industry.</p>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-[30%] bg-white p-5 card-shadow">
+            <div class="flex items-start gap-2.5">
+              <span class="text-[30px] text-accent">&#127942;</span>
+              <div>
+                <h4 style="font-family: var(--font-body); font-size: 18px; font-weight: 600;">The Bigger Issue</h4>
+                <p class="text-body text-sm mt-2" style="font-size: 16px;">Explores the ideological battle over the value of college sports in society.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Chapter previews -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {chapters.map(ch => (
-            <div class="bg-white rounded-xl p-8 shadow-[1px_1px_11px_1px_rgba(97,97,97,0.28)] text-center">
-              <div class="text-4xl mb-4" set:html={ch.icon} />
-              <h3 class="heading-sub text-xl mb-3">{ch.title}</h3>
-              <p class="text-body text-base">{ch.text}</p>
-            </div>
-          ))}
-        </div>
       </div>
-    </section>
 
-    <!-- KEY ISSUES -->
-    <section class="py-16 lg:py-20 bg-white">
-      <div class="container-site">
-        <div class="text-center mb-12">
-          <p class="eyebrow mb-3">Key Issues</p>
-          <h2 class="heading-section">The Issues That Matter</h2>
-        </div>
-
-        <!-- Issue 1 -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=600&auto=format"
-              alt="NIL payments to college athletes"
-              class="rounded-xl shadow-lg w-full"
-            />
-          </div>
-          <div>
-            <h3 class="heading-sub mb-4">Tax-Exempt Status & UBTI</h3>
-            <p class="text-body">
-              If college athletes are classified as employees, universities could face a 21% federal corporate tax on athletics revenue through Unrelated Business Taxable Income (UBTI). This alone could strip billions from the college sports ecosystem and force dramatic restructuring of athletic departments across the country.
+      <!-- Issues split section 1: image left, text right -->
+      <div class="container-site" style="margin-top: 70px;">
+        <div class="flex flex-col lg:flex-row items-center bg-white card-shadow-light">
+          <div class="w-full lg:w-1/2 h-[350px]" style="background: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=800&auto=format') center center / cover no-repeat;"></div>
+          <div class="w-full lg:w-1/2 bg-white p-5">
+            <h3 class="heading-sub">What Happens When College Athletics Lose Tax-Exempt Status?</h3>
+            <p class="text-body mt-5">
+              The imposition of Unrelated Business Income Tax (UBTI) could drastically alter the financial foundation of college sports. A 21% federal corporate tax, combined with state taxes, would reduce funds available for non revenue sports and student-athlete scholarships.
             </p>
-          </div>
-        </div>
-
-        <!-- Issue 2 -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2 lg:order-1">
-            <h3 class="heading-sub mb-4">Cultural Significance & Olympic Pipeline</h3>
-            <p class="text-body">
-              College sports serve as America's primary Olympic development pipeline and hold deep cultural significance in communities across the nation. Professionalization threatens to disrupt this pipeline and fundamentally alter the relationship between universities, athletes, and the communities that rally around their teams.
-            </p>
-          </div>
-          <div class="order-1 lg:order-2">
-            <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=600&auto=format"
-              alt="University of Tennessee stadium"
-              class="rounded-xl shadow-lg w-full"
-            />
           </div>
         </div>
       </div>
+
+      <!-- Issues split section 2: text left, image right -->
+      <div class="container-site mt-0">
+        <hr class="section-divider-thin" />
+        <div class="flex flex-col lg:flex-row items-center bg-white card-shadow-light">
+          <div class="w-full lg:w-1/2 bg-white p-5">
+            <h3 class="heading-sub" style="width: 75%;">Cultural Significance of College Athletics</h3>
+            <p class="text-body mt-5">
+              &ldquo;More Than a Game&rdquo; College athletics produce Olympians, foster teamwork, and teach life skills. Cutting programs would not only hurt athletes but also the broader educational mission of U.S. universities.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 h-[350px]" style="background: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=800&auto=format') center center / cover no-repeat;"></div>
+        </div>
+      </div>
+
+      <!-- Scenario cards -->
+      <div class="container-site">
+        <hr class="section-divider-thin" />
+
+        <h3 class="heading-sub-sm mb-5">Two Scenarios for Professionalization</h3>
+
+        <div class="flex flex-row flex-wrap justify-between gap-0 mt-5" style="align-items: stretch;">
+          <div class="w-full lg:w-[49%] bg-white p-8" style="box-shadow: 1px 1px 1px 1px #9e9e9e;">
+            <p class="heading-gray">Scenario 1</p>
+            <p class="text-body mt-2.5">Professionalizing only revenue sports like football and basketball.</p>
+          </div>
+          <div class="w-full lg:w-[49%] bg-white p-8" style="box-shadow: 1px 1px 1px 1px #9e9e9e;">
+            <p class="heading-gray">Scenario 2</p>
+            <p class="text-body mt-2.5">Professionalizing all intercollegiate sports, with catastrophic financial consequences.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom padding for this section -->
+      <div class="container-site text-center" style="padding-bottom: 80px;"></div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="py-16 lg:py-20 bg-light-bg">
-      <div class="container-site">
-        <div class="text-center mb-12">
-          <p class="eyebrow mb-3">What Readers Say</p>
-          <h2 class="heading-section">Testimonials</h2>
+    <section class="bg-light-bg relative" style="padding-top: 80px; padding-bottom: 80px; background-position: bottom center; background-repeat: no-repeat; background-size: 120%;">
+      <div class="absolute inset-0" style="background: radial-gradient(circle closest-side at bottom center, rgba(245,245,245,0.72), rgba(245,245,245,0.72)); pointer-events: none;"></div>
+      <div class="container-site relative z-10">
+        <div class="text-center">
+          <p class="eyebrow mb-2">WHAT OTHER SAYS</p>
+          <h2 class="heading-section mb-10">Testimonials</h2>
         </div>
 
-        <div id="testimonial-slider" class="relative max-w-3xl mx-auto">
-          {testimonials.map((t, i) => (
-            <div class:list={['testimonial-slide', { hidden: i !== 0 }]} data-index={i}>
-              <blockquote class="text-center">
-                <p class="text-[15px] lg:text-[27px] leading-relaxed mb-6" style={`font-family: var(--font-script); color: var(--color-body);`}>
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <footer>
-                  <p class="text-[18px] font-bold" style="font-family: var(--font-narrow);">{t.name}</p>
-                  <p class="text-sm text-gray-500">{t.role}</p>
-                </footer>
-              </blockquote>
-            </div>
-          ))}
+        <div class="relative">
+          <!-- Map background -->
+          <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none" aria-hidden="true">
+            <img src="https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=600&auto=format" alt="" class="w-full max-w-xl object-contain" />
+          </div>
 
-          <!-- Navigation dots -->
-          <div class="flex justify-center gap-3 mt-8">
-            {testimonials.map((_, i) => (
-              <button
-                class:list={['testimonial-dot w-3 h-3 rounded-full transition-colors', i === 0 ? 'bg-primary' : 'bg-gray-300']}
-                data-dot={i}
-                aria-label={`Testimonial ${i + 1}`}
-              />
+          <div id="testimonial-slider" class="relative max-w-3xl mx-auto">
+            {testimonials.map((t, i) => (
+              <div class:list={['testimonial-slide', { hidden: i !== 0 }]} data-index={i}>
+                <blockquote class="text-center px-8">
+                  <p class="text-[15px] lg:text-[27px] leading-relaxed mb-6" style={`font-family: var(--font-script); color: var(--color-body);`}>
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <footer>
+                    <p class="text-[13px] lg:text-[18px] font-bold" style="font-family: var(--font-narrow);">{t.name}</p>
+                    <p class="text-[12px] lg:text-[14px] text-gray-500">{t.role}</p>
+                  </footer>
+                </blockquote>
+              </div>
             ))}
+
+            <!-- Navigation dots -->
+            <div class="flex justify-center gap-3 mt-8">
+              {testimonials.map((_, i) => (
+                <button
+                  class:list={['testimonial-dot w-3 h-3 rounded-full transition-colors', i === 0 ? 'bg-primary' : 'bg-gray-300']}
+                  data-dot={i}
+                  aria-label={`Testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- BLOG POSTS -->
-    <section class="py-16 lg:py-20 bg-white">
+    <section class="bg-light-bg" style="padding-top: 80px; padding-bottom: 80px;">
       <div class="container-site">
-        <div class="text-center mb-12">
-          <p class="eyebrow mb-3">Latest News</p>
-          <h2 class="heading-section">Blog</h2>
+        <div class="text-center">
+          <p class="eyebrow mb-2">ARCHIVES</p>
+          <h2 class="heading-section mb-10">Blog & News</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex flex-row flex-wrap gap-5" style="justify-content: flex-start; align-items: stretch;">
           {blogPosts.map(post => (
-            <div class="bg-white rounded-xl overflow-hidden shadow-[1px_1px_11px_1px_rgba(97,97,97,0.28)] hover:shadow-lg transition-shadow">
-              <div class="h-48 overflow-hidden">
-                <img src={post.image} alt={post.title} class="w-full h-full object-cover" />
-              </div>
-              <div class="p-6">
-                <h3 class="heading-sub text-lg mb-2 leading-snug">{post.title}</h3>
-                <p class="text-body text-sm text-gray-600">{post.excerpt}</p>
+            <div class="bg-white w-full md:w-[30%]">
+              <div class="h-[250px] bg-cover bg-center" style={`background-image: url('${post.image}');`}></div>
+              <div class="p-5">
+                <h3 class="text-[15px] lg:text-[23px] font-semibold leading-snug" style="font-family: var(--font-body); color: var(--color-primary); line-height: 1.2em;">{post.title}</h3>
+                <a href="/blogs" class="btn-primary mt-5 inline-block text-[15px]" style="padding: 5px 10px; font-size: 15px;">Read more ...</a>
               </div>
             </div>
           ))}
@@ -322,25 +351,29 @@ const retailers = [
     </section>
 
     <!-- NEWSLETTER -->
-    <section class="py-16 lg:py-20" style="background: linear-gradient(135deg, #042a49, #2196f3);">
-      <div class="container-site text-center max-w-2xl mx-auto">
-        <h2 class="text-white text-[25px] lg:text-[35px] mb-4" style="font-family: var(--font-heading);">Stay in the Loop</h2>
-        <p class="text-white/80 text-lg mb-8">
-          Stay updated with upcoming book events, author appearances, and media features.
-        </p>
-        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            required
-            class="flex-1 px-4 py-3 rounded-lg text-body border-0 focus:outline-none focus:ring-2 focus:ring-accent"
-          />
-          <button
-            type="submit"
-            class="px-8 py-3 bg-accent text-primary-dark font-bold uppercase rounded-lg hover:bg-hero-heading transition-colors"
-            style="font-family: var(--font-narrow); font-size: 18px;"
-          >Sign Up</button>
-        </form>
+    <section class="relative" style="padding-top: 80px; padding-bottom: 80px; background: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&auto=format') center center / cover no-repeat;">
+      <div class="absolute inset-0" style="background: linear-gradient(#03213a, rgba(1, 83, 121, 0.79)); pointer-events: none;"></div>
+      <div class="container-site relative z-10">
+        <div class="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-8">
+          <div>
+            <p class="text-footer-text text-[27px]" style="font-family: var(--font-narrow);">Stay updated with upcoming book events, author appearances, and media features.</p>
+          </div>
+          <div class="w-full lg:w-[85%] flex items-end lg:justify-end">
+            <form class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                class="flex-1 px-4 py-3 text-body border-0 focus:outline-none focus:ring-2 focus:ring-accent"
+                style="font-size: 16px;"
+              />
+              <button
+                type="submit"
+                class="btn-primary"
+              >Sign Up</button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
 

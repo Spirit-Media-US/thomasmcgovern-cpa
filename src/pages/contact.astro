@@ -4,75 +4,97 @@ import '../styles/global.css';
 ---
 
 <Layout
-  title="Contact — Thomas McGovern CPA"
+  title="Contact Us — Thomas McGovern CPA"
   description="Get in touch with Thomas McGovern about Road to the Final Hour, speaking engagements, or media inquiries."
 >
-  <main class="pt-24">
+  <main>
 
-    <!-- HERO -->
-    <section class="py-16 lg:py-20 bg-light-bg">
-      <div class="container-site max-w-3xl mx-auto text-center">
-        <p class="eyebrow mb-3">Contact</p>
-        <h1 class="heading-section mb-4">Get in Touch with Us</h1>
-        <p class="text-body text-gray-600">
-          Have questions about the book, interested in speaking engagements, or want to discuss upcoming events? We would love to hear from you.
-        </p>
+    <!-- HERO with gradient overlay -->
+    <section class="relative flex items-end justify-center" style="padding-top: 249px; padding-bottom: 60px; margin-top: -73px;">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0" style="background: linear-gradient(#03213a, rgba(1, 83, 121, 0.81));"></div>
+      </div>
+      <div class="container-site relative z-10 text-center">
+        <h1 class="text-hero-heading text-[28px] lg:text-[40px]" style="font-family: var(--font-heading);">Contact Us</h1>
+        <p class="text-footer-text text-[14px] lg:text-[18px] mt-2.5" style="font-family: var(--font-body);">Contact Us</p>
       </div>
     </section>
 
-    <!-- CONTACT FORM -->
-    <section class="py-16 lg:py-20 bg-white">
-      <div class="container-site max-w-2xl mx-auto">
-        <form class="space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-semibold text-gray-700 mb-1.5" style="font-family: var(--font-narrow); text-transform: uppercase;">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                placeholder="Your name"
-              />
+    <!-- CONTACT CONTENT -->
+    <section style="padding-top: 60px; padding-bottom: 60px;">
+      <div class="container-site">
+        <div class="flex flex-col-reverse lg:flex-row flex-wrap justify-between">
+          <!-- Left sidebar: contact info -->
+          <div class="w-full lg:w-[30%] lg:pr-10 lg:border-r" style="border-color: rgba(158,158,158,0.22);">
+            <h2 class="text-primary text-[25px]" style="font-family: var(--font-heading);">Contact Info</h2>
+            <div class="flex items-center gap-3 mt-2.5" style="font-family: var(--font-narrow); font-size: 18px;">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <a href="mailto:tmcgovern@thomasmcgovern.cpa" class="hover:text-accent transition-colors" style="font-family: var(--font-narrow);">tmcgovern@thomasmcgovern.cpa</a>
             </div>
-            <div>
-              <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5" style="font-family: var(--font-narrow); text-transform: uppercase;">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                placeholder="your@email.com"
-              />
-            </div>
-          </div>
-          <div>
-            <label for="message" class="block text-sm font-semibold text-gray-700 mb-1.5" style="font-family: var(--font-narrow); text-transform: uppercase;">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
-              placeholder="Your message..."
-            ></textarea>
-          </div>
-          <div class="text-center">
-            <button
-              type="submit"
-              class="px-10 py-3.5 bg-primary text-white font-bold uppercase rounded-lg hover:bg-primary-dark transition-colors"
-              style="font-family: var(--font-narrow); font-size: 18px;"
-            >Send Message</button>
-          </div>
-        </form>
 
-        <div class="mt-12 text-center">
-          <p class="text-body text-gray-600">
-            You can also reach us directly at
-            <a href="mailto:tmcgovern@thomasmcgovern.cpa" class="text-primary font-semibold hover:underline">tmcgovern@thomasmcgovern.cpa</a>
-          </p>
+            <hr class="my-10" style="border-color: rgba(97,97,97,0.1);" />
+
+            <h2 class="text-primary text-[25px]" style="font-family: var(--font-heading);">Follow Us</h2>
+            <ul class="mt-2.5 space-y-2.5">
+              <li>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="block text-white py-3.5 px-4" style="background-color: #3b5998; font-family: var(--font-narrow); font-size: 16px;">Facebook</a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="block text-white py-3.5 px-4" style="background-color: #4E433C; font-family: var(--font-narrow); font-size: 16px;">Instagram</a>
+              </li>
+            </ul>
+
+            <hr class="my-10" style="border-color: rgba(97,97,97,0.1);" />
+
+            <h3 class="text-primary text-[20px]" style="font-family: var(--font-heading); width: 100%; margin-top: 10px;">The Future of College Sports Hangs in the Balance</h3>
+            <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary mt-5 inline-block text-[13px]" style="font-size: 13px;">Buy the Book</a>
+          </div>
+
+          <!-- Right: contact form -->
+          <div class="w-full lg:w-[70%] lg:pl-10">
+            <h2 class="text-primary text-[25px] mb-10" style="font-family: var(--font-heading);">Get in Touch with us</h2>
+            <form class="space-y-5" style="font-family: var(--font-body);">
+              <div class="flex flex-col sm:flex-row gap-2.5">
+                <div class="w-full sm:w-1/2">
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Name"
+                    class="w-full px-3 py-3 border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary"
+                    style="font-family: var(--font-body); color: var(--color-body);"
+                  />
+                </div>
+                <div class="w-full sm:w-1/2">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Email *"
+                    class="w-full px-3 py-3 border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary"
+                    style="font-family: var(--font-body); color: var(--color-body);"
+                  />
+                </div>
+              </div>
+              <div>
+                <textarea
+                  name="message"
+                  rows="6"
+                  required
+                  placeholder="Message"
+                  class="w-full px-3 py-3 border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary resize-vertical"
+                  style="font-family: var(--font-body); color: var(--color-body);"
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="px-8 py-3 bg-primary text-white font-bold uppercase transition-colors hover:bg-primary-dark"
+                  style="font-family: var(--font-narrow); font-size: 18px;"
+                >Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
