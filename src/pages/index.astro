@@ -53,19 +53,19 @@ const featuredLogos = [
     <section class="hero-section">
       <div class="hero-inner container-site">
         <div class="hero-content">
-          <!-- Left: text (40%) -->
-          <div class="hero-text">
-            <h5 class="hero-eyebrow">ORDER NOW</h5>
-            <h1 class="hero-heading">The Future of College Sports Hangs in the Balance</h1>
-            <p class="hero-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
-            <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary">Buy the Book</a>
-          </div>
-          <!-- Right: book cover (60%) -->
+          <!-- Left: book cover (40%) -->
           <div class="hero-image">
             <img
               src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
               alt="Road to the Final Hour book cover"
             />
+          </div>
+          <!-- Right: text (60%) -->
+          <div class="hero-text">
+            <h5 class="hero-eyebrow">ORDER NOW</h5>
+            <h1 class="hero-heading">The Future of College Sports Hangs in the Balance</h1>
+            <p class="hero-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
+            <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary">Buy the Book</a>
           </div>
         </div>
       </div>
@@ -468,7 +468,7 @@ const featuredLogos = [
     margin: 0 auto;
   }
   .hero-text {
-    width: 40%;
+    width: 60%;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -499,14 +499,14 @@ const featuredLogos = [
     margin-top: 20px;
   }
   .hero-image {
-    width: 60%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .hero-image img {
-    max-width: 400px;
-    width: 100%;
+    width: 80%;
+    max-width: 100%;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4));
   }
 
