@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout
+  title="Contact — Thomas McGovern CPA"
+  description="Get in touch with Thomas McGovern about Road to the Final Hour, speaking engagements, or media inquiries."
+>
+  <main class="pt-24">
+
+    <!-- HERO -->
+    <section class="py-16 lg:py-20 bg-light-bg">
+      <div class="container-site max-w-3xl mx-auto text-center">
+        <p class="eyebrow mb-3">Contact</p>
+        <h1 class="heading-section mb-4">Get in Touch with Us</h1>
+        <p class="text-body text-gray-600">
+          Have questions about the book, interested in speaking engagements, or want to discuss upcoming events? We would love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="py-16 lg:py-20 bg-white">
+      <div class="container-site max-w-2xl mx-auto">
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-sm font-semibold text-gray-700 mb-1.5" style="font-family: var(--font-narrow); text-transform: uppercase;">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5" style="font-family: var(--font-narrow); text-transform: uppercase;">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="your@email.com"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-semibold text-gray-700 mb-1.5" style="font-family: var(--font-narrow); text-transform: uppercase;">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              class="w-full px-4 py-3 rounded-lg border border-border bg-white text-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
+              placeholder="Your message..."
+            ></textarea>
+          </div>
+          <div class="text-center">
+            <button
+              type="submit"
+              class="px-10 py-3.5 bg-primary text-white font-bold uppercase rounded-lg hover:bg-primary-dark transition-colors"
+              style="font-family: var(--font-narrow); font-size: 18px;"
+            >Send Message</button>
+          </div>
+        </form>
+
+        <div class="mt-12 text-center">
+          <p class="text-body text-gray-600">
+            You can also reach us directly at
+            <a href="mailto:tmcgovern@thomasmcgovern.cpa" class="text-primary font-semibold hover:underline">tmcgovern@thomasmcgovern.cpa</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>

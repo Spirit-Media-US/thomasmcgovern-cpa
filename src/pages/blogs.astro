@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+const blogPosts = [
+  {
+    title: '5 Myths About Professionalizing College Sports',
+    excerpt: 'Separating fact from fiction in the debate over paying college athletes and what it really means for the future of NCAA sports.',
+    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=600&auto=format',
+    date: 'January 15, 2025',
+  },
+  {
+    title: 'The Tax Debate That Could Change NCAA Forever',
+    excerpt: 'How UBTI and tax-exempt status are becoming the central battleground for the future of college athletics funding.',
+    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=600&auto=format',
+    date: 'February 3, 2025',
+  },
+  {
+    title: 'Why Title IX Could Be the Sleeper Issue',
+    excerpt: 'As college sports inches toward professionalization, Title IX compliance becomes an even more complex and critical challenge.',
+    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/b89d10e302b00d8827e6f032cf74c0303fdae6db-1024x576.jpg?w=600&auto=format',
+    date: 'March 10, 2025',
+  },
+];
+---
+
+<Layout
+  title="Blog — Thomas McGovern CPA"
+  description="Articles and insights on college sports, taxation, and the future of NCAA athletics by Thomas McGovern."
+>
+  <main class="pt-24">
+
+    <!-- HERO -->
+    <section class="py-16 lg:py-20 bg-light-bg">
+      <div class="container-site text-center">
+        <p class="eyebrow mb-3">Latest News</p>
+        <h1 class="heading-section mb-4">Blog</h1>
+        <p class="text-body text-gray-600 max-w-2xl mx-auto">
+          Insights, analysis, and updates on the forces reshaping college athletics.
+        </p>
+      </div>
+    </section>
+
+    <!-- POSTS GRID -->
+    <section class="py-16 lg:py-20 bg-white">
+      <div class="container-site">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {blogPosts.map(post => (
+            <div class="bg-white rounded-xl overflow-hidden shadow-[1px_1px_11px_1px_rgba(97,97,97,0.28)] hover:shadow-lg transition-shadow">
+              <div class="h-48 overflow-hidden">
+                <img src={post.image} alt={post.title} class="w-full h-full object-cover" />
+              </div>
+              <div class="p-6">
+                <p class="text-xs text-gray-500 mb-2 uppercase" style="font-family: var(--font-narrow);">{post.date}</p>
+                <h2 class="heading-sub text-lg mb-2 leading-snug">{post.title}</h2>
+                <p class="text-body text-sm text-gray-600">{post.excerpt}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>
