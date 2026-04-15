@@ -35,9 +35,13 @@ const blogPosts = [
   },
 ];
 
-const bookshopUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?h=60&auto=format';
-const amazonUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?h=60&auto=format';
-const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?h=60&auto=format';
+const carouselSlides = [
+  { name: 'Thomas McGovern', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/b4127efc1c0867decda9704ae29551f039f954da-1175x431.png?w=400&auto=format' },
+  { name: 'Road to the Final Hour', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=300&auto=format' },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=300&auto=format' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=400&auto=format' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=300&auto=format' },
+];
 ---
 
 <Layout title="Thomas McGovern CPA — Road to the Final Hour">
@@ -65,14 +69,14 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
       </div>
     </section>
 
-    <!-- FEATURED IN LOGOS -->
+    <!-- FEATURED IN LOGOS — matches original: 5 slides, centered, loop -->
     <section class="featured-strip">
       <div class="featured-strip-inner">
-        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-large" />
-        <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
-        <img src={amazonUrl} alt="Amazon" class="featured-logo fl-large" />
-        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-large" />
-        <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
+        {carouselSlides.map(slide => (
+          <div class="featured-slide">
+            <img src={slide.url} alt={slide.name} />
+          </div>
+        ))}
       </div>
     </section>
 
@@ -522,16 +526,20 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
     width: 100%;
     max-width: 1250px;
     margin: 0 auto;
-    padding: 0 40px;
-    gap: 40px;
+    padding: 0 20px;
+    gap: 20px;
   }
-  .featured-logo {
-    width: 15%;
-    height: auto;
+  .featured-slide {
+    flex: 0 0 calc(100% / 5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  .featured-slide img {
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
-  }
-  .fl-large {
-    width: 25%;
   }
 
   /* ===== ABOUT ME ===== */
@@ -921,16 +929,11 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
       font-size: 15px;
     }
     .featured-strip {
-      height: auto;
-      padding: 15px 10px;
+      height: 8vh;
+      padding: 5px 20px;
     }
-    .featured-strip-inner {
-      gap: 10px;
-      flex-wrap: wrap;
-      padding: 0 10px;
-    }
-    .featured-logo {
-      width: 28%;
+    .featured-slide {
+      flex: 0 0 calc(100% / 3);
     }
     .about-section {
       padding: 40px 20px;
