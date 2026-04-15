@@ -574,11 +574,13 @@ const carouselSlides = [
   .featured-carousel {
     display: flex;
     align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
+    flex-wrap: nowrap;
   }
   .carousel-logo {
-    width: 30%;
+    flex: 1;
+    max-width: 33%;
     height: auto;
     object-fit: contain;
   }
@@ -944,10 +946,10 @@ const carouselSlides = [
       height: 350px;
     }
     .featured-carousel {
-      gap: 30px;
+      gap: 15px;
     }
     .carousel-logo {
-      height: 30px;
+      max-width: 30%;
     }
     .stats-section {
       padding: 0 20px 40px;
