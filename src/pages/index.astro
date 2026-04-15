@@ -50,41 +50,21 @@ const featuredLogos = [
   <main>
 
     <!-- HERO -->
-    <section class="relative flex items-center overflow-hidden" style="height: 87vh; margin-top: -73px;">
-      <!-- Background image + gradient -->
-      <div class="absolute inset-0 z-0">
-        <img
-          src="https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&auto=format"
-          alt=""
-          class="w-full h-full object-cover object-right"
-        />
-        <div class="absolute inset-0" style="background: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));"></div>
-      </div>
-
-      <div class="container-site relative z-10 pt-20">
-        <div class="flex flex-col lg:flex-row items-center gap-12" style="padding-top: 80px;">
-          <!-- Left: text -->
-          <div class="w-full lg:w-2/5 text-left" style="align-items: flex-start;">
-            <p class="text-footer-text text-[13px] font-light" style="font-family: var(--font-body);">WHAT I DO</p>
-            <h1 class="text-[30px] lg:text-[45px] font-normal text-hero-heading mt-2.5" style="font-family: var(--font-heading); line-height: 1.1em; border-left: 3px solid #e0e0e0; padding-left: 20px;">
-              The Future of College Sports Hangs in the Balance
-            </h1>
-            <p class="text-footer-text text-[15px] lg:text-[18px] mt-5 leading-relaxed" style="font-family: var(--font-body);">
-              Discover how taxation, professionalization, and legislation could transform the game forever.
-            </p>
-            <a
-              href="https://www.amazon.com/dp/B0DWDWWDY1"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary mt-5 inline-block"
-            >Buy the Book</a>
+    <section class="hero-section">
+      <div class="hero-inner container-site">
+        <div class="hero-content">
+          <!-- Left: text (40%) -->
+          <div class="hero-text">
+            <h5 class="hero-eyebrow">ORDER NOW</h5>
+            <h1 class="hero-heading">The Future of College Sports Hangs in the Balance</h1>
+            <p class="hero-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
+            <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary">Buy the Book</a>
           </div>
-          <!-- Right: book cover -->
-          <div class="w-full lg:w-3/5 flex justify-center">
+          <!-- Right: book cover (60%) -->
+          <div class="hero-image">
             <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=450&auto=format"
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
               alt="Road to the Final Hour book cover"
-              class="w-[280px] lg:w-[400px] shadow-2xl"
             />
           </div>
         </div>
@@ -408,3 +388,111 @@ const featuredLogos = [
     showSlide((current + 1) % slides.length);
   }, 5000);
 </script>
+
+<style>
+  /* ===== HERO — matches original Bricks CSS exactly ===== */
+  .hero-section {
+    position: relative;
+    height: 87vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1920&auto=format');
+    background-position: center right;
+    background-size: cover;
+    background-blend-mode: multiply;
+  }
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .hero-text {
+    width: 40%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    color: #f5f5f5;
+    font-size: 13px;
+    font-weight: 300;
+    margin: 0;
+  }
+  .hero-heading {
+    font-family: var(--font-heading);
+    color: #fff280;
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 1.1em;
+    border-left: 3px solid #e0e0e0;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .hero-body {
+    color: #f5f5f5;
+    font-family: var(--font-body);
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  .hero-image {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-image img {
+    max-width: 400px;
+    width: 100%;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4));
+  }
+
+  @media (max-width: 478px) {
+    .hero-section {
+      height: auto;
+      padding-top: 100px;
+      padding-bottom: 40px;
+    }
+    .hero-content {
+      flex-direction: column;
+      padding-top: 0;
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 100%;
+      row-gap: 40px;
+    }
+    .hero-text {
+      width: 100%;
+    }
+    .hero-heading {
+      font-size: 30px;
+    }
+    .hero-body {
+      font-size: 15px;
+    }
+    .hero-image {
+      width: 100%;
+    }
+    .hero-image img {
+      max-width: 280px;
+    }
+  }
+</style>
