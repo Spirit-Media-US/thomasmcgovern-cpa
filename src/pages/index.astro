@@ -65,16 +65,14 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
       </div>
     </section>
 
-    <!-- FEATURED IN LOGOS -->
+    <!-- FEATURED IN LOGOS — matches original Swiper carousel: 5 slides visible, loop, centered -->
     <section class="featured-strip">
-      <div class="container-site">
-        <div class="featured-strip-inner">
-          <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo featured-logo-barnes" />
-          <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
-          <img src={amazonUrl} alt="Amazon" class="featured-logo featured-logo-amazon" />
-          <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo featured-logo-barnes" />
-          <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
-        </div>
+      <div class="featured-strip-inner">
+        <img src={amazonUrl} alt="Amazon" class="featured-logo" />
+        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo" />
+        <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
+        <img src={amazonUrl} alt="Amazon" class="featured-logo" />
+        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo" />
       </div>
     </section>
 
@@ -508,7 +506,7 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
     margin: 0;
   }
 
-  /* ===== FEATURED IN STRIP ===== */
+  /* ===== FEATURED IN STRIP — matches original #brxe-uklxqb ===== */
   .featured-strip {
     height: 15vh;
     background-color: #f5f5f5;
@@ -520,20 +518,17 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
   .featured-strip-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 20px;
   }
   .featured-logo {
-    height: 2.5rem;
-    width: auto;
+    height: auto;
+    width: 16%;
     object-fit: contain;
-  }
-  .featured-logo-amazon {
-    height: 6rem;
-  }
-  .featured-logo-barnes {
-    height: 8rem;
   }
 
   /* ===== ABOUT ME ===== */
@@ -927,7 +922,7 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
       padding: 5px 20px;
     }
     .featured-logo {
-      height: 1rem;
+      width: 28%;
     }
     .about-section {
       padding: 40px 20px;
