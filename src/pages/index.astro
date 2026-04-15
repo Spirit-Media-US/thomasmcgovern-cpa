@@ -35,11 +35,9 @@ const blogPosts = [
   },
 ];
 
-const featuredLogos = [
-  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?h=40&auto=format' },
-  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?h=40&auto=format' },
-  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?h=40&auto=format' },
-];
+const bookshopUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?h=60&auto=format';
+const amazonUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?h=60&auto=format';
+const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?h=60&auto=format';
 ---
 
 <Layout title="Thomas McGovern CPA — Road to the Final Hour">
@@ -71,9 +69,11 @@ const featuredLogos = [
     <section class="featured-strip">
       <div class="container-site">
         <div class="featured-strip-inner">
-          {featuredLogos.map(logo => (
-            <img src={logo.url} alt={logo.name} class="featured-logo" />
-          ))}
+          <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo" />
+          <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
+          <img src={amazonUrl} alt="Amazon" class="featured-logo featured-logo-center" />
+          <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo" />
+          <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
         </div>
       </div>
     </section>
@@ -521,13 +521,16 @@ const featuredLogos = [
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
     flex-wrap: wrap;
   }
   .featured-logo {
-    height: 1.5rem;
+    height: 2.5rem;
     width: auto;
     object-fit: contain;
+  }
+  .featured-logo-center {
+    height: 3rem;
   }
 
   /* ===== ABOUT ME ===== */
