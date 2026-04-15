@@ -65,14 +65,14 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
       </div>
     </section>
 
-    <!-- FEATURED IN LOGOS — matches original Swiper carousel: 5 slides visible, loop, centered -->
+    <!-- FEATURED IN LOGOS -->
     <section class="featured-strip">
       <div class="featured-strip-inner">
-        <img src={amazonUrl} alt="Amazon" class="featured-logo" />
-        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo" />
-        <img src={bookshopUrl} alt="Bookshop" class="featured-logo" />
-        <img src={amazonUrl} alt="Amazon" class="featured-logo" />
-        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo" />
+        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-barnes" />
+        <img src={bookshopUrl} alt="Bookshop" class="featured-logo fl-bookshop" />
+        <img src={amazonUrl} alt="Amazon" class="featured-logo fl-amazon" />
+        <img src={barnesUrl} alt="Barnes & Noble" class="featured-logo fl-barnes" />
+        <img src={bookshopUrl} alt="Bookshop" class="featured-logo fl-bookshop" />
       </div>
     </section>
 
@@ -518,17 +518,27 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
   .featured-strip-inner {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
     max-width: 1250px;
     margin: 0 auto;
-    padding: 0 20px;
-    gap: 20px;
+    padding: 0 40px;
+    gap: 40px;
   }
   .featured-logo {
-    height: auto;
-    width: 16%;
     object-fit: contain;
+  }
+  .fl-barnes {
+    height: 80px;
+    width: auto;
+  }
+  .fl-bookshop {
+    height: 30px;
+    width: auto;
+  }
+  .fl-amazon {
+    height: 50px;
+    width: auto;
   }
 
   /* ===== ABOUT ME ===== */
@@ -918,11 +928,22 @@ const barnesUrl = 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be
       font-size: 15px;
     }
     .featured-strip {
-      height: 8vh;
-      padding: 5px 20px;
+      height: auto;
+      padding: 15px 10px;
     }
-    .featured-logo {
-      width: 28%;
+    .featured-strip-inner {
+      gap: 15px;
+      flex-wrap: wrap;
+      padding: 0 10px;
+    }
+    .fl-barnes {
+      height: 50px;
+    }
+    .fl-bookshop {
+      height: 18px;
+    }
+    .fl-amazon {
+      height: 30px;
     }
     .about-section {
       padding: 40px 20px;
