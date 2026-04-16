@@ -366,6 +366,7 @@ const carouselSlides = [
         const btn = document.createElement('button');
         btn.className = 'testi-dot';
         btn.style.cssText = 'width:12px;height:12px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:background 0.3s;background:' + (i === 0 ? '#616161' : '#d4d4d4');
+        btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
         btn.dataset.slide = String(i);
         btn.addEventListener('click', () => slideTo(i));
         dotsContainer.appendChild(btn);
