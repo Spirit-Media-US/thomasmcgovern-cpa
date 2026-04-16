@@ -492,7 +492,7 @@ const carouselSlides = [
   .hero-heading {
     font-family: var(--font-heading);
     color: #fff280;
-    font-size: 45px;
+    font-size: clamp(24px, 6vw, 45px);
     font-weight: 400;
     line-height: 1.1em;
     border-left: 3px solid #e0e0e0;
@@ -502,7 +502,7 @@ const carouselSlides = [
   .hero-body {
     color: #f5f5f5;
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: clamp(16px, 2.5vw, 18px);
     line-height: 1.6;
     margin: 0;
   }
@@ -604,13 +604,13 @@ const carouselSlides = [
   }
   .stat-number {
     font-family: var(--font-body);
-    font-size: 60px;
+    font-size: clamp(36px, 8vw, 60px);
     font-weight: 700;
     line-height: 1;
   }
   .stat-label {
     font-family: var(--font-narrow);
-    font-size: 25px;
+    font-size: clamp(16px, 3.5vw, 25px);
     font-weight: 700;
     margin-top: 8px;
   }
@@ -645,7 +645,7 @@ const carouselSlides = [
   }
   .quote-text {
     font-family: var(--font-script);
-    font-size: 28px;
+    font-size: clamp(18px, 4vw, 28px);
     color: var(--color-body);
     margin-top: 20px;
   }
@@ -842,14 +842,14 @@ const carouselSlides = [
   }
   .testi-quote {
     font-family: var(--font-script);
-    font-size: 27px;
+    font-size: clamp(18px, 3.5vw, 27px);
     color: #212121;
     line-height: 1.4;
     margin-bottom: 16px;
   }
   .testi-name {
     font-family: var(--font-narrow);
-    font-size: 18px;
+    font-size: clamp(14px, 2.5vw, 18px);
     font-weight: 700;
     color: #212121;
   }
@@ -904,10 +904,10 @@ const carouselSlides = [
   }
   .blog-card-title {
     font-family: var(--font-body);
-    font-size: 23px;
+    font-size: clamp(16px, 3vw, 23px);
     font-weight: 600;
     color: var(--color-primary);
-    line-height: 1.2em;
+    line-height: 1.3em;
   }
   .blog-card-btn {
     margin-top: 20px;
@@ -935,7 +935,7 @@ const carouselSlides = [
   }
   .newsletter-heading {
     font-family: var(--font-narrow);
-    font-size: 27px;
+    font-size: clamp(18px, 3.5vw, 27px);
     color: #f5f5f5;
   }
   .newsletter-form-wrapper {
@@ -970,6 +970,7 @@ const carouselSlides = [
   }
   .newsletter-btn {
     width: 100%;
+    min-height: 48px;
     padding: 14px 16px;
     font-size: 16px;
     font-family: var(--font-narrow);
@@ -996,9 +997,7 @@ const carouselSlides = [
     .hero-content {
       gap: 40px;
     }
-    .hero-heading {
-      font-size: 36px;
-    }
+    /* hero heading font size handled by clamp() */
     .featured-strip-inner {
       gap: 1rem;
     }
@@ -1031,9 +1030,7 @@ const carouselSlides = [
     .blog-card {
       width: 48%;
     }
-    .newsletter-heading {
-      font-size: 22px;
-    }
+    /* newsletter heading font size handled by clamp() */
   }
 
   /* ===== MOBILE (≤478px) ===== */
@@ -1062,16 +1059,9 @@ const carouselSlides = [
       align-items: center;
     }
     .hero-heading {
-      font-size: 26px;
       border-left: none;
       padding-left: 0;
       text-align: center;
-    }
-    .hero-eyebrow {
-      font-size: 11px;
-    }
-    .hero-body {
-      font-size: 15px;
     }
 
     /* Featured strip */
@@ -1128,12 +1118,7 @@ const carouselSlides = [
       align-items: center;
       text-align: center;
     }
-    .stat-number {
-      font-size: 40px;
-    }
-    .stat-label {
-      font-size: 16px;
-    }
+    /* stat font sizes handled by clamp() */
 
     /* Book section */
     .book-section {
@@ -1155,9 +1140,7 @@ const carouselSlides = [
     .quote-chapters-block {
       padding: 15px;
     }
-    .quote-text {
-      font-size: 18px;
-    }
+    /* quote font size handled by clamp() */
     .chapters-3col {
       flex-direction: column;
       gap: 20px;
@@ -1219,15 +1202,7 @@ const carouselSlides = [
     .testi-card {
       padding: 16px 10px;
     }
-    .testi-quote {
-      font-size: 18px;
-    }
-    .testi-name {
-      font-size: 14px;
-    }
-    .testi-title {
-      font-size: 12px;
-    }
+    /* testimonial font sizes handled by clamp() */
     .testi-arrow {
       width: 32px;
       height: 32px;
@@ -1247,9 +1222,7 @@ const carouselSlides = [
     .blog-card-image {
       height: 180px;
     }
-    .blog-card-title {
-      font-size: 18px;
-    }
+    /* blog card font size handled by clamp() */
 
     /* Newsletter */
     .newsletter-section {
@@ -1260,9 +1233,7 @@ const carouselSlides = [
       gap: 20px;
       text-align: center;
     }
-    .newsletter-heading {
-      font-size: 20px;
-    }
+    /* newsletter heading font size handled by clamp() */
     .newsletter-form-wrapper {
       width: 100%;
       justify-content: center;

@@ -52,7 +52,7 @@ body {
 
 .heading-section {
   font-family: var(--font-heading);
-  font-size: 35px;
+  font-size: clamp(24px, 5vw, 35px);
   font-weight: 400;
   color: var(--color-primary);
   line-height: 1.2;
@@ -60,7 +60,7 @@ body {
 
 .heading-sub {
   font-family: var(--font-heading);
-  font-size: 28px;
+  font-size: clamp(22px, 4vw, 28px);
   font-weight: 400;
   color: var(--color-primary);
   line-height: 1.2;
@@ -68,7 +68,7 @@ body {
 
 .heading-sub-sm {
   font-family: var(--font-heading);
-  font-size: 25px;
+  font-size: clamp(20px, 3.5vw, 25px);
   font-weight: 400;
   color: var(--color-primary);
   line-height: 1.2;
@@ -76,7 +76,7 @@ body {
 
 .heading-gray {
   font-family: var(--font-heading);
-  font-size: 22px;
+  font-size: clamp(18px, 3.5vw, 22px);
   font-weight: 400;
   color: var(--color-gray-mid);
   line-height: 1.2;
@@ -84,7 +84,7 @@ body {
 
 .text-body {
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: clamp(16px, 2.5vw, 18px);
   color: var(--color-body);
   line-height: 1.7;
 }
@@ -98,13 +98,16 @@ body {
   box-shadow: 1px 1px 10px 1px rgba(33, 33, 33, 0.11);
 }
 
-/* Button base */
+/* Button base — min 48px touch target */
 .btn-primary {
   font-family: var(--font-narrow);
   font-weight: 400;
-  font-size: 18px;
+  font-size: clamp(15px, 2.5vw, 18px);
   box-shadow: 1px 1px 1px 1px rgba(66, 66, 66, 0.37);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   padding: 10px 24px;
   background-color: var(--color-accent);
   color: var(--color-primary-dark);
@@ -130,27 +133,14 @@ body {
   margin: 40px 0;
 }
 
-/* Mobile typography */
+/* Mobile tweaks — typography handled by clamp() above */
 @media (max-width: 478px) {
-  .heading-section {
-    font-size: 25px;
-  }
-  .heading-sub {
-    font-size: 23px;
-  }
-  .heading-sub-sm {
-    font-size: 23px;
-  }
-  .heading-gray {
-    font-size: 23px;
-  }
-  .text-body {
-    font-size: 15px;
-  }
   .eyebrow {
     font-size: 10px;
   }
-  .btn-primary {
-    font-size: 15px;
-  }
+}
+
+/* Prevent iOS zoom on input focus — ensure 16px minimum */
+input, textarea, select {
+  font-size: 16px;
 }
