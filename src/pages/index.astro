@@ -986,51 +986,116 @@ const carouselSlides = [
     background: #ffca28;
   }
 
-  /* ===== MOBILE ===== */
+  /* ===== TABLET (479–991px) ===== */
   @media (max-width: 991px) {
-    .featured-strip-inner {
-      gap: 1.5rem;
+    .hero-section {
+      min-height: auto;
+      padding-top: 180px;
+      padding-bottom: 60px;
     }
-    .featured-logo {
-      height: 2rem;
+    .hero-content {
+      gap: 40px;
+    }
+    .hero-heading {
+      font-size: 36px;
+    }
+    .featured-strip-inner {
+      gap: 1rem;
+    }
+    .about-left {
+      width: 55%;
+    }
+    .about-right {
+      width: 42%;
+    }
+    .about-photo {
+      height: 400px;
+    }
+    .chapters-3col {
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .chapters-left {
+      width: 100%;
+      padding-right: 0;
+      text-align: center;
+    }
+    .chapters-center {
+      width: 40%;
+      margin: 0 auto;
+    }
+    .chapters-right {
+      width: 100%;
+      padding: 0;
+    }
+    .blog-card {
+      width: 48%;
+    }
+    .newsletter-heading {
+      font-size: 22px;
     }
   }
 
+  /* ===== MOBILE (≤478px) ===== */
   @media (max-width: 478px) {
+    /* Hero */
     .hero-section {
       min-height: auto;
-      padding-top: 160px;
+      padding-top: 140px;
       padding-bottom: 40px;
     }
     .hero-content {
-      flex-direction: column;
-      gap: 40px;
-      padding: 0 20px;
+      flex-direction: column-reverse;
+      gap: 30px;
+      padding: 0;
     }
     .hero-image {
-      width: 60%;
+      width: 50%;
+      margin: 0 auto;
     }
     .hero-image img {
-      max-width: 250px;
+      max-width: 200px;
     }
     .hero-text {
       width: 100%;
+      text-align: center;
+      align-items: center;
     }
     .hero-heading {
-      font-size: 30px;
+      font-size: 26px;
+      border-left: none;
+      padding-left: 0;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
     }
     .hero-body {
       font-size: 15px;
     }
+
+    /* Featured strip */
     .featured-strip {
-      height: 8vh;
-      padding: 5px 20px;
+      height: auto;
+      padding: 12px 0;
+    }
+    .featured-strip-inner {
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
     }
     .featured-slide {
-      flex: 0 0 calc(100% / 3);
+      flex: 0 0 28%;
+      padding: 0 5px;
     }
+
+    /* About */
     .about-section {
-      padding: 40px 20px;
+      padding: 40px 0;
+    }
+    .about-row {
+      flex-direction: column;
+      gap: 30px;
     }
     .about-left {
       width: 100%;
@@ -1039,117 +1104,178 @@ const carouselSlides = [
       width: 100%;
     }
     .about-photo {
-      height: 350px;
+      height: 300px;
     }
     .featured-carousel {
-      gap: 15px;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .carousel-logo {
-      max-width: 30%;
+      width: 28%;
+      max-width: 120px;
     }
+
+    /* Stats */
     .stats-section {
-      padding: 0 20px 40px;
+      padding: 0 0 40px;
+    }
+    .stats-row {
+      gap: 20px 0;
     }
     .stat-item {
       width: 50%;
+      align-items: center;
+      text-align: center;
     }
     .stat-number {
-      font-size: 45px;
+      font-size: 40px;
     }
     .stat-label {
-      font-size: 18px;
+      font-size: 16px;
+    }
+
+    /* Book section */
+    .book-section {
+      padding: 40px 0;
+      background-size: 150%;
+      background-position: center bottom;
     }
     .book-overview {
       flex-direction: column;
     }
     .book-overview-image {
       width: 100%;
+      height: 200px;
     }
     .book-overview-text {
       width: 100%;
+      padding: 20px;
+    }
+    .quote-chapters-block {
+      padding: 15px;
     }
     .quote-text {
-      font-size: 15px;
+      font-size: 18px;
     }
-    .chapters-row {
+    .chapters-3col {
       flex-direction: column;
-      margin-top: 50px;
-      row-gap: 20px;
-      padding-bottom: 40px;
+      gap: 20px;
+      align-items: center;
     }
-    .chapters-text {
+    .chapters-left {
       width: 100%;
+      padding-right: 0;
+      text-align: center;
     }
-    .chapters-image {
+    .chapters-left .btn-primary {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .chapters-center {
+      width: 50%;
+    }
+    .chapters-right {
       width: 100%;
+      padding: 0;
     }
-    .chapter-cards {
-      flex-direction: column;
+
+    /* Football banner */
+    .football-banner {
+      height: 150px;
     }
-    .chapter-card {
-      width: 100%;
-    }
+
+    /* Issues */
     .issues-section {
-      padding: 40px 20px 40px 20px;
+      padding: 40px 0;
     }
     .issues-row {
       flex-direction: column;
     }
     .issues-row-image {
       width: 100%;
+      height: 200px;
     }
     .issues-row-text {
       width: 100%;
+      padding: 20px;
+    }
+    .scenario-row {
+      flex-direction: column;
+      gap: 12px;
     }
     .scenario-card {
       width: 100%;
     }
+
+    /* Testimonials */
+    .testimonials-section {
+      padding: 40px 0;
+    }
+    .testi-slide {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .testi-card {
+      padding: 16px 10px;
+    }
     .testi-quote {
-      font-size: 15px;
+      font-size: 18px;
     }
     .testi-name {
-      font-size: 13px;
+      font-size: 14px;
     }
     .testi-title {
       font-size: 12px;
     }
-    .testi-slide {
+    .testi-arrow {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* Blog */
+    .blog-section {
+      padding: 40px 0;
+    }
+    .blog-grid {
       flex-direction: column;
       gap: 20px;
     }
-    .testi-arrow {
-      width: 36px;
-      height: 36px;
-    }
     .blog-card {
       width: 100%;
     }
-    .blog-card-title {
-      font-size: 15px;
+    .blog-card-image {
+      height: 180px;
     }
+    .blog-card-title {
+      font-size: 18px;
+    }
+
+    /* Newsletter */
     .newsletter-section {
-      padding: 40px 20px;
+      padding: 30px 0;
     }
     .newsletter-row {
       flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+    .newsletter-heading {
+      font-size: 20px;
     }
     .newsletter-form-wrapper {
       width: 100%;
+      justify-content: center;
     }
     .newsletter-form {
-      flex-direction: column;
+      width: 100%;
     }
   }
 
+  /* ===== TABLET BLOG GRID ===== */
   @media (min-width: 479px) and (max-width: 991px) {
     .blog-card {
-      width: 49%;
-    }
-  }
-
-  @media (min-width: 992px) {
-    .featured-logo {
-      height: 2.5rem;
+      width: 48%;
     }
   }
 </style>

@@ -211,13 +211,49 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
       </div>
     </footer>
 
-    <!-- Responsive header margin -->
+    <!-- Responsive header/footer -->
     <style>
+      @media (max-width: 991px) {
+        footer .container-site {
+          grid-template-columns: 1fr 1fr !important;
+          gap: 2rem !important;
+        }
+        footer .container-site > div {
+          padding-left: 0 !important;
+        }
+      }
       @media (max-width: 478px) {
-        #main-nav { margin-bottom: -180px !important; }
-        #site-header .container-site:first-child { padding: 10px 20px; justify-content: center; flex-wrap: wrap; }
-        footer .container-site { grid-template-columns: 1fr !important; }
-        footer .container-site > div { padding-left: 0 !important; }
+        #site-header {
+          margin-bottom: -140px !important;
+        }
+        #main-nav {
+          padding: 12px 0 !important;
+        }
+        #main-nav img {
+          height: 70px !important;
+        }
+        #site-header .container-site:first-child {
+          padding: 8px 16px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        footer .container-site {
+          grid-template-columns: 1fr !important;
+          gap: 1.5rem !important;
+          padding-top: 30px !important;
+          padding-bottom: 30px !important;
+        }
+        footer .container-site > div {
+          padding-left: 0 !important;
+        }
+        footer .container-site > div:last-child {
+          flex-direction: row !important;
+          align-items: center !important;
+          gap: 16px !important;
+        }
+        footer .container-site > div:last-child img {
+          width: 60px !important;
+        }
       }
     </style>
 
