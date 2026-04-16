@@ -20,6 +20,13 @@ const carouselSlides = [
   { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=300&auto=format' },
   { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=300&auto=format' },
 ];
+
+// Desktop: 5 logos (Barnes, Amazon, Bookshop, Barnes, Bookshop)
+const desktopSlides = [
+  ...carouselSlides,
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=400&auto=format' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=300&auto=format' },
+];
 ---
 
 <Layout title="Thomas McGovern CPA — Road to the Final Hour">
@@ -46,9 +53,18 @@ const carouselSlides = [
       </div>
     </section>
 
-    <!-- FEATURED IN LOGOS — matches original: 5 slides, centered, loop -->
+    <!-- FEATURED IN LOGOS -->
     <section class="featured-strip">
-      <div class="featured-strip-inner">
+      <!-- Desktop: 5 logos (Barnes, Amazon, Bookshop, Barnes, Bookshop) -->
+      <div class="featured-strip-inner hidden lg:flex">
+        {desktopSlides.map(slide => (
+          <div class="featured-slide">
+            <img src={slide.url} alt={slide.name} />
+          </div>
+        ))}
+      </div>
+      <!-- Mobile: 3 logos -->
+      <div class="featured-strip-inner flex lg:hidden">
         {carouselSlides.map(slide => (
           <div class="featured-slide">
             <img src={slide.url} alt={slide.name} />
