@@ -134,9 +134,9 @@ body {
 }
 
 /* Mobile tweaks — typography handled by clamp() above */
-@media (max-width: 478px) {
+@media (max-width: 768px) {
   .eyebrow {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 
