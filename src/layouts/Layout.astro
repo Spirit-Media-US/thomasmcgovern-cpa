@@ -54,7 +54,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
     <!-- HEADER — entire header overlays the hero via negative margin -->
     <header id="site-header" style="position: relative; z-index: 999; background-color: transparent; margin-bottom: -200px;">
       <!-- TOP BAR: social icons left, email right -->
-      <div style="background-color: rgba(4, 47, 82, 0); justify-content: center; padding: 0; z-index: 999; position: relative;">
+      <div style="background-color: rgba(4, 47, 82, 0); padding: 0; z-index: 999; position: relative;">
         <div class="container-site flex items-center justify-between" style="padding: 10px 24px;">
           <div class="flex items-center gap-2.5">
           <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-[#f5f5f5]" style="font-size: 15px;">
@@ -234,8 +234,6 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
         }
         #site-header .container-site:first-child {
           padding: 8px 16px;
-          justify-content: center;
-          flex-wrap: wrap;
         }
         footer .container-site {
           grid-template-columns: 1fr !important;
