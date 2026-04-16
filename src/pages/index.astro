@@ -1,20 +1,1223 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+import { sanityClient, urlFor } from '../lib/sanity.ts';
 
-// Example Sanity fetch — replace with real query for this site
-// import { sanityClient } from '../lib/sanity.ts';
-// const items = await sanityClient.fetch(`*[_type == "post"] | order(_createdAt desc)`);
+const testimonials = await sanityClient.fetch(
+  `*[_type == "testimonial"] | order(order asc) { quote, name, role }`
+);
+
+const blogPosts = await sanityClient.fetch(
+  `*[_type == "blogPost"] | order(publishDate desc) [0...3] {
+    title,
+    "slug": "/blog/" + slug.current,
+    "image": heroImage.asset->url + "?w=600&auto=format"
+  }`
+);
+
+const carouselSlides = [
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=400&auto=format' },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=300&auto=format' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=300&auto=format' },
+];
 ---
 
-<Layout title="Site Name — Tagline">
-  <main class="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-    <h1 class="text-4xl font-bold mb-4">
-      Site Name
-    </h1>
-    <p class="text-lg max-w-lg">
-      Replace this page with your site content. Connect to Sanity via
-      <code>src/lib/sanity.ts</code> and update the project ID.
-    </p>
+<Layout title="Thomas McGovern CPA — Road to the Final Hour">
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-inner container-site">
+        <div class="hero-content">
+          <!-- Left: book cover -->
+          <div class="hero-image">
+            <img
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
+              alt="Road to the Final Hour book cover"
+            />
+          </div>
+          <!-- Right: text -->
+          <div class="hero-text">
+            <h1 class="hero-heading">The Future of College Sports Hangs in the Balance</h1>
+            <p class="hero-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
+            <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top: 24px;">Buy the Book <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" fill="currentColor" style="display:inline;vertical-align:middle;margin-left:6px;"><path d="M257.2 162.7c-48.7 1.8-169.5 15.5-169.5 117.5 0 109.5 138.3 114 183.5 43.2 6.5 10.2 35.4 37.5 45.3 46.8l56.8-56S341 288.9 341 261.4V114.3C341 89 316.5 32 228.7 32 140.7 32 94 87 94 136.3l73.5 6.8c16.3-49.5 54.2-49.5 54.2-49.5 40.7-.1 35.5 29.8 35.5 69.1zm0 86.8c0 80-84.2 68-84.2 17.2 0-47.2 50.5-56.7 84.2-57.8v40.6zm136 163.5c-7.7 10-70 67-174.5 67S34.2 408.5 9.7 379c-6.8-7.7 1-11.3 5.5-8.3C88.5 415.2 203 488.5 387.7 401c7.5-3.7 13.3 2 5.5 12zm39.8-13.7c-9.8-7.5-32.4-14.3-51-7.7-5.7 1.8-5 6.3-1.3 7.7 10.2 3.3 33.4 10 46.3 7.5 12.7-2.3 13.7-3.7 6-7.5z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED IN LOGOS — matches original: 5 slides, centered, loop -->
+    <section class="featured-strip">
+      <div class="featured-strip-inner">
+        {carouselSlides.map(slide => (
+          <div class="featured-slide">
+            <img src={slide.url} alt={slide.name} />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about-me" class="about-section">
+      <div class="container-site">
+        <div class="about-row">
+          <!-- Left: bio text (57%) -->
+          <div class="about-left">
+            <p class="eyebrow mb-2">WHAT I DO</p>
+            <h2 class="heading-section mb-8">About <span>&nbsp;</span>Me</h2>
+            <p class="text-body">
+              Thomas A. McGovern is a Certified Public Accountant (CPA) and holds the Chartered Financial Analyst (CFA) designation. His extensive career includes twenty years as a Wall Street investment banker and equity research analyst. He has been involved in the higher education sector as a member of the board of directors of the University of Virginia's Manhattan alumni group, the Virginia Club of New York, and President of the Board of Governors of the St. Elmos national organization. Thomas McGovern earned a Master of Business Administration (MBA) from the Darden Graduate School of Business at the University of Virginia and an AB in Economics from Hamilton College where he graduated summa cum laude.
+            </p>
+
+            <hr class="section-divider" />
+
+            <h3 class="heading-sub mb-5">Featured In:</h3>
+            <div class="featured-carousel">
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=400&auto=format" alt="ESPN" class="carousel-logo" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=400&auto=format" alt="Wall Street Journal" class="carousel-logo" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=400&auto=format" alt="USA Today" class="carousel-logo" />
+            </div>
+          </div>
+
+          <!-- Right: headshot (40%) -->
+          <div class="about-right">
+            <div class="about-photo-wrapper">
+              <img
+                src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&auto=format"
+                alt="Thomas A. McGovern"
+                class="about-photo"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section">
+      <div class="container-site">
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="25">25</span><span class="stat-suffix">+</span></div>
+            <p class="stat-label">Years of Experienced</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="3">3</span><span class="stat-suffix">+</span></div>
+            <p class="stat-label">Books Written</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="3">3</span><span class="stat-suffix">K +</span></div>
+            <p class="stat-label">Happy Readers</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number"><span class="stat-count" data-target="12">12</span><span class="stat-suffix">+</span></div>
+            <p class="stat-label">Awards Recognitions</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOK SECTION -->
+    <section class="book-section">
+      <div class="container-site">
+        <p class="eyebrow mb-2" style="text-align: center;">SHOWCASE</p>
+        <h2 class="heading-section" style="text-align: center;">About the <span>&nbsp;</span>Book</h2>
+
+        <!-- Overview: image left + text right -->
+        <div class="book-overview card-shadow-light">
+          <div class="book-overview-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=800&auto=format');"></div>
+          <div class="book-overview-text">
+            <h3 class="heading-sub-sm mb-5">Overview</h3>
+            <p class="text-body">
+              Discover Road to the Final Hour, an in-depth exploration of the forces threatening to reshape college athletics. From taxation to professionalization, this book unpacks the complexities of the current landscape and provides a compelling case for preserving the spirit of college sports.
+            </p>
+          </div>
+        </div>
+
+        <!-- Quote + Chapters Preview in one block -->
+        <div class="quote-chapters-block">
+          <div class="quote-inner">
+            <p class="quote-text">
+              &ldquo;College sports are at a crossroads, and how we address these challenges will define the future of intercollegiate athletics for generations to come.&rdquo;
+            </p>
+            <p class="quote-attribution">- Thomas A. McGovern</p>
+          </div>
+
+          <!-- 3 columns below quote -->
+          <div class="chapters-3col">
+          <!-- Left: Chapters Preview text + button -->
+          <div class="chapters-left">
+            <h3 class="heading-sub mb-5">Chapters Preview</h3>
+            <p class="text-body">Discover how taxation, professionalization, and legislation could transform the game forever.</p>
+            <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="btn-primary mt-5 inline-block">Buy the Book <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" fill="currentColor" style="display:inline;vertical-align:middle;margin-left:6px;"><path d="M257.2 162.7c-48.7 1.8-169.5 15.5-169.5 117.5 0 109.5 138.3 114 183.5 43.2 6.5 10.2 35.4 37.5 45.3 46.8l56.8-56S341 288.9 341 261.4V114.3C341 89 316.5 32 228.7 32 140.7 32 94 87 94 136.3l73.5 6.8c16.3-49.5 54.2-49.5 54.2-49.5 40.7-.1 35.5 29.8 35.5 69.1zm0 86.8c0 80-84.2 68-84.2 17.2 0-47.2 50.5-56.7 84.2-57.8v40.6zm136 163.5c-7.7 10-70 67-174.5 67S34.2 408.5 9.7 379c-6.8-7.7 1-11.3 5.5-8.3C88.5 415.2 203 488.5 387.7 401c7.5-3.7 13.3 2 5.5 12zm39.8-13.7c-9.8-7.5-32.4-14.3-51-7.7-5.7 1.8-5 6.3-1.3 7.7 10.2 3.3 33.4 10 46.3 7.5 12.7-2.3 13.7-3.7 6-7.5z"/></svg></a>
+          </div>
+          <!-- Center: Book cover -->
+          <div class="chapters-center">
+            <img
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
+              alt="Road to the Final Hour book cover"
+            />
+          </div>
+          <!-- Right: 3 chapter cards stacked -->
+          <div class="chapters-right">
+            <div class="chapter-card card-shadow">
+              <div class="chapter-card-inner">
+                <span class="chapter-icon">&#10004;</span>
+                <div>
+                  <h4 class="chapter-card-title"><em>The Labor Issue</em></h4>
+                  <p class="chapter-card-text">Examines the push to classify college athletes as employees and its implications.</p>
+                </div>
+              </div>
+            </div>
+            <div class="chapter-card card-shadow">
+              <div class="chapter-card-inner">
+                <span class="chapter-icon">&#10004;</span>
+                <div>
+                  <h4 class="chapter-card-title"><em>Effects of Taxation</em></h4>
+                  <p class="chapter-card-text">Unpacks how UBTI and loss of tax-exempt status could cripple the industry.</p>
+                </div>
+              </div>
+            </div>
+            <div class="chapter-card card-shadow">
+              <div class="chapter-card-inner">
+                <span class="chapter-icon">&#10004;</span>
+                <div>
+                  <h4 class="chapter-card-title"><em>The Bigger Issue</em></h4>
+                  <p class="chapter-card-text">Explores the ideological battle over the value of college sports in society.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTBALL BANNER -->
+    <section class="football-banner"></section>
+
+    <!-- THE ISSUES -->
+    <section class="issues-section">
+      <div class="container-site relative z-10">
+        <p class="eyebrow mb-2">MORE INFO ABOUT THE BOOK</p>
+        <h2 class="heading-section" style="margin-bottom: 40px;">The Issues</h2>
+
+        <!-- Infographic -->
+        <div class="mt-8 mb-8">
+          <img
+            src="https://cdn.sanity.io/images/fkqsnbt5/production/be37419005c1c164a021dca8ff787c180c7f8f04-1200x456.png?w=1000&auto=format"
+            alt="Before Infographic"
+            class="w-full"
+          />
+        </div>
+
+        <!-- Tax-exempt status -->
+        <h3 class="heading-sub">What Happens When College Athletics Lose Tax-Exempt Status?</h3>
+        <p class="text-body mt-5">
+          The imposition of Unrelated Business Income Tax (UBTI) could drastically alter the financial foundation of college sports. A 21% federal corporate tax, combined with state taxes, would reduce funds available for non revenue sports and student-athlete scholarships.
+        </p>
+
+        <hr class="section-divider-thin" />
+
+        <!-- Cultural significance: image left + text right -->
+        <div class="issues-row card-shadow-light">
+          <div class="issues-row-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=800&auto=format');"></div>
+          <div class="issues-row-text">
+            <h3 class="heading-sub" style="width: 75%;">Cultural Significance of College Athletics</h3>
+            <p class="text-body mt-5">
+              &ldquo;More Than a Game&rdquo; College athletics produce Olympians, foster teamwork, and teach life skills. Cutting programs would not only hurt athletes but also the broader educational mission of U.S. universities.
+            </p>
+          </div>
+        </div>
+
+        <hr class="section-divider-thin" />
+
+        <!-- Scenario cards -->
+        <h3 class="heading-sub-sm mb-5">Two Scenarios for Professionalization</h3>
+
+        <div class="scenario-row">
+          <div class="scenario-card">
+            <p class="heading-gray">Scenario 1</p>
+            <p class="text-body mt-2.5">Professionalizing only revenue sports like football and basketball.</p>
+          </div>
+          <div class="scenario-card">
+            <p class="heading-gray">Scenario 2</p>
+            <p class="text-body mt-2.5">Professionalizing all intercollegiate sports, with catastrophic financial consequences.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="container-site" style="position: relative; z-index: 1;">
+        <div>
+          <p class="eyebrow mb-2">WHAT OTHER SAYS</p>
+          <h2 class="heading-section mb-10">Testimonials</h2>
+        </div>
+
+        <!-- Map background wrapper -->
+        <div class="testimonials-map-wrapper">
+          <div class="testimonials-slider-wrapper">
+            <!-- Arrow left -->
+            <button class="testi-arrow testi-prev" id="testi-prev" aria-label="Previous">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+
+            <!-- Slides -->
+            <div class="testi-viewport">
+              <div class="testi-track" id="testi-track">
+                {(() => {
+                  const slides: any[][] = [];
+                  for (let i = 0; i < testimonials.length; i += 2) {
+                    slides.push(testimonials.slice(i, i + 2));
+                  }
+                  return slides.map((slide: any[]) => (
+                    <div class="testi-slide">
+                      {slide.map((t: any) => (
+                        <div class="testi-card">
+                          <p class="testi-quote">&ldquo;{t.quote}&rdquo;</p>
+                          <p class="testi-name">{t.name}</p>
+                          <p class="testi-title">{t.role}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ));
+                })()}
+              </div>
+            </div>
+
+            <!-- Arrow right -->
+            <button class="testi-arrow testi-next" id="testi-next" aria-label="Next">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+
+          <!-- Dots -->
+          <div class="testi-dots">
+            {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_: any, i: number) => (
+              <button class={`testi-dot ${i === 0 ? 'active' : ''}`} data-slide={String(i)}></button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG POSTS -->
+    <section class="blog-section">
+      <div class="container-site">
+        <div class="text-center">
+          <p class="eyebrow mb-2">ARCHIVES</p>
+          <h2 class="heading-section mb-10">Blog & News</h2>
+        </div>
+
+        <div class="blog-grid">
+          {blogPosts.map(post => (
+            <div class="blog-card">
+              <div class="blog-card-image" style={`background-image: url('${post.image}');`}></div>
+              <div class="p-5">
+                <h3 class="blog-card-title">{post.title}</h3>
+                <a href={post.slug} class="btn-primary blog-card-btn">Read more ...</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+      <div class="newsletter-overlay"></div>
+      <div class="container-site relative z-10">
+        <div class="newsletter-row">
+          <div>
+            <p class="newsletter-heading">Stay updated with upcoming book events, author appearances, and media features.</p>
+          </div>
+          <div class="newsletter-form-wrapper">
+            <form class="newsletter-form">
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+                class="newsletter-input"
+              />
+              <button
+                type="submit"
+                class="newsletter-btn"
+              >Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </Layout>
+
+<script>
+  // Testimonial slider — loop with arrows
+  (function() {
+    const track = document.getElementById('testi-track');
+    const prevBtn = document.getElementById('testi-prev');
+    const nextBtn = document.getElementById('testi-next');
+    const dots = document.querySelectorAll('.testi-dot');
+    if (!track) return;
+
+    let pos = 0;
+    const total = document.querySelectorAll('.testi-slide').length;
+
+    function slideTo(p: number) {
+      pos = ((p % total) + total) % total;
+      track.style.transition = 'transform 0.5s ease';
+      track.style.transform = `translateX(-${pos * (100 / total)}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === pos));
+    }
+
+    prevBtn?.addEventListener('click', () => slideTo(pos - 1));
+    nextBtn?.addEventListener('click', () => slideTo(pos + 1));
+    dots.forEach(d => {
+      d.addEventListener('click', () => slideTo(Number((d as HTMLElement).dataset.slide)));
+    });
+
+    // Auto-advance every 5 seconds
+    let interval = setInterval(() => slideTo(pos + 1), 5000);
+    track.parentElement?.parentElement?.addEventListener('mouseenter', () => clearInterval(interval));
+    track.parentElement?.parentElement?.addEventListener('mouseleave', () => {
+      interval = setInterval(() => slideTo(pos + 1), 5000);
+    });
+  })();
+
+  // Counter animation
+  function animateCounters() {
+    const counters = document.querySelectorAll('.stat-count');
+    counters.forEach(counter => {
+      const el = counter as HTMLElement;
+      const target = parseInt(el.dataset.target || '0');
+      const duration = 1000;
+      const startTime = performance.now();
+
+      function update(currentTime: number) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(progress * target);
+        el.textContent = String(value || 1);
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = String(target);
+        }
+      }
+      requestAnimationFrame(update);
+    });
+  }
+
+  // Trigger counters when stats section is visible
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(statsSection);
+  }
+</script>
+
+<style>
+  /* ===== HERO ===== */
+  .hero-section {
+    position: relative;
+    min-height: 87vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1920&auto=format');
+    background-position: center right;
+    background-size: cover;
+    background-blend-mode: multiply;
+    padding-top: 220px;
+    padding-bottom: 80px;
+  }
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+  .hero-image {
+    width: 35%;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-image img {
+    width: 100%;
+    max-width: 380px;
+    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.5));
+  }
+  .hero-text {
+    width: 65%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    color: #f5f5f5;
+    font-size: 13px;
+    font-weight: 300;
+    margin: 0 0 12px 0;
+    letter-spacing: 1px;
+  }
+  .hero-heading {
+    font-family: var(--font-heading);
+    color: #fff280;
+    font-size: clamp(24px, 6vw, 45px);
+    font-weight: 400;
+    line-height: 1.1em;
+    border-left: 3px solid #e0e0e0;
+    padding-left: 20px;
+    margin: 0 0 24px 0;
+  }
+  .hero-body {
+    color: #f5f5f5;
+    font-family: var(--font-body);
+    font-size: clamp(16px, 2.5vw, 18px);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ===== FEATURED IN STRIP — matches original #brxe-uklxqb ===== */
+  .featured-strip {
+    height: 15vh;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .featured-strip-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 20px;
+  }
+  .featured-slide {
+    flex: 0 0 calc(100% / 5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  .featured-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  /* ===== ABOUT ME ===== */
+  .about-section {
+    background: #fff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .about-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .about-left {
+    width: 57%;
+  }
+  .about-right {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-photo-wrapper {
+    width: 100%;
+    padding: 20px;
+    background-image: linear-gradient(#042a49, #2196f3);
+  }
+  .about-photo {
+    width: 100%;
+    height: 530px;
+    object-fit: cover;
+    object-position: 0% 15%;
+  }
+  .featured-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    flex-wrap: nowrap;
+  }
+  .carousel-logo {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* ===== STATS ===== */
+  .stats-section {
+    background: #fff;
+    padding-bottom: 80px;
+  }
+  .stats-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .stat-item {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stat-number {
+    font-family: var(--font-body);
+    font-size: clamp(36px, 8vw, 60px);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-narrow);
+    font-size: clamp(16px, 3.5vw, 25px);
+    font-weight: 700;
+    margin-top: 8px;
+  }
+
+  /* ===== BOOK SECTION ===== */
+  .book-section {
+    background-color: #f5f5f5;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/bac3f12529365a67d4fceec137a1037872a1b990-1024x555.png?w=1920&auto=format');
+    background-position: center calc(100% - 70px);
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  .book-overview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+    margin-top: 2rem;
+  }
+  .book-overview-image {
+    width: 50%;
+    height: 350px;
+    background-size: cover;
+    background-position: center center;
+  }
+  .book-overview-text {
+    width: 50%;
+    background: #fff;
+    padding: 20px;
+  }
+  .quote-text {
+    font-family: var(--font-script);
+    font-size: clamp(18px, 4vw, 28px);
+    color: var(--color-body);
+    margin-top: 20px;
+  }
+  .quote-attribution {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-body);
+    margin-top: 4px;
+  }
+  .quote-chapters-block {
+    margin-top: 48px;
+    background: transparent;
+    box-shadow: none;
+    padding: 30px;
+  }
+  .quote-inner {
+    margin-bottom: 0;
+  }
+  .chapters-3col {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+  .chapters-left {
+    width: 30%;
+    padding-right: 20px;
+  }
+  .chapters-center {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .chapters-center img {
+    max-width: 100%;
+    height: auto;
+  }
+  .chapters-right {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  .chapter-card {
+    background: #fff;
+    padding: 20px;
+  }
+  .chapter-card-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .chapter-icon {
+    font-size: 20px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .chapter-card-title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .chapter-card-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-body);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  /* ===== ISSUES SECTION ===== */
+  /* ===== FOOTBALL BANNER ===== */
+  .football-banner {
+    height: 250px;
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=1920&auto=format');
+    background-position: center right;
+    background-size: cover;
+    background-blend-mode: multiply;
+    position: relative;
+  }
+  .football-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
+    pointer-events: none;
+  }
+
+  .issues-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #f5f5f5;
+    position: relative;
+  }
+  .issues-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+  }
+  .issues-row-image {
+    width: 50%;
+    height: 350px;
+    background-size: cover;
+    background-position: center center;
+  }
+  .issues-row-text {
+    width: 50%;
+    background: #fff;
+    padding: 20px;
+  }
+  .scenario-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+  }
+  .scenario-card {
+    width: 49%;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 1px 1px 1px 1px #9e9e9e;
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-section {
+    background-color: #ffffff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    position: relative;
+  }
+  .testimonials-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=1200&auto=format');
+    background-size: 60% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .testimonials-map-wrapper {
+    position: relative;
+  }
+  .testimonials-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .testi-arrow {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: #616161;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .testi-arrow:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  .testi-viewport {
+    flex: 1;
+    overflow: hidden;
+  }
+  .testi-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .testi-slide {
+    flex: 0 0 100%;
+    display: flex;
+    gap: 30px;
+    padding: 20px 10px;
+  }
+  .testi-card {
+    flex: 1;
+    padding: 20px;
+    background: transparent;
+  }
+  .testi-quote {
+    font-family: var(--font-script);
+    font-size: clamp(18px, 3.5vw, 27px);
+    color: #212121;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .testi-name {
+    font-family: var(--font-narrow);
+    font-size: clamp(14px, 2.5vw, 18px);
+    font-weight: 700;
+    color: #212121;
+  }
+  .testi-title {
+    font-size: 14px;
+    color: #616161;
+  }
+  .testi-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .testi-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: #d4d4d4;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s;
+  }
+  .testi-dot.active {
+    background: #616161;
+  }
+
+  /* ===== BLOG ===== */
+  .blog-section {
+    background: #f5f5f5;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .blog-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .blog-card {
+    background: #fff;
+    width: 30%;
+  }
+  .blog-card-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+  }
+  .blog-card-title {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 3vw, 23px);
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1.3em;
+  }
+  .blog-card-btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 15px;
+  }
+
+  /* ===== NEWSLETTER ===== */
+  .newsletter-section {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: #000000;
+  }
+  .newsletter-overlay {
+    display: none;
+  }
+  .newsletter-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .newsletter-heading {
+    font-family: var(--font-narrow);
+    font-size: clamp(18px, 3.5vw, 27px);
+    color: #f5f5f5;
+  }
+  .newsletter-form-wrapper {
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 85%;
+  }
+  .newsletter-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 0;
+    outline: none;
+    font-family: var(--font-body);
+    background: #fff;
+    color: #212121;
+    box-sizing: border-box;
+  }
+  .newsletter-input::placeholder {
+    color: #9e9e9e;
+  }
+  .newsletter-input:focus {
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+  .newsletter-btn {
+    width: 100%;
+    min-height: 48px;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-family: var(--font-narrow);
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #ffc107;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  .newsletter-btn:hover {
+    background: #ffca28;
+  }
+
+  /* ===== TABLET & MOBILE (≤768px) — stack all major sections ===== */
+  @media (max-width: 768px) {
+    /* Hero: stack vertically — book → heading → subheading → button */
+    .hero-section {
+      min-height: auto;
+      padding-top: 140px;
+      padding-bottom: 40px;
+    }
+    .hero-content {
+      flex-direction: column;
+      gap: 24px;
+      padding: 0;
+    }
+    .hero-image {
+      width: 45%;
+      margin: 0 auto;
+    }
+    .hero-image img {
+      max-width: 220px;
+    }
+    .hero-text {
+      width: 100%;
+      text-align: center;
+      align-items: center;
+    }
+    .hero-heading {
+      border-left: none;
+      padding-left: 0;
+      text-align: center;
+    }
+
+    /* Featured strip */
+    .featured-strip {
+      height: auto;
+      padding: 12px 0;
+    }
+    .featured-strip-inner {
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .featured-slide {
+      flex: 0 0 28%;
+      padding: 0 5px;
+    }
+
+    /* About: full-width stack */
+    .about-section {
+      padding: 40px 0;
+    }
+    .about-row {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .about-left {
+      width: 100%;
+    }
+    .about-right {
+      width: 100%;
+    }
+    .about-photo {
+      height: 350px;
+    }
+    .featured-carousel {
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .carousel-logo {
+      width: 28%;
+      max-width: 140px;
+    }
+
+    /* Stats: 2x2 grid */
+    .stats-section {
+      padding: 0 0 40px;
+    }
+    .stats-row {
+      gap: 20px 0;
+    }
+    .stat-item {
+      width: 50%;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Book section: stack everything */
+    .book-section {
+      padding: 40px 0;
+      background-size: 150%;
+      background-position: center bottom;
+    }
+    .book-overview {
+      flex-direction: column;
+    }
+    .book-overview-image {
+      width: 100%;
+      height: 220px;
+    }
+    .book-overview-text {
+      width: 100%;
+      padding: 20px;
+    }
+    .quote-chapters-block {
+      padding: 15px;
+    }
+    .chapters-3col {
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+    }
+    .chapters-left {
+      width: 100%;
+      padding-right: 0;
+      text-align: center;
+    }
+    .chapters-left .btn-primary {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .chapters-center {
+      width: 55%;
+    }
+    .chapters-right {
+      width: 100%;
+      padding: 0;
+    }
+
+    /* Football banner */
+    .football-banner {
+      height: 150px;
+    }
+
+    /* Issues: stack image/text */
+    .issues-section {
+      padding: 40px 0;
+    }
+    .issues-row {
+      flex-direction: column;
+    }
+    .issues-row-image {
+      width: 100%;
+      height: 220px;
+    }
+    .issues-row-text {
+      width: 100%;
+      padding: 20px;
+    }
+    .scenario-row {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .scenario-card {
+      width: 100%;
+    }
+
+    /* Testimonials: single column per slide */
+    .testimonials-section {
+      padding: 40px 0;
+    }
+    .testi-slide {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .testi-card {
+      padding: 16px 10px;
+    }
+    .testi-arrow {
+      width: 36px;
+      height: 36px;
+    }
+
+    /* Blog: single column */
+    .blog-section {
+      padding: 40px 0;
+    }
+    .blog-grid {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .blog-card {
+      width: 100%;
+    }
+    .blog-card-image {
+      height: 200px;
+    }
+
+    /* Newsletter: stack */
+    .newsletter-section {
+      padding: 30px 0;
+    }
+    .newsletter-row {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+    .newsletter-form-wrapper {
+      width: 100%;
+      justify-content: center;
+    }
+    .newsletter-form {
+      width: 100%;
+    }
+  }
+
+  /* ===== SMALL PHONES (≤390px) — tighter spacing ===== */
+  @media (max-width: 390px) {
+    .hero-section {
+      padding-top: 120px;
+    }
+    .hero-image {
+      width: 50%;
+    }
+    .hero-image img {
+      max-width: 180px;
+    }
+    .about-photo {
+      height: 280px;
+    }
+    .chapters-center {
+      width: 60%;
+    }
+    .football-banner {
+      height: 120px;
+    }
+  }
+
+  /* ===== TABLET ONLY: 2-col blog grid ===== */
+  @media (min-width: 769px) and (max-width: 991px) {
+    .blog-card {
+      width: 48%;
+    }
+    .blog-grid {
+      flex-direction: row;
+    }
+  }
+</style>

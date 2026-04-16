@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+import { sanityClient } from '../lib/sanity.ts';
+
+const blogPosts = await sanityClient.fetch(`
+  *[_type == "blogPost"] | order(publishDate desc) {
+    title,
+    "slug": "/blog/" + slug.current,
+    "image": heroImage.asset->url + "?w=600&auto=format",
+    "date": publishDate,
+    excerpt
+  }
+`);
+
+const formatDate = (dateString: string) => {
+  const d = new Date(dateString);
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+---
+
+<Layout
+  title="Blogs — Thomas McGovern CPA"
+  description="Articles and insights on college sports, taxation, and the future of NCAA athletics by Thomas McGovern."
+>
+  <main>
+
+    <!-- HERO with gradient overlay -->
+    <section class="relative flex items-end justify-center" style="padding-top: 150px; padding-bottom: 100px;">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=1600&auto=format"
+          alt=""
+          class="w-full h-full object-cover object-right"
+        />
+        <div class="absolute inset-0" style="background: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));"></div>
+      </div>
+      <div class="container-site relative z-10 text-center">
+        <h1 class="text-hero-heading text-[28px] lg:text-[40px]" style="font-family: var(--font-heading);">Blogs</h1>
+      </div>
+    </section>
+
+    <!-- BLOG CONTENT -->
+    <section style="padding-top: 60px; padding-bottom: 60px;">
+      <div class="container-site">
+        <div class="flex flex-col lg:flex-row gap-10">
+          <!-- Left: blog posts -->
+          <div class="w-full lg:w-[70%]">
+            <div class="space-y-10">
+              {blogPosts.map((post: any) => (
+                <article class="bg-white card-shadow overflow-hidden">
+                  <div class="h-[300px] overflow-hidden">
+                    <img src={post.image} alt={post.title} class="w-full h-full object-cover" />
+                  </div>
+                  <div class="p-6">
+                    <p class="text-gray-500 text-sm mb-2" style="font-family: var(--font-body);">{formatDate(post.date)}</p>
+                    <h2 class="text-primary text-[20px] lg:text-[25px] font-semibold leading-snug" style="font-family: var(--font-body);">{post.title}</h2>
+                    {post.excerpt && <p class="text-gray-600 text-sm mt-2" style="font-family: var(--font-body);">{post.excerpt}</p>}
+                    <a href={post.slug} class="btn-primary mt-5 inline-block text-[15px]" style="padding: 8px 16px; font-size: 15px;">Read More ...</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right sidebar -->
+          <div class="w-full lg:w-[30%]">
+            <!-- Search -->
+            <div class="mb-8">
+              <h3 class="text-primary text-[20px] mb-4" style="font-family: var(--font-heading);">Search Keywords</h3>
+              <form class="flex gap-2">
+                <input
+                  type="search"
+                  placeholder="Search..."
+                  class="flex-1 px-3 py-2 border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  style="font-family: var(--font-body);"
+                />
+                <button type="submit" class="px-4 py-2 bg-primary text-white text-sm uppercase" style="font-family: var(--font-narrow);">Search</button>
+              </form>
+            </div>
+
+            <!-- Recent Blogs -->
+            <div>
+              <h3 class="text-primary text-[20px] mb-4" style="font-family: var(--font-heading);">Recent Blogs</h3>
+              <ul class="space-y-4">
+                {blogPosts.map((post: any) => (
+                  <li>
+                    <a href={post.slug} class="text-primary hover:text-accent transition-colors text-[16px] font-semibold" style="font-family: var(--font-body);">{post.title}</a>
+                    <p class="text-gray-500 text-sm mt-1" style="font-family: var(--font-body);">{formatDate(post.date)}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>

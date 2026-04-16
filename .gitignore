@@ -8,6 +8,7 @@ node_modules/
 
 # Sanity studio build artifacts
 .sanity/runtime/
+public/studio/
 
 # Media files — never commit to git
 *.jpg

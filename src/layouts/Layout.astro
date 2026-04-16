@@ -2,8 +2,15 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
-const { title, description = 'Spirit Media site' } = Astro.props;
+const {
+  title,
+  description = 'Thomas McGovern CPA — Author of Road to the Final Hour on the future of college sports.',
+  ogImage = 'https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png',
+} = Astro.props;
+const currentYear = new Date().getFullYear();
+const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
 ---
 <!doctype html>
 <html lang="en">
@@ -12,9 +19,286 @@ const { title, description = 'Spirit Media site' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL.href} />
+    <link rel="icon" type="image/png" href="https://cdn.sanity.io/images/fkqsnbt5/production/33635bf052499f6d535f3f97a375d46cae8e894b-192x192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Archivo+Black:wght@400&family=Archivo+Narrow:wght@400;500;600;700&family=Courgette:wght@400&display=swap" rel="stylesheet" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- JSON-LD Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Thomas A. McGovern",
+      "url": "https://thomasmcgovern.cpa",
+      "jobTitle": "CPA, CFA",
+      "description": "Author of Road to the Final Hour",
+      "sameAs": [
+        "https://x.com/thomasmcgovern",
+        "https://www.facebook.com/profile.php?id=thomasmcgovern",
+        "https://www.instagram.com/thomasmcgovern"
+      ]
+    })}></script>
+
+    <slot name="head" />
   </head>
-  <body style="background-color: var(--color-bg); color: var(--color-text);">
+  <body>
+    <!-- HEADER — entire header overlays the hero via negative margin -->
+    <header id="site-header" style="position: relative; z-index: 999; background-color: transparent; margin-bottom: -200px;">
+      <!-- TOP BAR: social icons left, email right -->
+      <div style="background-color: rgba(4, 47, 82, 0); padding: 0; z-index: 999; position: relative;">
+        <div class="container-site flex items-center justify-between" style="padding: 10px 24px;">
+          <div class="flex items-center gap-2.5">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-[#f5f5f5]" style="font-size: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-[#f5f5f5]" style="font-size: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-[#f5f5f5]" style="font-size: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 576 512" fill="currentColor"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+          </a>
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="text-[#f5f5f5]" style="font-size: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 300 300" fill="currentColor"><path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300h26.46l102.4-116.59L194.66 300H284L178.57 127.15zm-36.26 41.26-11.87-16.61L36.16 19.54h40.68l76.17 106.66 11.87 16.61 99.05 138.65h-40.69l-80.93-113.25z"/></svg>
+          </a>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <a href="mailto:tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 13px; font-weight: 400;">Email us</a>
+        </div>
+        </div>
+      </div>
+
+      <!-- NAV BAR: logo left, links right -->
+      <nav id="main-nav" style="padding: 20px 0; border-top: 1px solid rgba(245, 245, 245, 0.12); background-color: rgba(4, 47, 82, 0); z-index: 999; position: relative;">
+        <div class="container-site flex items-center justify-between">
+          <!-- Logo — reasonable size, not full 50% -->
+          <div>
+            <a href="/">
+              <img
+                src="https://cdn.sanity.io/images/fkqsnbt5/production/b4127efc1c0867decda9704ae29551f039f954da-1175x431.png?w=300&auto=format"
+                alt="Thomas McGovern CPA"
+                style="height: 110px; width: auto;"
+              />
+            </a>
+          </div>
+
+        <!-- Desktop links -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="/#about-me" class="text-[20px] uppercase text-footer-text hover:text-accent transition-colors" style="font-family: var(--font-narrow);">About Me</a>
+          <a href="/blogs" class="text-[20px] uppercase text-footer-text hover:text-accent transition-colors" style="font-family: var(--font-narrow);">Blogs</a>
+          <a href="/contact" class="text-[20px] uppercase text-footer-text hover:text-accent transition-colors" style="font-family: var(--font-narrow);">Contact Us</a>
+          <a
+            href="https://www.amazon.com/dp/B0DWDWWDY1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ml-8 px-6 py-2.5 bg-accent text-primary-dark font-bold uppercase transition-colors hover:bg-hero-heading"
+            style="font-family: var(--font-narrow); font-size: 18px; box-shadow: 1px 1px 1px 1px rgba(66,66,66,0.37); display: inline-flex; align-items: center; gap: 8px;"
+          >ORDER NOW <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <div class="flex items-center gap-4 lg:hidden w-1/2 justify-end">
+          <button id="nav-toggle" class="text-white" aria-label="Toggle menu">
+            <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu overlay -->
+      <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-[998] hidden lg:hidden" style="opacity:0; transition: opacity 0.3s ease;"></div>
+      <!-- Mobile menu — slides in from left -->
+      <div id="mobile-menu" class="fixed top-0 left-0 h-full w-[280px] z-[999] lg:hidden bg-primary-dark/95 backdrop-blur-sm" style="transform: translateX(-100%); transition: transform 0.3s ease;">
+        <div class="flex flex-col gap-5 px-6 pt-20 pb-6">
+          <a href="/#about-me" class="text-footer-text uppercase text-lg" style="font-family: var(--font-narrow);">About Me</a>
+          <a href="/blogs" class="text-footer-text uppercase text-lg" style="font-family: var(--font-narrow);">Blogs</a>
+          <a href="/contact" class="text-footer-text uppercase text-lg" style="font-family: var(--font-narrow);">Contact Us</a>
+          <a href="https://www.amazon.com/dp/B0DWDWWDY1" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2.5 bg-accent text-primary-dark font-bold uppercase text-center" style="font-family: var(--font-narrow);">Order Now</a>
+        </div>
+      </div>
+    </nav>
+    </header>
+
     <slot />
+
+    <!-- FOOTER -->
+    <footer class="bg-footer-bg text-footer-text" style="border-top: 1px solid rgba(245, 245, 245, 0.16);">
+      <!-- Main footer: 4 columns -->
+      <div class="container-site" style="padding-top: 40px; padding-bottom: 40px; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1fr; gap: 2rem;">
+
+        <!-- Col 1: Brand -->
+        <div>
+          <img
+            src="https://cdn.sanity.io/images/fkqsnbt5/production/b4127efc1c0867decda9704ae29551f039f954da-1175x431.png?w=300&auto=format"
+            alt="Thomas McGovern CPA"
+            style="width: 80%; max-width: 250px;"
+          />
+          <p style="color: #f5f5f5; font-size: 14px; line-height: 1.6; margin-top: 20px; font-family: var(--font-body);">
+            Discover Road to the Final Hour, an in-depth exploration of the forces threatening to reshape college athletics.
+          </p>
+        </div>
+
+        <!-- Col 2: Useful Links -->
+        <div style="padding-left: 40px;">
+          <h3 style="color: #f5f5f5; font-family: var(--font-narrow); font-size: 27px; margin-bottom: 20px;">Useful Links</h3>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 12px;"><a href="/#about-me" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">About Me</a></li>
+            <li><a href="/contact" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Get in Touch -->
+        <div style="padding-left: 40px;">
+          <h3 style="color: #f5f5f5; font-family: var(--font-narrow); font-size: 27px; margin-bottom: 20px;">Get in Touch</h3>
+          <div style="display: flex; align-items: center; gap: 10px; margin-top: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="mailto:tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">tmcgovern@thomasmcgovern.cpa</a>
+          </div>
+        </div>
+
+        <!-- Col 4: Product / Book CTA -->
+        <div style="padding-left: 40px; display: flex; flex-direction: column; align-items: flex-start;">
+          <img
+            src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=120&auto=format"
+            alt="Road to the Final Hour"
+            style="width: 80px; margin-bottom: 10px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));"
+          />
+          <p style="color: #f5f5f5; font-family: var(--font-narrow); font-size: 21px; margin-top: 10px; line-height: 1.3;">The Future of College Sports Hangs in the Balance</p>
+          <a
+            href="https://www.amazon.com/dp/B0DWDWWDY1"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="display: inline-block; margin-top: 20px; padding: 8px 20px; font-family: var(--font-narrow); font-size: 13px; font-weight: 400; text-transform: uppercase; background: var(--color-accent); color: #03213a; text-decoration: none; box-shadow: 1px 1px 1px 1px rgba(66,66,66,0.37);"
+          >Buy the Book <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 512" fill="currentColor" style="display:inline;vertical-align:middle;margin-left:6px;"><path d="M257.2 162.7c-48.7 1.8-169.5 15.5-169.5 117.5 0 109.5 138.3 114 183.5 43.2 6.5 10.2 35.4 37.5 45.3 46.8l56.8-56S341 288.9 341 261.4V114.3C341 89 316.5 32 228.7 32 140.7 32 94 87 94 136.3l73.5 6.8c16.3-49.5 54.2-49.5 54.2-49.5 40.7-.1 35.5 29.8 35.5 69.1zm0 86.8c0 80-84.2 68-84.2 17.2 0-47.2 50.5-56.7 84.2-57.8v40.6zm136 163.5c-7.7 10-70 67-174.5 67S34.2 408.5 9.7 379c-6.8-7.7 1-11.3 5.5-8.3C88.5 415.2 203 488.5 387.7 401c7.5-3.7 13.3 2 5.5 12zm39.8-13.7c-9.8-7.5-32.4-14.3-51-7.7-5.7 1.8-5 6.3-1.3 7.7 10.2 3.3 33.4 10 46.3 7.5 12.7-2.3 13.7-3.7 6-7.5z"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Copyright bar -->
+      <div class="border-t border-white/10">
+        <div class="container-site py-5 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+          <p class="text-footer-text text-[10px]">
+            &copy; {currentYear} Thomas McGovern CPA. All rights reserved. &bull; Powered by <a href="https://spiritmediapublishing.com" class="hover:text-accent transition-colors">Spirit Media</a>
+          </p>
+          <div class="flex items-center gap-2.5">
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="text-footer-text hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 300 300" fill="currentColor">
+                <path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300h26.46l102.4-116.59L194.66 300H284L178.57 127.15zm-36.26 41.26-11.87-16.61L36.16 19.54h40.68l76.17 106.66 11.87 16.61 99.05 138.65h-40.69l-80.93-113.25z"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-footer-text hover:text-accent transition-colors ml-2.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-footer-text hover:text-accent transition-colors ml-2.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Responsive header/footer -->
+    <style>
+      @media (max-width: 991px) {
+        footer .container-site {
+          grid-template-columns: 1fr 1fr !important;
+          gap: 2rem !important;
+        }
+        footer .container-site > div {
+          padding-left: 0 !important;
+        }
+      }
+      @media (max-width: 768px) {
+        #site-header {
+          margin-bottom: -140px !important;
+        }
+        #main-nav {
+          padding: 12px 0 !important;
+        }
+        #main-nav img {
+          height: 70px !important;
+        }
+        #site-header .container-site:first-child {
+          padding: 8px 16px;
+        }
+        footer .container-site {
+          grid-template-columns: 1fr !important;
+          gap: 1.5rem !important;
+          padding-top: 30px !important;
+          padding-bottom: 30px !important;
+        }
+        footer .container-site > div {
+          padding-left: 0 !important;
+        }
+        footer .container-site > div:last-child {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          gap: 10px !important;
+        }
+        footer .container-site > div:last-child img {
+          width: 110px !important;
+        }
+      }
+    </style>
+
+    <!-- Nav scroll behavior -->
+    <script>
+      const nav = document.getElementById('main-nav');
+      const toggle = document.getElementById('nav-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-overlay');
+      const hamburger = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+
+      if (nav) {
+        nav.style.background = 'transparent';
+        nav.style.boxShadow = 'none';
+      }
+
+      function openMenu() {
+        mobileMenu.style.transform = 'translateX(0)';
+        overlay.classList.remove('hidden');
+        requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+        hamburger.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        mobileMenu.style.transform = 'translateX(-100%)';
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.classList.add('hidden'); }, 300);
+        hamburger.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      toggle?.addEventListener('click', () => {
+        const isOpen = mobileMenu.style.transform === 'translateX(0px)';
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      overlay?.addEventListener('click', closeMenu);
+
+      mobileMenu?.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', closeMenu);
+      });
+    </script>
   </body>
 </html>
