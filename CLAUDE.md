@@ -50,7 +50,17 @@ Then run: `git checkout dev && git pull origin dev`
 
 ### Still Pending
 - Phase 8: Launch (merge dev → main, requires Kevin's approval)
+  - Pre-launch: Sanity webhook ✅, redirects ✅, all scans ✅
+  - Pending: Kevin approval to merge, domain DNS, UptimeRobot, portal update, sitemap submission
 - Phase 9: Client Delivery
+
+## URL Redirects (301)
+| Old URL | New URL |
+|---------|---------|
+| /contact-u | /contact |
+| /5-myths-about-professionalizing-college-sports | /blog/5-myths-about-professionalizing-college-sports |
+| /the-tax-debate-that-could-change-ncaa-forever | /blog/the-tax-debate-that-could-change-ncaa-forever |
+| /why-title-ix-could-be-the-sleeper-issue | /blog/why-title-ix-could-be-the-sleeper-issue |
 
 ## Phase 7 — QA Results (2026-04-16)
 
