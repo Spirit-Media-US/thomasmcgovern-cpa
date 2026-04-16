@@ -361,9 +361,11 @@ const carouselSlides = [
     function buildDots() {
       const pages = getPageCount();
       dotsContainer.innerHTML = '';
+      dotsContainer.style.cssText = 'display:flex;justify-content:center;gap:10px;margin-top:20px;position:relative;z-index:2;';
       for (let i = 0; i < pages; i++) {
         const btn = document.createElement('button');
-        btn.className = `testi-dot ${i === 0 ? 'active' : ''}`;
+        btn.className = 'testi-dot';
+        btn.style.cssText = 'width:12px;height:12px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:background 0.3s;background:' + (i === 0 ? '#616161' : '#d4d4d4');
         btn.dataset.slide = String(i);
         btn.addEventListener('click', () => slideTo(i));
         dotsContainer.appendChild(btn);
@@ -381,7 +383,7 @@ const carouselSlides = [
       const offset = pos * (100 / perView);
       track.style.transition = 'transform 0.5s ease';
       track.style.transform = `translateX(-${offset}%)`;
-      dotsContainer.querySelectorAll('.testi-dot').forEach((d, i) => d.classList.toggle('active', i === pos));
+      dotsContainer.querySelectorAll('.testi-dot').forEach((d, i) => { (d as HTMLElement).style.background = i === pos ? '#616161' : '#d4d4d4'; });
     }
 
     function init() {
@@ -871,7 +873,7 @@ const carouselSlides = [
     font-size: 14px;
     color: #616161;
   }
-  .testi-dots {
+  #testi-dots {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -879,9 +881,9 @@ const carouselSlides = [
     position: relative;
     z-index: 2;
   }
-  .testi-dot {
-    width: 10px;
-    height: 10px;
+  #testi-dots .testi-dot {
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     border: none;
     background: #d4d4d4;
@@ -889,7 +891,7 @@ const carouselSlides = [
     padding: 0;
     transition: background 0.3s;
   }
-  .testi-dot.active {
+  #testi-dots .testi-dot.active {
     background: #616161;
   }
 
