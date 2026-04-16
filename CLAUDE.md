@@ -42,8 +42,10 @@ Then run: `git checkout dev && git pull origin dev`
 ### Completed on Dev (continued)
 - Phase 5: CAR / Transformation Layer Report — 9 scans run, critical fixes applied, fidelity check passed
 
+### Completed on Dev (continued)
+- Phase 6: Design Refinement — forms wired, blog content populated, mobile polish
+
 ### Still Pending
-- Phase 6: Design Refinement
 - Phase 7: QA
 - Phase 8: Launch
 - Phase 9: Client Delivery
