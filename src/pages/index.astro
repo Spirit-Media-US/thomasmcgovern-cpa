@@ -1,39 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+import { sanityClient, urlFor } from '../lib/sanity.ts';
 
-const testimonials = [
-  {
-    quote: 'A must-read for anyone who cares about the future of college sports.',
-    name: 'Dr. Jane Smith',
-    role: 'Sports Economist',
-  },
-  {
-    quote: 'This book masterfully explains the challenges facing intercollegiate athletics and why action is needed now.',
-    name: 'John Doe',
-    role: 'University President',
-  },
-  {
-    quote: 'Eye-opening and thought-provoking. A game-changer for understanding college athletics.',
-    name: 'Sarah T.',
-    role: 'Reader',
-  },
-];
+const testimonials = await sanityClient.fetch(
+  `*[_type == "testimonial"] | order(order asc) { quote, name, role }`
+);
 
-const blogPosts = [
-  {
-    title: '5 Myths About Professionalizing College Sports',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/b89d10e302b00d8827e6f032cf74c0303fdae6db-1024x576.jpg?w=600&auto=format',
-  },
-  {
-    title: 'The Tax Debate That Could Change NCAA Forever',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/aa049e72dd99d4499adee9b279aad23ea55a1ab2-640x427.jpg?w=600&auto=format',
-  },
-  {
-    title: 'Why Title IX Could Be the Sleeper Issue in the NCAA Professionalization Debate',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/e6ee1ed4a3897a23de35c904a970b341106a934f-1024x682.jpg?w=600&auto=format',
-  },
-];
+const blogPosts = await sanityClient.fetch(
+  `*[_type == "blogPost"] | order(publishDate desc) [0...3] {
+    title,
+    "slug": "/blog/" + slug.current,
+    "image": heroImage.asset->url + "?w=600&auto=format"
+  }`
+);
 
 const carouselSlides = [
   { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=400&auto=format' },
@@ -290,27 +270,23 @@ const carouselSlides = [
             <!-- Slides -->
             <div class="testi-viewport">
               <div class="testi-track" id="testi-track">
-                <!-- Slide 1: 2 reviews -->
-                <div class="testi-slide">
-                  <div class="testi-card">
-                    <p class="testi-quote">&ldquo;A must-read for anyone who cares about the future of college sports.&rdquo;</p>
-                    <p class="testi-name">Dr. Jane Smith</p>
-                    <p class="testi-title">Sports Economist</p>
-                  </div>
-                  <div class="testi-card">
-                    <p class="testi-quote">&ldquo;This book masterfully explains the challenges facing intercollegiate athletics and why action is needed now.&rdquo;</p>
-                    <p class="testi-name">John Doe</p>
-                    <p class="testi-title">University President</p>
-                  </div>
-                </div>
-                <!-- Slide 2: 1 review -->
-                <div class="testi-slide">
-                  <div class="testi-card">
-                    <p class="testi-quote">&ldquo;Eye-opening and thought-provoking. A game-changer for understanding college athletics.&rdquo;</p>
-                    <p class="testi-name">Sarah T.</p>
-                    <p class="testi-title">Reader</p>
-                  </div>
-                </div>
+                {(() => {
+                  const slides: any[][] = [];
+                  for (let i = 0; i < testimonials.length; i += 2) {
+                    slides.push(testimonials.slice(i, i + 2));
+                  }
+                  return slides.map((slide: any[]) => (
+                    <div class="testi-slide">
+                      {slide.map((t: any) => (
+                        <div class="testi-card">
+                          <p class="testi-quote">&ldquo;{t.quote}&rdquo;</p>
+                          <p class="testi-name">{t.name}</p>
+                          <p class="testi-title">{t.role}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ));
+                })()}
               </div>
             </div>
 
@@ -322,8 +298,9 @@ const carouselSlides = [
 
           <!-- Dots -->
           <div class="testi-dots">
-            <button class="testi-dot active" data-slide="0"></button>
-            <button class="testi-dot" data-slide="1"></button>
+            {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_: any, i: number) => (
+              <button class={`testi-dot ${i === 0 ? 'active' : ''}`} data-slide={String(i)}></button>
+            ))}
           </div>
         </div>
       </div>
@@ -343,7 +320,7 @@ const carouselSlides = [
               <div class="blog-card-image" style={`background-image: url('${post.image}');`}></div>
               <div class="p-5">
                 <h3 class="blog-card-title">{post.title}</h3>
-                <a href="/blogs" class="btn-primary blog-card-btn">Read more ...</a>
+                <a href={post.slug} class="btn-primary blog-card-btn">Read more ...</a>
               </div>
             </div>
           ))}
@@ -390,7 +367,7 @@ const carouselSlides = [
     if (!track) return;
 
     let pos = 0;
-    const total = 2;
+    const total = document.querySelectorAll('.testi-slide').length;
 
     function slideTo(p: number) {
       pos = ((p % total) + total) % total;

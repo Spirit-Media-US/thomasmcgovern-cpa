@@ -1,27 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+import { sanityClient } from '../lib/sanity.ts';
 
-const blogPosts = [
-  {
-    title: '5 Myths About Professionalizing College Sports',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/b89d10e302b00d8827e6f032cf74c0303fdae6db-1024x576.jpg?w=600&auto=format',
-    date: 'January 16, 2025',
-    slug: '/5-myths-about-professionalizing-college-sports',
-  },
-  {
-    title: 'The Tax Debate That Could Change NCAA Forever',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/aa049e72dd99d4499adee9b279aad23ea55a1ab2-640x427.jpg?w=600&auto=format',
-    date: 'January 16, 2025',
-    slug: '/the-tax-debate-that-could-change-ncaa-forever',
-  },
-  {
-    title: 'Why Title IX Could Be the Sleeper Issue in the NCAA Professionalization Debate',
-    image: 'https://cdn.sanity.io/images/fkqsnbt5/production/e6ee1ed4a3897a23de35c904a970b341106a934f-1024x682.jpg?w=600&auto=format',
-    date: 'January 16, 2025',
-    slug: '/why-title-ix-could-be-the-sleeper-issue',
-  },
-];
+const blogPosts = await sanityClient.fetch(`
+  *[_type == "blogPost"] | order(publishDate desc) {
+    title,
+    "slug": "/blog/" + slug.current,
+    "image": heroImage.asset->url + "?w=600&auto=format",
+    "date": publishDate,
+    excerpt
+  }
+`);
+
+const formatDate = (dateString: string) => {
+  const d = new Date(dateString);
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+};
 ---
 
 <Layout
@@ -52,14 +47,15 @@ const blogPosts = [
           <!-- Left: blog posts -->
           <div class="w-full lg:w-[70%]">
             <div class="space-y-10">
-              {blogPosts.map(post => (
+              {blogPosts.map((post: any) => (
                 <article class="bg-white card-shadow overflow-hidden">
                   <div class="h-[300px] overflow-hidden">
                     <img src={post.image} alt={post.title} class="w-full h-full object-cover" />
                   </div>
                   <div class="p-6">
-                    <p class="text-gray-500 text-sm mb-2" style="font-family: var(--font-body);">{post.date}</p>
+                    <p class="text-gray-500 text-sm mb-2" style="font-family: var(--font-body);">{formatDate(post.date)}</p>
                     <h2 class="text-primary text-[20px] lg:text-[25px] font-semibold leading-snug" style="font-family: var(--font-body);">{post.title}</h2>
+                    {post.excerpt && <p class="text-gray-600 text-sm mt-2" style="font-family: var(--font-body);">{post.excerpt}</p>}
                     <a href={post.slug} class="btn-primary mt-5 inline-block text-[15px]" style="padding: 8px 16px; font-size: 15px;">Read More ...</a>
                   </div>
                 </article>
@@ -87,10 +83,10 @@ const blogPosts = [
             <div>
               <h3 class="text-primary text-[20px] mb-4" style="font-family: var(--font-heading);">Recent Blogs</h3>
               <ul class="space-y-4">
-                {blogPosts.map(post => (
+                {blogPosts.map((post: any) => (
                   <li>
                     <a href={post.slug} class="text-primary hover:text-accent transition-colors text-[16px] font-semibold" style="font-family: var(--font-body);">{post.title}</a>
-                    <p class="text-gray-500 text-sm mt-1" style="font-family: var(--font-body);">{post.date}</p>
+                    <p class="text-gray-500 text-sm mt-1" style="font-family: var(--font-body);">{formatDate(post.date)}</p>
                   </li>
                 ))}
               </ul>
