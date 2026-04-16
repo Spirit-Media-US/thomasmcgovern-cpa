@@ -61,13 +61,13 @@ const desktopSlides = [
         <!-- Desktop: 5 logos -->
         <div class="logo-row-desktop">
           {desktopSlides.map(slide => (
-            <div class="logo-item"><img src={slide.url} alt={slide.name} /></div>
+            <div class="logo-item"><img src={slide.url} alt={slide.name} class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
           ))}
         </div>
         <!-- Mobile: 3 logos -->
         <div class="logo-row-mobile">
           {carouselSlides.map(slide => (
-            <div class="logo-item"><img src={slide.url} alt={slide.name} /></div>
+            <div class="logo-item"><img src={slide.url} alt={slide.name} class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
           ))}
         </div>
       </div>
@@ -563,6 +563,12 @@ const desktopSlides = [
     width: auto;
     object-fit: contain;
     opacity: 0.8;
+  }
+  .logo-item img.logo-amazon {
+    height: 60px;
+  }
+  .logo-item img.logo-barnes {
+    height: 70px;
   }
   /* Desktop: show 5, hide 3 */
   .logo-row-desktop { display: flex; }
