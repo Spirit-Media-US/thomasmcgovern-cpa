@@ -57,21 +57,19 @@ const desktopSlides = [
 
     <!-- FEATURED IN LOGOS -->
     <section class="featured-strip">
-      <!-- Desktop: 5 logos -->
-      <div class="featured-desktop" style="display: none; align-items: center; justify-content: center; width: 100%; max-width: 1250px; margin: 0 auto; padding: 0 20px; gap: 0;">
-        {desktopSlides.map(slide => (
-          <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 15px;">
-            <img src={slide.url} alt={slide.name} style="max-width: 100%; max-height: 60px; object-fit: contain;" />
-          </div>
-        ))}
-      </div>
-      <!-- Mobile: 3 logos -->
-      <div class="featured-mobile" style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 1250px; margin: 0 auto; padding: 0 20px; gap: 10px;">
-        {carouselSlides.map(slide => (
-          <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 5px;">
-            <img src={slide.url} alt={slide.name} style="max-width: 100%; max-height: 50px; object-fit: contain;" />
-          </div>
-        ))}
+      <div class="container-site">
+        <!-- Desktop: 5 logos -->
+        <div class="logo-row-desktop">
+          {desktopSlides.map(slide => (
+            <div class="logo-item"><img src={slide.url} alt={slide.name} /></div>
+          ))}
+        </div>
+        <!-- Mobile: 3 logos -->
+        <div class="logo-row-mobile">
+          {carouselSlides.map(slide => (
+            <div class="logo-item"><img src={slide.url} alt={slide.name} /></div>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -546,14 +544,33 @@ const desktopSlides = [
   /* ===== FEATURED IN STRIP ===== */
   .featured-strip {
     background-color: #f5f5f5;
+    padding: 25px 0;
+  }
+  .logo-row-desktop,
+  .logo-row-mobile {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 0;
+    gap: 40px;
   }
-  @media (min-width: 1024px) {
-    .featured-strip .featured-desktop { display: flex !important; }
-    .featured-strip .featured-mobile { display: none !important; }
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-item img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.8;
+  }
+  /* Desktop: show 5, hide 3 */
+  .logo-row-desktop { display: flex; }
+  .logo-row-mobile { display: none; }
+  @media (max-width: 768px) {
+    .logo-row-desktop { display: none; }
+    .logo-row-mobile { display: flex; gap: 20px; }
+    .logo-item img { height: 30px; }
   }
 
   /* ===== ABOUT ME ===== */
