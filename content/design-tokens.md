@@ -34,8 +34,37 @@
 - Body: 15px
 - Stat counters: 45px
 
-## Spacing
-- Container: 1250px max
-- Section padding: 80px vertical
-- Mobile: 40px vertical, 20px horizontal
-- Hero height: 87vh desktop
+## Spacing — Desktop
+| Element | Padding | Margin | Max Width |
+|---------|---------|--------|-----------|
+| container | 0 24px | 0 auto | 1250px |
+| section | 80px 0 | 0 | — |
+| hero | 220px 24px 80px | 0 | — |
+| card | 20px | 0 | — |
+| header | 20px 0 | 0 -200px (overlay) | — |
+| footer | 40px 24px | 0 | — |
+
+## Spacing — Mobile
+| Element | Padding | Margin | Max Width |
+|---------|---------|--------|-----------|
+| container | 0 24px | 0 auto | 100% |
+| section | 40px 0 | 0 | — |
+| hero | 140px 24px 40px | 0 | — |
+| card | 16px | 0 | — |
+| header | 12px 0 | 0 -140px (overlay) | — |
+| footer | 30px 24px | 0 | — |
+
+## Decorations
+| Element | Border Radius | Box Shadow | Transition |
+|---------|--------------|------------|------------|
+| button | 0 | 1px 1px 1px 1px rgba(66,66,66,0.37) | background-color 0.2s |
+| card | 0 | 1px 1px 11px 1px rgba(97,97,97,0.28) | — |
+| image | 0 | none | — |
+| nav | 0 | none | — |
+| about photo | 0 | none (blue gradient border wrapper) | — |
+
+## Navigation
+| Viewport | Type | Details |
+|----------|------|---------|
+| Desktop | Horizontal links | Logo left, 3 nav links (About Me, Blogs, Contact Us) + ORDER NOW CTA button right |
+| Mobile | Hamburger → slide-out panel from left | Logo left, hamburger right (white), 280px panel with dark overlay |
