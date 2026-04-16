@@ -57,7 +57,6 @@ const desktopSlides = [
 
     <!-- FEATURED IN LOGOS -->
     <section class="featured-strip">
-      <div class="container-site">
         <!-- Desktop: 5 logos -->
         <div class="logo-row-desktop">
           {desktopSlides.map(slide => (
@@ -70,7 +69,6 @@ const desktopSlides = [
             <div class="logo-item"><img src={slide.url} alt={slide.name} class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
           ))}
         </div>
-      </div>
     </section>
 
     <!-- ABOUT ME -->
@@ -544,7 +542,7 @@ const desktopSlides = [
   /* ===== FEATURED IN STRIP ===== */
   .featured-strip {
     background-color: #f5f5f5;
-    padding: 25px 0;
+    padding: 10px 0;
   }
   .logo-row-desktop,
   .logo-row-mobile {
@@ -566,7 +564,7 @@ const desktopSlides = [
     image-rendering: -webkit-optimize-contrast;
   }
   .logo-item img.logo-amazon {
-    height: 60px;
+    height: 80px;
   }
   .logo-item img.logo-barnes {
     height: 150px;
