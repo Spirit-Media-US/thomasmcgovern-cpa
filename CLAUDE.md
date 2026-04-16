@@ -45,10 +45,34 @@ Then run: `git checkout dev && git pull origin dev`
 ### Completed on Dev (continued)
 - Phase 6: Design Refinement — forms wired, blog content populated, mobile polish
 
+### Completed on Dev (continued)
+- Phase 7: QA — all 9 scans pass, Lighthouse 86/91/100/69 (SEO low due to dev branch noindex)
+
 ### Still Pending
-- Phase 7: QA
-- Phase 8: Launch
+- Phase 8: Launch (merge dev → main, requires Kevin's approval)
 - Phase 9: Client Delivery
+
+## Phase 7 — QA Results (2026-04-16)
+
+### Automated Scans (9/9 pass)
+All scans pass — no external URLs, no WordPress leftovers, no missing SEO, build succeeds, sitemap covers all pages.
+
+### Lighthouse Scores (dev preview)
+| Category | Score |
+|----------|-------|
+| Performance | 86% |
+| Accessibility | 91% |
+| Best Practices | 100% |
+| SEO | 69% (dev branch noindex — production will score higher) |
+
+### Fixes Applied
+- Testimonial dot buttons: added aria-labels for screen readers
+- Eyebrow text: improved contrast ratio (gold darkened to #b8960a, weight 600)
+
+### Known Limitations
+- SEO score suppressed by CF Pages dev branch `X-Robots-Tag: noindex` — resolves on production
+- Contact/newsletter forms use MailChannels via CF Pages Functions — requires DNS SPF record for deliverability
+- Blog posts have body content but no inline images yet
 
 ## Phase 5 — CAR Report Summary (2026-04-16)
 
