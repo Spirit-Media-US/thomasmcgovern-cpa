@@ -264,26 +264,18 @@ const carouselSlides = [
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
 
-            <!-- Slides -->
+            <!-- Slides — 1 testimonial per slide -->
             <div class="testi-viewport">
               <div class="testi-track" id="testi-track">
-                {(() => {
-                  const slides: any[][] = [];
-                  for (let i = 0; i < testimonials.length; i += 2) {
-                    slides.push(testimonials.slice(i, i + 2));
-                  }
-                  return slides.map((slide: any[]) => (
-                    <div class="testi-slide">
-                      {slide.map((t: any) => (
-                        <div class="testi-card">
-                          <p class="testi-quote">&ldquo;{t.quote}&rdquo;</p>
-                          <p class="testi-name">{t.name}</p>
-                          <p class="testi-title">{t.role}</p>
-                        </div>
-                      ))}
+                {testimonials.map((t: any) => (
+                  <div class="testi-slide">
+                    <div class="testi-card">
+                      <p class="testi-quote">&ldquo;{t.quote}&rdquo;</p>
+                      <p class="testi-name">{t.name}</p>
+                      <p class="testi-title">{t.role}</p>
                     </div>
-                  ));
-                })()}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -294,11 +286,7 @@ const carouselSlides = [
           </div>
 
           <!-- Dots -->
-          <div class="testi-dots">
-            {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_: any, i: number) => (
-              <button class={`testi-dot ${i === 0 ? 'active' : ''}`} data-slide={String(i)}></button>
-            ))}
-          </div>
+          <div class="testi-dots" id="testi-dots"></div>
         </div>
       </div>
     </section>
@@ -355,31 +343,61 @@ const carouselSlides = [
 </Layout>
 
 <script>
-  // Testimonial slider — loop with arrows
+  // Testimonial slider — responsive: 1 per view on mobile, 2 on desktop
   (function() {
     const track = document.getElementById('testi-track');
     const prevBtn = document.getElementById('testi-prev');
     const nextBtn = document.getElementById('testi-next');
-    const dots = document.querySelectorAll('.testi-dot');
-    if (!track) return;
+    const dotsContainer = document.getElementById('testi-dots');
+    if (!track || !dotsContainer) return;
 
+    const slides = track.querySelectorAll('.testi-slide');
+    const totalSlides = slides.length;
     let pos = 0;
-    const total = document.querySelectorAll('.testi-slide').length;
+    let perView = window.innerWidth <= 768 ? 1 : 2;
+
+    function getPageCount() { return Math.ceil(totalSlides / perView); }
+
+    function buildDots() {
+      const pages = getPageCount();
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < pages; i++) {
+        const btn = document.createElement('button');
+        btn.className = `testi-dot ${i === 0 ? 'active' : ''}`;
+        btn.dataset.slide = String(i);
+        btn.addEventListener('click', () => slideTo(i));
+        dotsContainer.appendChild(btn);
+      }
+    }
+
+    function updateLayout() {
+      const slideWidth = 100 / perView;
+      slides.forEach(s => { (s as HTMLElement).style.flex = `0 0 ${slideWidth}%`; });
+    }
 
     function slideTo(p: number) {
-      pos = ((p % total) + total) % total;
+      const pages = getPageCount();
+      pos = ((p % pages) + pages) % pages;
+      const offset = pos * (100 / perView);
       track.style.transition = 'transform 0.5s ease';
-      track.style.transform = `translateX(-${pos * (100 / total)}%)`;
-      dots.forEach((d, i) => d.classList.toggle('active', i === pos));
+      track.style.transform = `translateX(-${offset}%)`;
+      dotsContainer.querySelectorAll('.testi-dot').forEach((d, i) => d.classList.toggle('active', i === pos));
     }
+
+    function init() {
+      perView = window.innerWidth <= 768 ? 1 : 2;
+      pos = 0;
+      updateLayout();
+      buildDots();
+      slideTo(0);
+    }
+
+    init();
+    window.addEventListener('resize', init);
 
     prevBtn?.addEventListener('click', () => slideTo(pos - 1));
     nextBtn?.addEventListener('click', () => slideTo(pos + 1));
-    dots.forEach(d => {
-      d.addEventListener('click', () => slideTo(Number((d as HTMLElement).dataset.slide)));
-    });
 
-    // Auto-advance every 5 seconds
     let interval = setInterval(() => slideTo(pos + 1), 5000);
     track.parentElement?.parentElement?.addEventListener('mouseenter', () => clearInterval(interval));
     track.parentElement?.parentElement?.addEventListener('mouseleave', () => {
@@ -827,7 +845,6 @@ const carouselSlides = [
     transition: transform 0.5s ease;
   }
   .testi-slide {
-    flex: 0 0 100%;
     display: flex;
     gap: 30px;
     padding: 20px 10px;
@@ -1140,13 +1157,9 @@ const carouselSlides = [
       width: 100%;
     }
 
-    /* Testimonials: single column per slide */
+    /* Testimonials */
     .testimonials-section {
       padding: 40px 0;
-    }
-    .testi-slide {
-      flex-direction: column;
-      gap: 16px;
     }
     .testi-card {
       padding: 16px 10px;
