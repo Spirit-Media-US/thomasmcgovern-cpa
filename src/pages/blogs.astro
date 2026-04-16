@@ -26,7 +26,7 @@ const formatDate = (dateString: string) => {
   <main>
 
     <!-- HERO with gradient overlay -->
-    <section class="relative flex items-end justify-center" style="padding-top: 150px; padding-bottom: 100px;">
+    <section class="relative flex items-end justify-center" style="padding-top: 150px; padding-bottom: 100px;" id="blogs-hero">
       <div class="absolute inset-0 z-0">
         <img
           src="https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=1600&auto=format"
@@ -98,3 +98,11 @@ const formatDate = (dateString: string) => {
 
   </main>
 </Layout>
+
+<style>
+  @media (min-width: 1024px) {
+    #blogs-hero {
+      padding-top: 230px !important;
+    }
+  }
+</style>
