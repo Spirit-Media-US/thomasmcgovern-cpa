@@ -28,10 +28,14 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--color-body);
-  background: #fff;
+  background: #03213a;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  background: #fff;
 }
 
 /* Utility classes */
