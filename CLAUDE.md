@@ -39,12 +39,49 @@ Then run: `git checkout dev && git pull origin dev`
 - Phase 3: Design + Build — homepage, blogs, contact, 404, Layout with header/footer, global.css
 - Phase 4: Wire Sanity CMS — schemas (blogPost, testimonial), content migrated, pages wired, Studio embedded at /studio, webhook configured
 
+### Completed on Dev (continued)
+- Phase 5: CAR / Transformation Layer Report — 9 scans run, critical fixes applied, fidelity check passed
+
 ### Still Pending
-- Phase 5: CAR / Transformation Layer Report
 - Phase 6: Design Refinement
 - Phase 7: QA
 - Phase 8: Launch
 - Phase 9: Client Delivery
+
+## Phase 5 — CAR Report Summary (2026-04-16)
+
+### Part One: Already Delivered
+- Homepage with all sections: hero, featured logos, about, stats, book, issues, testimonials, blog, newsletter
+- Blog index page fetching from Sanity CMS
+- Individual blog post pages with portable text rendering, JSON-LD, OG meta
+- Contact page with form, sidebar, social links, book CTA
+- 404 page
+- Global header with transparent overlay nav, mobile slide-in menu
+- Footer with 4-column grid, copyright bar, social icons
+- Sanity Studio embedded at /studio
+- Sanity schemas: blogPost, testimonial
+- 3 blog posts + 3 testimonials migrated to Sanity
+- Sanity → CF Pages auto-rebuild webhook configured
+- CORS origins configured for live domain + dev preview
+- Fluid typography (clamp()), 48px touch targets, iOS zoom prevention
+- Mobile responsive: all sections stack at 768px breakpoint
+- All images hosted on Sanity CDN — zero external URLs
+
+### Part Two: Critical Fixes (applied)
+- Removed stale TODO comment in sanity.ts
+- All alt text verified (decorative images use alt="", content images have descriptive alt)
+- No WordPress/dev URLs remaining
+- No external image URLs
+- Build passes, sitemap covers all pages
+
+### Part Three: Recommended Improvements (Phase 6)
+- Reduce inline styles — migrate to CSS classes/design tokens
+- Add form submission handler (currently no backend — forms don't submit)
+- Add loading states / animations (counter animation exists, could add scroll reveals)
+- Blog posts need body content in Sanity (currently empty)
+- Consider adding breadcrumbs to blog post pages
+- Newsletter form needs backend integration
+- Lighthouse performance audit and optimization
 
 ## Sanity Content Audit
 
