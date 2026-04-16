@@ -57,19 +57,19 @@ const desktopSlides = [
 
     <!-- FEATURED IN LOGOS -->
     <section class="featured-strip">
-      <!-- Desktop: 5 logos (Barnes, Amazon, Bookshop, Barnes, Bookshop) -->
-      <div class="featured-strip-inner hidden lg:flex">
+      <!-- Desktop: 5 logos -->
+      <div class="featured-desktop" style="display: none; align-items: center; justify-content: center; width: 100%; max-width: 1250px; margin: 0 auto; padding: 0 20px; gap: 0;">
         {desktopSlides.map(slide => (
-          <div class="featured-slide">
-            <img src={slide.url} alt={slide.name} />
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 15px;">
+            <img src={slide.url} alt={slide.name} style="max-width: 100%; max-height: 60px; object-fit: contain;" />
           </div>
         ))}
       </div>
       <!-- Mobile: 3 logos -->
-      <div class="featured-strip-inner flex lg:hidden">
+      <div class="featured-mobile" style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 1250px; margin: 0 auto; padding: 0 20px; gap: 10px;">
         {carouselSlides.map(slide => (
-          <div class="featured-slide">
-            <img src={slide.url} alt={slide.name} />
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 5px;">
+            <img src={slide.url} alt={slide.name} style="max-width: 100%; max-height: 50px; object-fit: contain;" />
           </div>
         ))}
       </div>
@@ -543,36 +543,17 @@ const desktopSlides = [
     margin: 0;
   }
 
-  /* ===== FEATURED IN STRIP — matches original #brxe-uklxqb ===== */
+  /* ===== FEATURED IN STRIP ===== */
   .featured-strip {
-    height: 15vh;
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 0;
+    padding: 20px 0;
   }
-  .featured-strip-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1250px;
-    margin: 0 auto;
-    padding: 0 20px;
-    gap: 20px;
-  }
-  .featured-slide {
-    flex: 0 0 calc(100% / 5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px;
-  }
-  .featured-slide img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  @media (min-width: 1024px) {
+    .featured-strip .featured-desktop { display: flex !important; }
+    .featured-strip .featured-mobile { display: none !important; }
   }
 
   /* ===== ABOUT ME ===== */
@@ -1053,20 +1034,7 @@ const desktopSlides = [
       text-align: center;
     }
 
-    /* Featured strip */
-    .featured-strip {
-      height: auto;
-      padding: 12px 0;
-    }
-    .featured-strip-inner {
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    .featured-slide {
-      flex: 0 0 28%;
-      padding: 0 5px;
-    }
+    /* Featured strip — handled by inline styles + media query */
 
     /* About: full-width stack */
     .about-section {
