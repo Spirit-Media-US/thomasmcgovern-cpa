@@ -6,7 +6,9 @@ export default defineConfig({
   site: 'https://thomasmcgovern.cpa',
   integrations: [sitemap()],
   build: {
-    inlineStylesheets: 'always',
+    // 'auto' inlines small stylesheets (<4KB) and keeps large ones external.
+    // 'always' was tested and hurt LCP (larger HTML delayed image fetch).
+    inlineStylesheets: 'auto',
   },
   vite: {
     server: { allowedHosts: ['preview.spiritmediapublishing.com'] },
