@@ -33,6 +33,17 @@ const desktopSlides = [
 
 <Layout title="Thomas McGovern CPA — Road to the Final Hour">
   <Fragment slot="head">
+    <!-- Preconnect Sanity CDN for earliest LCP fetch -->
+    <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+    <!-- Preload LCP hero background (responsive — mobile gets smaller) -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=800&fm=webp&q=70"
+      imagesrcset="https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=800&fm=webp&q=70 768w, https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&fm=webp&q=75 1600w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <!-- Preload LCP book cover (mobile first) -->
     <link
       rel="preload"
@@ -161,7 +172,7 @@ const desktopSlides = [
 
         <!-- Overview: image left + text right -->
         <div class="book-overview card-shadow-light">
-          <div class="book-overview-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=800&auto=format');"></div>
+          <div class="book-overview-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=700&fm=webp&q=75');"></div>
           <div class="book-overview-text">
             <h3 class="heading-sub-sm mb-5">Overview</h3>
             <p class="text-body">
@@ -265,7 +276,7 @@ const desktopSlides = [
 
         <!-- Cultural significance: image left + text right -->
         <div class="issues-row card-shadow-light">
-          <div class="issues-row-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=800&auto=format');"></div>
+          <div class="issues-row-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=700&fm=webp&q=75');"></div>
           <div class="issues-row-text">
             <h3 class="heading-sub" style="width: 75%;">Cultural Significance of College Athletics</h3>
             <p class="text-body mt-5">
@@ -876,7 +887,7 @@ const desktopSlides = [
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=1200&auto=format');
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=700&fm=webp&q=70');
     background-size: 60% auto;
     background-position: center center;
     background-repeat: no-repeat;
