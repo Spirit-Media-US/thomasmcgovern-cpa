@@ -24,6 +24,10 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
     <link rel="preload" as="font" type="font/woff2" href="https://assets.spiritmediapublishing.com/fonts/archivo/archivo-300.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="https://assets.spiritmediapublishing.com/fonts/archivo/archivo-400.woff2" crossorigin />
 
+    <!-- Below-fold CSS loaded async (non-render-blocking) -->
+    <link rel="preload" as="style" href="/deferred.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/deferred.css" /></noscript>
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
