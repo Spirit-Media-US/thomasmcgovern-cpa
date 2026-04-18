@@ -15,10 +15,11 @@ const blogPosts = await sanityClient.fetch(
   }`
 );
 
+// Mobile logo-row: displayed at ~93-134px wide — serve w=280 for retina sharpness
 const carouselSlides = [
-  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=400&fm=webp&q=80' },
-  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=400&fm=webp&q=80' },
-  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=400&fm=webp&q=80' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=280&fm=webp&q=75', w: 280, h: 158 },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=220&fm=webp&q=75', w: 220, h: 66 },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=280&fm=webp&q=75', w: 280, h: 42 },
 ];
 
 // Desktop: 5 logos (Barnes, Bookshop, Amazon, Barnes, Bookshop)
@@ -95,7 +96,7 @@ const desktopSlides = [
         <!-- Mobile: 3 logos -->
         <div class="logo-row-mobile">
           {carouselSlides.map(slide => (
-            <div class="logo-item"><img src={slide.url} alt={slide.name} loading="lazy" decoding="async" class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
+            <div class="logo-item"><img src={slide.url} alt={slide.name} loading="lazy" decoding="async" width={slide.w} height={slide.h} class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
           ))}
         </div>
     </section>
@@ -116,9 +117,9 @@ const desktopSlides = [
 
             <h3 class="heading-sub mb-5">Featured In:</h3>
             <div class="featured-carousel">
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=400&fm=webp&q=80" alt="ESPN" class="carousel-logo" loading="lazy" decoding="async" width="200" height="89" />
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=400&fm=webp&q=80" alt="Wall Street Journal" class="carousel-logo" loading="lazy" decoding="async" width="200" height="113" />
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=400&fm=webp&q=80" alt="USA Today" class="carousel-logo" loading="lazy" decoding="async" width="200" height="37" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=280&fm=webp&q=75" srcset="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=280&fm=webp&q=75 280w, https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=400&fm=webp&q=80 400w" sizes="(max-width: 768px) 140px, 200px" alt="ESPN" class="carousel-logo" loading="lazy" decoding="async" width="200" height="89" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=280&fm=webp&q=75" srcset="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=280&fm=webp&q=75 280w, https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=400&fm=webp&q=80 400w" sizes="(max-width: 768px) 140px, 200px" alt="Wall Street Journal" class="carousel-logo" loading="lazy" decoding="async" width="200" height="113" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=280&fm=webp&q=75" srcset="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=280&fm=webp&q=75 280w, https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=400&fm=webp&q=80 400w" sizes="(max-width: 768px) 140px, 200px" alt="USA Today" class="carousel-logo" loading="lazy" decoding="async" width="200" height="37" />
             </div>
           </div>
 
@@ -201,7 +202,9 @@ const desktopSlides = [
           <!-- Center: Book cover -->
           <div class="chapters-center">
             <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&fm=webp&q=80"
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=420&fm=webp&q=75"
+              srcset="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=420&fm=webp&q=75 480w, https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&fm=webp&q=80 1024w"
+              sizes="(max-width: 768px) 70vw, 30vw"
               alt="Road to the Final Hour book cover"
               loading="lazy"
               decoding="async"
@@ -887,12 +890,17 @@ const desktopSlides = [
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=700&fm=webp&q=70');
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=400&fm=webp&q=50');
     background-size: 60% auto;
     background-position: center center;
     background-repeat: no-repeat;
     opacity: 0.15;
     pointer-events: none;
+  }
+  @media (min-width: 769px) {
+    .testimonials-section::after {
+      background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=700&fm=webp&q=65');
+    }
   }
   .testimonials-map-wrapper {
     position: relative;
