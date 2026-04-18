@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     // CSS at 35KB is too large to inline without regressing mobile LCP
     // (bigger HTML delays paint on 3G). Keep external — it's one file now.
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   vite: {
     server: { allowedHosts: ['preview.spiritmediapublishing.com'] },
