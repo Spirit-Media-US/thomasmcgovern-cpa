@@ -250,6 +250,7 @@ input, textarea, select {
   }
   .hero-image img {
     width: 100%;
+    height: auto;
     max-width: 380px;
     filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.5));
   }
