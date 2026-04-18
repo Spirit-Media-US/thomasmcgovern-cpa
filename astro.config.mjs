@@ -1,13 +1,17 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import inline from '@playform/inline';
 
 export default defineConfig({
   site: 'https://thomasmcgovern.cpa',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+    // Beasties: extract above-fold critical CSS, inline it, async-load the rest.
+    inline(),
+  ],
   build: {
-    // CSS at 35KB is too large to inline without regressing mobile LCP
-    // (bigger HTML delays paint on 3G). Keep external — it's one file now.
+    // Let Beasties handle critical inlining; keep auto for the rest.
     inlineStylesheets: 'auto',
   },
   vite: {
