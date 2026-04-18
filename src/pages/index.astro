@@ -11,27 +11,38 @@ const blogPosts = await sanityClient.fetch(
   `*[_type == "blogPost"] | order(publishDate desc) [0...3] {
     title,
     "slug": "/blog/" + slug.current,
-    "image": heroImage.asset->url + "?w=600&auto=format"
+    "image": heroImage.asset->url + "?w=600&fm=webp&q=80"
   }`
 );
 
 const carouselSlides = [
-  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=800&q=100&auto=format' },
-  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=700&q=100&auto=format' },
-  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=800&q=100&auto=format' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=400&fm=webp&q=80' },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=400&fm=webp&q=80' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=400&fm=webp&q=80' },
 ];
 
 // Desktop: 5 logos (Barnes, Bookshop, Amazon, Barnes, Bookshop)
 const desktopSlides = [
-  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=800&q=100&auto=format' },
-  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=800&q=100&auto=format' },
-  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=700&q=100&auto=format' },
-  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=800&q=100&auto=format' },
-  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=800&q=100&auto=format' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=500&fm=webp&q=80' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=500&fm=webp&q=80' },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=500&fm=webp&q=80' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=500&fm=webp&q=80' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=500&fm=webp&q=80' },
 ];
 ---
 
 <Layout title="Thomas McGovern CPA — Road to the Final Hour">
+  <Fragment slot="head">
+    <!-- Preload LCP book cover (mobile first) -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80"
+      imagesrcset="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80 480w, https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=600&fm=webp&q=80 1024w"
+      imagesizes="(max-width: 768px) 60vw, 380px"
+      fetchpriority="high"
+    />
+  </Fragment>
   <main>
 
     <!-- HERO -->
@@ -41,8 +52,15 @@ const desktopSlides = [
           <!-- Left: book cover -->
           <div class="hero-image">
             <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=600&fm=webp&q=80"
+              srcset="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80 480w, https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=600&fm=webp&q=80 1024w"
+              sizes="(max-width: 768px) 60vw, 380px"
               alt="Road to the Final Hour book cover"
+              width="500"
+              height="500"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
             />
           </div>
           <!-- Right: text -->
@@ -60,13 +78,13 @@ const desktopSlides = [
         <!-- Desktop: 5 logos -->
         <div class="logo-row-desktop">
           {desktopSlides.map(slide => (
-            <div class="logo-item"><img src={slide.url} alt={slide.name} class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
+            <div class="logo-item"><img src={slide.url} alt={slide.name} loading="lazy" decoding="async" class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
           ))}
         </div>
         <!-- Mobile: 3 logos -->
         <div class="logo-row-mobile">
           {carouselSlides.map(slide => (
-            <div class="logo-item"><img src={slide.url} alt={slide.name} class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
+            <div class="logo-item"><img src={slide.url} alt={slide.name} loading="lazy" decoding="async" class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
           ))}
         </div>
     </section>
@@ -87,9 +105,9 @@ const desktopSlides = [
 
             <h3 class="heading-sub mb-5">Featured In:</h3>
             <div class="featured-carousel">
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=400&auto=format" alt="ESPN" class="carousel-logo" />
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=400&auto=format" alt="Wall Street Journal" class="carousel-logo" />
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=400&auto=format" alt="USA Today" class="carousel-logo" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=400&fm=webp&q=80" alt="ESPN" class="carousel-logo" loading="lazy" decoding="async" width="200" height="89" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=400&fm=webp&q=80" alt="Wall Street Journal" class="carousel-logo" loading="lazy" decoding="async" width="200" height="113" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=400&fm=webp&q=80" alt="USA Today" class="carousel-logo" loading="lazy" decoding="async" width="200" height="37" />
             </div>
           </div>
 
@@ -97,9 +115,13 @@ const desktopSlides = [
           <div class="about-right">
             <div class="about-photo-wrapper">
               <img
-                src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&auto=format"
+                src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&fm=webp&q=80"
                 alt="Thomas A. McGovern"
                 class="about-photo"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="900"
               />
             </div>
           </div>
@@ -168,8 +190,12 @@ const desktopSlides = [
           <!-- Center: Book cover -->
           <div class="chapters-center">
             <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&fm=webp&q=80"
               alt="Road to the Final Hour book cover"
+              loading="lazy"
+              decoding="async"
+              width="500"
+              height="500"
             />
           </div>
           <!-- Right: 3 chapter cards stacked -->
@@ -219,9 +245,13 @@ const desktopSlides = [
         <!-- Infographic -->
         <div class="mt-8 mb-8">
           <img
-            src="https://cdn.sanity.io/images/fkqsnbt5/production/be37419005c1c164a021dca8ff787c180c7f8f04-1200x456.png?w=1000&auto=format"
+            src="https://cdn.sanity.io/images/fkqsnbt5/production/be37419005c1c164a021dca8ff787c180c7f8f04-1200x456.png?w=1000&fm=webp&q=80"
             alt="Before Infographic"
             class="w-full"
+            loading="lazy"
+            decoding="async"
+            width="1000"
+            height="380"
           />
         </div>
 
@@ -469,12 +499,17 @@ const desktopSlides = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1920&auto=format');
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=800&fm=webp&q=70');
     background-position: center right;
     background-size: cover;
     background-blend-mode: multiply;
     padding-top: 220px;
     padding-bottom: 80px;
+  }
+  @media (min-width: 769px) {
+    .hero-section {
+      background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&fm=webp&q=75');
+    }
   }
   .hero-section::before {
     content: '';
@@ -664,10 +699,15 @@ const desktopSlides = [
     background-color: #f5f5f5;
     padding-top: 80px;
     padding-bottom: 80px;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/bac3f12529365a67d4fceec137a1037872a1b990-1024x555.png?w=1920&auto=format');
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/bac3f12529365a67d4fceec137a1037872a1b990-1024x555.png?w=800&fm=webp&q=70');
     background-position: center calc(100% - 70px);
     background-repeat: no-repeat;
     background-size: 100%;
+  }
+  @media (min-width: 769px) {
+    .book-section {
+      background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/bac3f12529365a67d4fceec137a1037872a1b990-1024x555.png?w=1600&fm=webp&q=75');
+    }
   }
   .book-overview {
     display: flex;
@@ -768,11 +808,16 @@ const desktopSlides = [
   /* ===== FOOTBALL BANNER ===== */
   .football-banner {
     height: 250px;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=1920&auto=format');
+    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=800&fm=webp&q=70');
     background-position: center right;
     background-size: cover;
     background-blend-mode: multiply;
     position: relative;
+  }
+  @media (min-width: 769px) {
+    .football-banner {
+      background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=1600&fm=webp&q=75');
+    }
   }
   .football-banner::before {
     content: '';
