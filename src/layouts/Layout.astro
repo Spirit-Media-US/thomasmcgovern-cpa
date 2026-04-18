@@ -224,50 +224,6 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
       </div>
     </footer>
 
-    <!-- Responsive header/footer -->
-    <style>
-      @media (max-width: 991px) {
-        footer .container-site {
-          grid-template-columns: 1fr 1fr !important;
-          gap: 2rem !important;
-        }
-        footer .container-site > div {
-          padding-left: 0 !important;
-        }
-      }
-      @media (max-width: 768px) {
-        #site-header {
-          margin-bottom: -140px !important;
-        }
-        #main-nav {
-          padding: 12px 0 !important;
-        }
-        #main-nav img {
-          height: 70px !important;
-        }
-        #site-header .container-site:first-child {
-          padding: 8px 16px;
-        }
-        footer .container-site {
-          grid-template-columns: 1fr !important;
-          gap: 1.5rem !important;
-          padding-top: 30px !important;
-          padding-bottom: 30px !important;
-        }
-        footer .container-site > div {
-          padding-left: 0 !important;
-        }
-        footer .container-site > div:last-child {
-          flex-direction: column !important;
-          align-items: flex-start !important;
-          gap: 10px !important;
-        }
-        footer .container-site > div:last-child img {
-          width: 140px !important;
-        }
-      }
-    </style>
-
     <!-- Nav scroll behavior -->
     <script>
       const nav = document.getElementById('main-nav');
