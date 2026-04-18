@@ -61,7 +61,7 @@ main {
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
-  color: #b8960a;
+  color: #7a6400; /* WCAG AA contrast on light bg */
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
