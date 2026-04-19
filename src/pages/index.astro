@@ -341,8 +341,20 @@ const desktopSlides = [
             </button>
           </div>
 
-          <!-- Dots -->
-          <div class="testi-dots" id="testi-dots"></div>
+          <!-- Dots (server-rendered, one per testimonial page; JS toggles active + hides extras per breakpoint) -->
+          <div class="testi-dots" id="testi-dots" style="display:flex;justify-content:center;gap:10px;margin-top:20px;position:relative;z-index:2;">
+            {testimonials.map((_t: any, i: number) => (
+              <button
+                type="button"
+                class={`testi-dot ${i === 0 ? 'is-active' : ''}`}
+                data-slide={i}
+                aria-label={`Go to testimonial ${i + 1}`}
+                style="width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;padding:12px;background:transparent;display:inline-flex;align-items:center;justify-content:center;"
+              >
+                <span style="display:block;width:100%;height:100%;border-radius:50%;background:#d4d4d4;transition:background 0.3s;"></span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -414,22 +426,15 @@ const desktopSlides = [
 
     function getPageCount() { return Math.ceil(totalSlides / perView); }
 
-    function buildDots() {
+    const allDots = Array.from(dotsContainer.querySelectorAll('.testi-dot')) as HTMLButtonElement[];
+
+    function syncDots() {
       const pages = getPageCount();
-      dotsContainer.innerHTML = '';
-      dotsContainer.style.cssText = 'display:flex;justify-content:center;gap:10px;margin-top:20px;position:relative;z-index:2;';
-      for (let i = 0; i < pages; i++) {
-        const btn = document.createElement('button');
-        btn.className = 'testi-dot';
-        btn.style.cssText = 'width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;padding:12px;transition:opacity 0.3s;background:transparent;display:flex;align-items:center;justify-content:center;';
-        const inner = document.createElement('span');
-        inner.style.cssText = 'display:block;width:100%;height:100%;border-radius:50%;background:' + (i === 0 ? '#616161' : '#d4d4d4') + ';transition:background 0.3s;';
-        btn.appendChild(inner);
-        btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
-        btn.dataset.slide = String(i);
-        btn.addEventListener('click', () => slideTo(i));
-        dotsContainer.appendChild(btn);
-      }
+      allDots.forEach((dot, i) => {
+        dot.style.display = i < pages ? 'inline-flex' : 'none';
+        const span = dot.querySelector('span') as HTMLElement | null;
+        if (span) span.style.background = i === pos ? '#616161' : '#d4d4d4';
+      });
     }
 
     function updateLayout() {
@@ -443,14 +448,15 @@ const desktopSlides = [
       const offset = pos * (100 / perView);
       track.style.transition = 'transform 0.5s ease';
       track.style.transform = `translateX(-${offset}%)`;
-      dotsContainer.querySelectorAll('.testi-dot > span').forEach((d, i) => { (d as HTMLElement).style.background = i === pos ? '#616161' : '#d4d4d4'; });
+      syncDots();
     }
+
+    allDots.forEach((dot, i) => dot.addEventListener('click', () => slideTo(i)));
 
     function init() {
       perView = window.innerWidth <= 768 ? 1 : 2;
       pos = 0;
       updateLayout();
-      buildDots();
       slideTo(0);
     }
 

@@ -338,19 +338,9 @@
     position: relative;
     z-index: 2;
   }
-  #testi-dots .testi-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background: #d4d4d4;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.3s;
-  }
-  #testi-dots .testi-dot.active {
-    background: #616161;
-  }
+  /* .testi-dot visual styled inline on the server-rendered <button>
+     (48x48 touch target with 24x24 inner <span> visual).
+     Nothing needed here. */
 
   /* ===== BLOG ===== */
   .blog-section {
