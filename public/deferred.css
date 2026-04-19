@@ -1,3 +1,15 @@
+  /* ===== BELOW-FOLD FONTS ===== */
+  /* Loaded async after LCP so they don't block the critical render path */
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:300;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-300.woff2') format('woff2');}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:500;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-500.woff2') format('woff2');}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-600.woff2') format('woff2');}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:700;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-700.woff2') format('woff2');}
+  @font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:400;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-400.woff2') format('woff2');}
+  @font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:500;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-500.woff2') format('woff2');}
+  @font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:600;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-600.woff2') format('woff2');}
+  @font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:700;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-700.woff2') format('woff2');}
+  @font-face{font-family:'Courgette';font-style:normal;font-weight:400;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/courgette/courgette-400.woff2') format('woff2');}
+
   /* ===== ABOUT ME ===== */
   .about-section {
     background: #fff;
@@ -338,19 +350,9 @@
     position: relative;
     z-index: 2;
   }
-  #testi-dots .testi-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background: #d4d4d4;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.3s;
-  }
-  #testi-dots .testi-dot.active {
-    background: #616161;
-  }
+  /* .testi-dot visual styled inline on the server-rendered <button>
+     (48x48 touch target with 24x24 inner <span> visual).
+     Nothing needed here. */
 
   /* ===== BLOG ===== */
   .blog-section {
