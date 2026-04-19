@@ -167,10 +167,10 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
         <div style="padding-left: 40px;">
           <h3 style="color: #f5f5f5; font-family: var(--font-narrow); font-size: 27px; margin-bottom: 20px;">Useful Links</h3>
           <ul style="list-style: none; padding: 0; margin: 0;">
-            <li style="margin-bottom: 12px;"><a href="/" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">Home</a></li>
-            <li style="margin-bottom: 12px;"><a href="/#about-me" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">About Me</a></li>
-            <li style="margin-bottom: 12px;"><a href="/blogs" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">Blogs</a></li>
-            <li><a href="/contact" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">Contact</a></li>
+            <li><a href="/" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 4px 0;">Home</a></li>
+            <li><a href="/#about-me" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 4px 0;">About Me</a></li>
+            <li><a href="/blogs" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 4px 0;">Blogs</a></li>
+            <li><a href="/contact" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 4px 0;">Contact</a></li>
           </ul>
         </div>
 
@@ -179,7 +179,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
           <h3 style="color: #f5f5f5; font-family: var(--font-narrow); font-size: 27px; margin-bottom: 20px;">Get in Touch</h3>
           <div style="display: flex; align-items: center; gap: 10px; margin-top: 20px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <a href="mailto:tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none;">tmcgovern@thomasmcgovern.cpa</a>
+            <a href="mailto:tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 4px 0;">tmcgovern@thomasmcgovern.cpa</a>
           </div>
         </div>
 
@@ -221,8 +221,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 300 300" fill="currentColor"><path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300h26.46l102.4-116.59L194.66 300H284L178.57 127.15zm-36.26 41.26-11.87-16.61L36.16 19.54h40.68l76.17 106.66 11.87 16.61 99.05 138.65h-40.69l-80.93-113.25z"/></svg>
             </a>
           </div>
-          <p class="text-footer-text text-[10px]">
-            &copy; {currentYear} Thomas McGovern CPA. All rights reserved. &bull; Powered by <a href="https://spiritmediapublishing.com" class="hover:text-accent transition-colors">Spirit Media</a>
+          <p style="color: #f5f5f5; background-color: #000000; font-size: 12px; margin: 0;">
+            &copy; {currentYear} Thomas McGovern CPA. All rights reserved. &bull; Powered by <a href="https://spiritmediapublishing.com" style="color: #f5f5f5; text-decoration: underline; display: inline-block; min-height: 24px; padding: 12px 4px;">Spirit Media</a>
           </p>
         </div>
       </div>

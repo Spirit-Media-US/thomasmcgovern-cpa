@@ -423,7 +423,10 @@ const desktopSlides = [
       for (let i = 0; i < pages; i++) {
         const btn = document.createElement('button');
         btn.className = 'testi-dot';
-        btn.style.cssText = 'width:24px;height:24px;border-radius:50%;border:2px solid transparent;background-clip:padding-box;cursor:pointer;padding:0;transition:background 0.3s;margin:10px;background:' + (i === 0 ? '#616161' : '#d4d4d4');
+        btn.style.cssText = 'width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;padding:12px;transition:opacity 0.3s;background:transparent;display:flex;align-items:center;justify-content:center;';
+        const inner = document.createElement('span');
+        inner.style.cssText = 'display:block;width:100%;height:100%;border-radius:50%;background:' + (i === 0 ? '#616161' : '#d4d4d4') + ';transition:background 0.3s;';
+        btn.appendChild(inner);
         btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
         btn.dataset.slide = String(i);
         btn.addEventListener('click', () => slideTo(i));
@@ -442,7 +445,7 @@ const desktopSlides = [
       const offset = pos * (100 / perView);
       track.style.transition = 'transform 0.5s ease';
       track.style.transform = `translateX(-${offset}%)`;
-      dotsContainer.querySelectorAll('.testi-dot').forEach((d, i) => { (d as HTMLElement).style.background = i === pos ? '#616161' : '#d4d4d4'; });
+      dotsContainer.querySelectorAll('.testi-dot > span').forEach((d, i) => { (d as HTMLElement).style.background = i === pos ? '#616161' : '#d4d4d4'; });
     }
 
     function init() {
