@@ -45,14 +45,13 @@ const desktopSlides = [
       imagesizes="100vw"
       fetchpriority="high"
     />
-    <!-- Preload LCP book cover (mobile first) -->
+    <!-- Preload book cover (visible in hero but not the LCP element) -->
     <link
       rel="preload"
       as="image"
       href="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80"
       imagesrcset="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80 480w, https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=600&fm=webp&q=80 1024w"
       imagesizes="(max-width: 768px) 60vw, 380px"
-      fetchpriority="high"
     />
   </Fragment>
   <main>
@@ -70,7 +69,6 @@ const desktopSlides = [
               alt="Road to the Final Hour book cover"
               width="500"
               height="500"
-              fetchpriority="high"
               loading="eager"
               decoding="async"
             />
