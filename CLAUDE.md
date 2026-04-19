@@ -39,12 +39,85 @@ Then run: `git checkout dev && git pull origin dev`
 - Phase 3: Design + Build — homepage, blogs, contact, 404, Layout with header/footer, global.css
 - Phase 4: Wire Sanity CMS — schemas (blogPost, testimonial), content migrated, pages wired, Studio embedded at /studio, webhook configured
 
+### Completed on Dev (continued)
+- Phase 5: CAR / Transformation Layer Report — 9 scans run, critical fixes applied, fidelity check passed
+
+### Completed on Dev (continued)
+- Phase 6: Design Refinement — forms wired, blog content populated, mobile polish
+
+### Completed on Dev (continued)
+- Phase 7: QA — all 9 scans pass, Lighthouse 86/91/100/69 (SEO low due to dev branch noindex)
+
 ### Still Pending
-- Phase 5: CAR / Transformation Layer Report
-- Phase 6: Design Refinement
-- Phase 7: QA
-- Phase 8: Launch
+- Phase 8: Launch (merge dev → main, requires Kevin's approval)
+  - Pre-launch: Sanity webhook ✅, redirects ✅, all scans ✅
+  - Pending: Kevin approval to merge, domain DNS, UptimeRobot, portal update, sitemap submission
 - Phase 9: Client Delivery
+
+## URL Redirects (301)
+| Old URL | New URL |
+|---------|---------|
+| /contact-u | /contact |
+| /5-myths-about-professionalizing-college-sports | /blog/5-myths-about-professionalizing-college-sports |
+| /the-tax-debate-that-could-change-ncaa-forever | /blog/the-tax-debate-that-could-change-ncaa-forever |
+| /why-title-ix-could-be-the-sleeper-issue | /blog/why-title-ix-could-be-the-sleeper-issue |
+
+## Phase 7 — QA Results (2026-04-16)
+
+### Automated Scans (9/9 pass)
+All scans pass — no external URLs, no WordPress leftovers, no missing SEO, build succeeds, sitemap covers all pages.
+
+### Lighthouse Scores (dev preview)
+| Category | Score |
+|----------|-------|
+| Performance | 86% |
+| Accessibility | 91% |
+| Best Practices | 100% |
+| SEO | 69% (dev branch noindex — production will score higher) |
+
+### Fixes Applied
+- Testimonial dot buttons: added aria-labels for screen readers
+- Eyebrow text: improved contrast ratio (gold darkened to #b8960a, weight 600)
+
+### Known Limitations
+- SEO score suppressed by CF Pages dev branch `X-Robots-Tag: noindex` — resolves on production
+- Contact/newsletter forms use MailChannels via CF Pages Functions — requires DNS SPF record for deliverability
+- Blog posts have body content but no inline images yet
+
+## Phase 5 — CAR Report Summary (2026-04-16)
+
+### Part One: Already Delivered
+- Homepage with all sections: hero, featured logos, about, stats, book, issues, testimonials, blog, newsletter
+- Blog index page fetching from Sanity CMS
+- Individual blog post pages with portable text rendering, JSON-LD, OG meta
+- Contact page with form, sidebar, social links, book CTA
+- 404 page
+- Global header with transparent overlay nav, mobile slide-in menu
+- Footer with 4-column grid, copyright bar, social icons
+- Sanity Studio embedded at /studio
+- Sanity schemas: blogPost, testimonial
+- 3 blog posts + 3 testimonials migrated to Sanity
+- Sanity → CF Pages auto-rebuild webhook configured
+- CORS origins configured for live domain + dev preview
+- Fluid typography (clamp()), 48px touch targets, iOS zoom prevention
+- Mobile responsive: all sections stack at 768px breakpoint
+- All images hosted on Sanity CDN — zero external URLs
+
+### Part Two: Critical Fixes (applied)
+- Removed stale TODO comment in sanity.ts
+- All alt text verified (decorative images use alt="", content images have descriptive alt)
+- No WordPress/dev URLs remaining
+- No external image URLs
+- Build passes, sitemap covers all pages
+
+### Part Three: Recommended Improvements (Phase 6)
+- Reduce inline styles — migrate to CSS classes/design tokens
+- Add form submission handler (currently no backend — forms don't submit)
+- Add loading states / animations (counter animation exists, could add scroll reveals)
+- Blog posts need body content in Sanity (currently empty)
+- Consider adding breadcrumbs to blog post pages
+- Newsletter form needs backend integration
+- Lighthouse performance audit and optimization
 
 ## Sanity Content Audit
 

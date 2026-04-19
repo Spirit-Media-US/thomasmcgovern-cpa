@@ -11,18 +11,49 @@ const blogPosts = await sanityClient.fetch(
   `*[_type == "blogPost"] | order(publishDate desc) [0...3] {
     title,
     "slug": "/blog/" + slug.current,
-    "image": heroImage.asset->url + "?w=600&auto=format"
+    "image": heroImage.asset->url + "?w=600&fm=webp&q=80"
   }`
 );
 
+// Mobile logo-row: displayed at ~93-134px wide — serve w=280 for retina sharpness
 const carouselSlides = [
-  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=400&auto=format' },
-  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=300&auto=format' },
-  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=300&auto=format' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=280&fm=webp&q=75', w: 280, h: 158 },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=220&fm=webp&q=75', w: 220, h: 66 },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=280&fm=webp&q=75', w: 280, h: 42 },
+];
+
+// Desktop: 5 logos (Barnes, Bookshop, Amazon, Barnes, Bookshop)
+const desktopSlides = [
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=500&fm=webp&q=80' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=500&fm=webp&q=80' },
+  { name: 'Amazon', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/70d6a0a7825b64ac2411266758c020f8d8917a17-700x211.png?w=500&fm=webp&q=80' },
+  { name: 'Barnes & Noble', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/629e606064be46ec62ed9b5d533dd5239287a89d-1536x864.png?w=500&fm=webp&q=80' },
+  { name: 'Bookshop', url: 'https://cdn.sanity.io/images/fkqsnbt5/production/8965c4837800b4f95b98cf3bbb3a231e04c7fea0-1288x194.png?w=500&fm=webp&q=80' },
 ];
 ---
 
 <Layout title="Thomas McGovern CPA — Road to the Final Hour">
+  <Fragment slot="head">
+    <!-- Preconnect Sanity CDN for earliest LCP fetch -->
+    <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+    <!-- Preload LCP hero background (responsive — mobile gets smaller) -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=800&fm=webp&q=70"
+      imagesrcset="https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=800&fm=webp&q=70 768w, https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1600&fm=webp&q=75 1600w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+    <!-- Preload book cover (visible in hero but not the LCP element) -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80"
+      imagesrcset="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80 480w, https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=600&fm=webp&q=80 1024w"
+      imagesizes="(max-width: 768px) 60vw, 380px"
+    />
+  </Fragment>
   <main>
 
     <!-- HERO -->
@@ -32,8 +63,14 @@ const carouselSlides = [
           <!-- Left: book cover -->
           <div class="hero-image">
             <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=600&fm=webp&q=80"
+              srcset="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=360&fm=webp&q=80 480w, https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=600&fm=webp&q=80 1024w"
+              sizes="(max-width: 768px) 60vw, 380px"
               alt="Road to the Final Hour book cover"
+              width="500"
+              height="500"
+              loading="eager"
+              decoding="async"
             />
           </div>
           <!-- Right: text -->
@@ -46,15 +83,20 @@ const carouselSlides = [
       </div>
     </section>
 
-    <!-- FEATURED IN LOGOS — matches original: 5 slides, centered, loop -->
+    <!-- FEATURED IN LOGOS -->
     <section class="featured-strip">
-      <div class="featured-strip-inner">
-        {carouselSlides.map(slide => (
-          <div class="featured-slide">
-            <img src={slide.url} alt={slide.name} />
-          </div>
-        ))}
-      </div>
+        <!-- Desktop: 5 logos -->
+        <div class="logo-row-desktop">
+          {desktopSlides.map(slide => (
+            <div class="logo-item"><img src={slide.url} alt={slide.name} loading="lazy" decoding="async" class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
+          ))}
+        </div>
+        <!-- Mobile: 3 logos -->
+        <div class="logo-row-mobile">
+          {carouselSlides.map(slide => (
+            <div class="logo-item"><img src={slide.url} alt={slide.name} loading="lazy" decoding="async" width={slide.w} height={slide.h} class={slide.name === 'Amazon' ? 'logo-amazon' : slide.name === 'Barnes & Noble' ? 'logo-barnes' : ''} /></div>
+          ))}
+        </div>
     </section>
 
     <!-- ABOUT ME -->
@@ -73,9 +115,9 @@ const carouselSlides = [
 
             <h3 class="heading-sub mb-5">Featured In:</h3>
             <div class="featured-carousel">
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=400&auto=format" alt="ESPN" class="carousel-logo" />
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=400&auto=format" alt="Wall Street Journal" class="carousel-logo" />
-              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=400&auto=format" alt="USA Today" class="carousel-logo" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=280&fm=webp&q=75" srcset="https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=280&fm=webp&q=75 280w, https://cdn.sanity.io/images/fkqsnbt5/production/7c842983b4df241aa093074c7edc8353213baf1c-750x333.png?w=400&fm=webp&q=80 400w" sizes="(max-width: 768px) 140px, 200px" alt="ESPN" class="carousel-logo" loading="lazy" decoding="async" width="200" height="89" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=280&fm=webp&q=75" srcset="https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=280&fm=webp&q=75 280w, https://cdn.sanity.io/images/fkqsnbt5/production/38c6673397633951ff7e2ae5b0f2bc49d9754876-3840x2160.png?w=400&fm=webp&q=80 400w" sizes="(max-width: 768px) 140px, 200px" alt="Wall Street Journal" class="carousel-logo" loading="lazy" decoding="async" width="200" height="113" />
+              <img src="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=280&fm=webp&q=75" srcset="https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=280&fm=webp&q=75 280w, https://cdn.sanity.io/images/fkqsnbt5/production/820cf4a6fc991d2b9b92fcd1d1a436192854fe01-4736x886.png?w=400&fm=webp&q=80 400w" sizes="(max-width: 768px) 140px, 200px" alt="USA Today" class="carousel-logo" loading="lazy" decoding="async" width="200" height="37" />
             </div>
           </div>
 
@@ -83,9 +125,13 @@ const carouselSlides = [
           <div class="about-right">
             <div class="about-photo-wrapper">
               <img
-                src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&auto=format"
+                src="https://cdn.sanity.io/images/fkqsnbt5/production/fddd87a4ca10681a164c04643a9aa0deecbfe532-1200x1800.jpg?w=600&fm=webp&q=80"
                 alt="Thomas A. McGovern"
                 class="about-photo"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="900"
               />
             </div>
           </div>
@@ -125,7 +171,7 @@ const carouselSlides = [
 
         <!-- Overview: image left + text right -->
         <div class="book-overview card-shadow-light">
-          <div class="book-overview-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=800&auto=format');"></div>
+          <div class="book-overview-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/83fb29edffe6af52b5b8c5ef2cd51d56f4c72ef9-1024x510.png?w=700&fm=webp&q=75');"></div>
           <div class="book-overview-text">
             <h3 class="heading-sub-sm mb-5">Overview</h3>
             <p class="text-body">
@@ -154,8 +200,14 @@ const carouselSlides = [
           <!-- Center: Book cover -->
           <div class="chapters-center">
             <img
-              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&auto=format"
+              src="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=420&fm=webp&q=75"
+              srcset="https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=420&fm=webp&q=75 480w, https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png?w=500&fm=webp&q=80 1024w"
+              sizes="(max-width: 768px) 70vw, 30vw"
               alt="Road to the Final Hour book cover"
+              loading="lazy"
+              decoding="async"
+              width="500"
+              height="500"
             />
           </div>
           <!-- Right: 3 chapter cards stacked -->
@@ -205,9 +257,13 @@ const carouselSlides = [
         <!-- Infographic -->
         <div class="mt-8 mb-8">
           <img
-            src="https://cdn.sanity.io/images/fkqsnbt5/production/be37419005c1c164a021dca8ff787c180c7f8f04-1200x456.png?w=1000&auto=format"
+            src="https://cdn.sanity.io/images/fkqsnbt5/production/be37419005c1c164a021dca8ff787c180c7f8f04-1200x456.png?w=1000&fm=webp&q=80"
             alt="Before Infographic"
             class="w-full"
+            loading="lazy"
+            decoding="async"
+            width="1000"
+            height="380"
           />
         </div>
 
@@ -221,7 +277,7 @@ const carouselSlides = [
 
         <!-- Cultural significance: image left + text right -->
         <div class="issues-row card-shadow-light">
-          <div class="issues-row-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=800&auto=format');"></div>
+          <div class="issues-row-image" style="background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0837f92d1e3259acfb59d8fef4a20d945ba4dfb-660x440.webp?w=700&fm=webp&q=75');"></div>
           <div class="issues-row-text">
             <h3 class="heading-sub" style="width: 75%;">Cultural Significance of College Athletics</h3>
             <p class="text-body mt-5">
@@ -264,26 +320,18 @@ const carouselSlides = [
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
 
-            <!-- Slides -->
+            <!-- Slides — 1 testimonial per slide -->
             <div class="testi-viewport">
               <div class="testi-track" id="testi-track">
-                {(() => {
-                  const slides: any[][] = [];
-                  for (let i = 0; i < testimonials.length; i += 2) {
-                    slides.push(testimonials.slice(i, i + 2));
-                  }
-                  return slides.map((slide: any[]) => (
-                    <div class="testi-slide">
-                      {slide.map((t: any) => (
-                        <div class="testi-card">
-                          <p class="testi-quote">&ldquo;{t.quote}&rdquo;</p>
-                          <p class="testi-name">{t.name}</p>
-                          <p class="testi-title">{t.role}</p>
-                        </div>
-                      ))}
+                {testimonials.map((t: any) => (
+                  <div class="testi-slide">
+                    <div class="testi-card">
+                      <p class="testi-quote">&ldquo;{t.quote}&rdquo;</p>
+                      <p class="testi-name">{t.name}</p>
+                      <p class="testi-title">{t.role}</p>
                     </div>
-                  ));
-                })()}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -294,11 +342,7 @@ const carouselSlides = [
           </div>
 
           <!-- Dots -->
-          <div class="testi-dots">
-            {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_: any, i: number) => (
-              <button class={`testi-dot ${i === 0 ? 'active' : ''}`} data-slide={String(i)}></button>
-            ))}
-          </div>
+          <div class="testi-dots" id="testi-dots"></div>
         </div>
       </div>
     </section>
@@ -334,7 +378,7 @@ const carouselSlides = [
             <p class="newsletter-heading">Stay updated with upcoming book events, author appearances, and media features.</p>
           </div>
           <div class="newsletter-form-wrapper">
-            <form class="newsletter-form">
+            <form action="/api/newsletter" method="POST" class="newsletter-form">
               <input
                 type="email"
                 placeholder="Your Email"
@@ -355,31 +399,67 @@ const carouselSlides = [
 </Layout>
 
 <script>
-  // Testimonial slider — loop with arrows
+  // Testimonial slider — responsive: 1 per view on mobile, 2 on desktop
   (function() {
     const track = document.getElementById('testi-track');
     const prevBtn = document.getElementById('testi-prev');
     const nextBtn = document.getElementById('testi-next');
-    const dots = document.querySelectorAll('.testi-dot');
-    if (!track) return;
+    const dotsContainer = document.getElementById('testi-dots');
+    if (!track || !dotsContainer) return;
 
+    const slides = track.querySelectorAll('.testi-slide');
+    const totalSlides = slides.length;
     let pos = 0;
-    const total = document.querySelectorAll('.testi-slide').length;
+    let perView = window.innerWidth <= 768 ? 1 : 2;
+
+    function getPageCount() { return Math.ceil(totalSlides / perView); }
+
+    function buildDots() {
+      const pages = getPageCount();
+      dotsContainer.innerHTML = '';
+      dotsContainer.style.cssText = 'display:flex;justify-content:center;gap:10px;margin-top:20px;position:relative;z-index:2;';
+      for (let i = 0; i < pages; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'testi-dot';
+        btn.style.cssText = 'width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;padding:12px;transition:opacity 0.3s;background:transparent;display:flex;align-items:center;justify-content:center;';
+        const inner = document.createElement('span');
+        inner.style.cssText = 'display:block;width:100%;height:100%;border-radius:50%;background:' + (i === 0 ? '#616161' : '#d4d4d4') + ';transition:background 0.3s;';
+        btn.appendChild(inner);
+        btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        btn.dataset.slide = String(i);
+        btn.addEventListener('click', () => slideTo(i));
+        dotsContainer.appendChild(btn);
+      }
+    }
+
+    function updateLayout() {
+      const slideWidth = 100 / perView;
+      slides.forEach(s => { (s as HTMLElement).style.flex = `0 0 ${slideWidth}%`; });
+    }
 
     function slideTo(p: number) {
-      pos = ((p % total) + total) % total;
+      const pages = getPageCount();
+      pos = ((p % pages) + pages) % pages;
+      const offset = pos * (100 / perView);
       track.style.transition = 'transform 0.5s ease';
-      track.style.transform = `translateX(-${pos * (100 / total)}%)`;
-      dots.forEach((d, i) => d.classList.toggle('active', i === pos));
+      track.style.transform = `translateX(-${offset}%)`;
+      dotsContainer.querySelectorAll('.testi-dot > span').forEach((d, i) => { (d as HTMLElement).style.background = i === pos ? '#616161' : '#d4d4d4'; });
     }
+
+    function init() {
+      perView = window.innerWidth <= 768 ? 1 : 2;
+      pos = 0;
+      updateLayout();
+      buildDots();
+      slideTo(0);
+    }
+
+    init();
+    window.addEventListener('resize', init);
 
     prevBtn?.addEventListener('click', () => slideTo(pos - 1));
     nextBtn?.addEventListener('click', () => slideTo(pos + 1));
-    dots.forEach(d => {
-      d.addEventListener('click', () => slideTo(Number((d as HTMLElement).dataset.slide)));
-    });
 
-    // Auto-advance every 5 seconds
     let interval = setInterval(() => slideTo(pos + 1), 5000);
     track.parentElement?.parentElement?.addEventListener('mouseenter', () => clearInterval(interval));
     track.parentElement?.parentElement?.addEventListener('mouseleave', () => {
@@ -426,798 +506,3 @@ const carouselSlides = [
   }
 </script>
 
-<style>
-  /* ===== HERO ===== */
-  .hero-section {
-    position: relative;
-    min-height: 87vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/fd02252dc714934b8f179eae7c128d1d4e6c3c8a-1024x555.png?w=1920&auto=format');
-    background-position: center right;
-    background-size: cover;
-    background-blend-mode: multiply;
-    padding-top: 220px;
-    padding-bottom: 80px;
-  }
-  .hero-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
-    pointer-events: none;
-  }
-  .hero-inner {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-  }
-  .hero-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 60px;
-  }
-  .hero-image {
-    width: 35%;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .hero-image img {
-    width: 100%;
-    max-width: 380px;
-    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.5));
-  }
-  .hero-text {
-    width: 65%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .hero-eyebrow {
-    font-family: var(--font-body);
-    color: #f5f5f5;
-    font-size: 13px;
-    font-weight: 300;
-    margin: 0 0 12px 0;
-    letter-spacing: 1px;
-  }
-  .hero-heading {
-    font-family: var(--font-heading);
-    color: #fff280;
-    font-size: clamp(24px, 6vw, 45px);
-    font-weight: 400;
-    line-height: 1.1em;
-    border-left: 3px solid #e0e0e0;
-    padding-left: 20px;
-    margin: 0 0 24px 0;
-  }
-  .hero-body {
-    color: #f5f5f5;
-    font-family: var(--font-body);
-    font-size: clamp(16px, 2.5vw, 18px);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* ===== FEATURED IN STRIP — matches original #brxe-uklxqb ===== */
-  .featured-strip {
-    height: 15vh;
-    background-color: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0;
-  }
-  .featured-strip-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1250px;
-    margin: 0 auto;
-    padding: 0 20px;
-    gap: 20px;
-  }
-  .featured-slide {
-    flex: 0 0 calc(100% / 5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px;
-  }
-  .featured-slide img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-
-  /* ===== ABOUT ME ===== */
-  .about-section {
-    background: #fff;
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-  .about-row {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .about-left {
-    width: 57%;
-  }
-  .about-right {
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .about-photo-wrapper {
-    width: 100%;
-    padding: 20px;
-    background-image: linear-gradient(#042a49, #2196f3);
-  }
-  .about-photo {
-    width: 100%;
-    height: 530px;
-    object-fit: cover;
-    object-position: 0% 15%;
-  }
-  .featured-carousel {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 30px;
-    flex-wrap: nowrap;
-  }
-  .carousel-logo {
-    width: 200px;
-    height: auto;
-    object-fit: contain;
-  }
-
-  /* ===== STATS ===== */
-  .stats-section {
-    background: #fff;
-    padding-bottom: 80px;
-  }
-  .stats-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .stat-item {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .stat-number {
-    font-family: var(--font-body);
-    font-size: clamp(36px, 8vw, 60px);
-    font-weight: 700;
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: var(--font-narrow);
-    font-size: clamp(16px, 3.5vw, 25px);
-    font-weight: 700;
-    margin-top: 8px;
-  }
-
-  /* ===== BOOK SECTION ===== */
-  .book-section {
-    background-color: #f5f5f5;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/bac3f12529365a67d4fceec137a1037872a1b990-1024x555.png?w=1920&auto=format');
-    background-position: center calc(100% - 70px);
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
-  .book-overview {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #fff;
-    margin-top: 2rem;
-  }
-  .book-overview-image {
-    width: 50%;
-    height: 350px;
-    background-size: cover;
-    background-position: center center;
-  }
-  .book-overview-text {
-    width: 50%;
-    background: #fff;
-    padding: 20px;
-  }
-  .quote-text {
-    font-family: var(--font-script);
-    font-size: clamp(18px, 4vw, 28px);
-    color: var(--color-body);
-    margin-top: 20px;
-  }
-  .quote-attribution {
-    font-family: var(--font-body);
-    font-size: 16px;
-    color: var(--color-body);
-    margin-top: 4px;
-  }
-  .quote-chapters-block {
-    margin-top: 48px;
-    background: transparent;
-    box-shadow: none;
-    padding: 30px;
-  }
-  .quote-inner {
-    margin-bottom: 0;
-  }
-  .chapters-3col {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0;
-  }
-  .chapters-left {
-    width: 30%;
-    padding-right: 20px;
-  }
-  .chapters-center {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .chapters-center img {
-    max-width: 100%;
-    height: auto;
-  }
-  .chapters-right {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-  .chapter-card {
-    background: #fff;
-    padding: 20px;
-  }
-  .chapter-card-inner {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .chapter-icon {
-    font-size: 20px;
-    color: var(--color-accent);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .chapter-card-title {
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 600;
-  }
-  .chapter-card-text {
-    font-family: var(--font-body);
-    font-size: 16px;
-    color: var(--color-body);
-    line-height: 1.7;
-    margin-top: 8px;
-  }
-
-  /* ===== ISSUES SECTION ===== */
-  /* ===== FOOTBALL BANNER ===== */
-  .football-banner {
-    height: 250px;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/f0c71bb26dade9d1168670a9184fdd8684a8a45c-958x518.webp?w=1920&auto=format');
-    background-position: center right;
-    background-size: cover;
-    background-blend-mode: multiply;
-    position: relative;
-  }
-  .football-banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
-    pointer-events: none;
-  }
-
-  .issues-section {
-    padding-top: 80px;
-    padding-bottom: 80px;
-    background-color: #f5f5f5;
-    position: relative;
-  }
-  .issues-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #fff;
-  }
-  .issues-row-image {
-    width: 50%;
-    height: 350px;
-    background-size: cover;
-    background-position: center center;
-  }
-  .issues-row-text {
-    width: 50%;
-    background: #fff;
-    padding: 20px;
-  }
-  .scenario-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-top: 20px;
-  }
-  .scenario-card {
-    width: 49%;
-    background: #fff;
-    padding: 30px;
-    box-shadow: 1px 1px 1px 1px #9e9e9e;
-  }
-
-  /* ===== TESTIMONIALS ===== */
-  .testimonials-section {
-    background-color: #ffffff;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    position: relative;
-  }
-  .testimonials-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://cdn.sanity.io/images/fkqsnbt5/production/42dc40b9bcf0e0e58aa5ef120bec670620a821d2-770x380.png?w=1200&auto=format');
-    background-size: 60% auto;
-    background-position: center center;
-    background-repeat: no-repeat;
-    opacity: 0.15;
-    pointer-events: none;
-  }
-  .testimonials-map-wrapper {
-    position: relative;
-  }
-  .testimonials-slider-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .testi-arrow {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    background: transparent;
-    border: none;
-    border-radius: 50%;
-    color: #616161;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    z-index: 2;
-  }
-  .testi-arrow:hover {
-    background: rgba(0,0,0,0.05);
-  }
-  .testi-viewport {
-    flex: 1;
-    overflow: hidden;
-  }
-  .testi-track {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-  .testi-slide {
-    flex: 0 0 100%;
-    display: flex;
-    gap: 30px;
-    padding: 20px 10px;
-  }
-  .testi-card {
-    flex: 1;
-    padding: 20px;
-    background: transparent;
-  }
-  .testi-quote {
-    font-family: var(--font-script);
-    font-size: clamp(18px, 3.5vw, 27px);
-    color: #212121;
-    line-height: 1.4;
-    margin-bottom: 16px;
-  }
-  .testi-name {
-    font-family: var(--font-narrow);
-    font-size: clamp(14px, 2.5vw, 18px);
-    font-weight: 700;
-    color: #212121;
-  }
-  .testi-title {
-    font-size: 14px;
-    color: #616161;
-  }
-  .testi-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-    position: relative;
-    z-index: 2;
-  }
-  .testi-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    background: #d4d4d4;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.3s;
-  }
-  .testi-dot.active {
-    background: #616161;
-  }
-
-  /* ===== BLOG ===== */
-  .blog-section {
-    background: #f5f5f5;
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-  .blog-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    align-items: stretch;
-  }
-  .blog-card {
-    background: #fff;
-    width: 30%;
-  }
-  .blog-card-image {
-    height: 250px;
-    background-size: cover;
-    background-position: center;
-  }
-  .blog-card-title {
-    font-family: var(--font-body);
-    font-size: clamp(16px, 3vw, 23px);
-    font-weight: 600;
-    color: var(--color-primary);
-    line-height: 1.3em;
-  }
-  .blog-card-btn {
-    margin-top: 20px;
-    display: inline-block;
-    padding: 5px 10px;
-    font-size: 15px;
-  }
-
-  /* ===== NEWSLETTER ===== */
-  .newsletter-section {
-    position: relative;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background: #000000;
-  }
-  .newsletter-overlay {
-    display: none;
-  }
-  .newsletter-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-  .newsletter-heading {
-    font-family: var(--font-narrow);
-    font-size: clamp(18px, 3.5vw, 27px);
-    color: #f5f5f5;
-  }
-  .newsletter-form-wrapper {
-    width: 50%;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .newsletter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 85%;
-  }
-  .newsletter-input {
-    width: 100%;
-    padding: 14px 16px;
-    font-size: 16px;
-    border: 0;
-    outline: none;
-    font-family: var(--font-body);
-    background: #fff;
-    color: #212121;
-    box-sizing: border-box;
-  }
-  .newsletter-input::placeholder {
-    color: #9e9e9e;
-  }
-  .newsletter-input:focus {
-    box-shadow: 0 0 0 2px var(--color-accent);
-  }
-  .newsletter-btn {
-    width: 100%;
-    min-height: 48px;
-    padding: 14px 16px;
-    font-size: 16px;
-    font-family: var(--font-narrow);
-    font-weight: 700;
-    text-transform: uppercase;
-    background: #ffc107;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: background 0.2s;
-  }
-  .newsletter-btn:hover {
-    background: #ffca28;
-  }
-
-  /* ===== TABLET & MOBILE (≤768px) — stack all major sections ===== */
-  @media (max-width: 768px) {
-    /* Hero: stack vertically — book → heading → subheading → button */
-    .hero-section {
-      min-height: auto;
-      padding-top: 140px;
-      padding-bottom: 40px;
-    }
-    .hero-content {
-      flex-direction: column;
-      gap: 24px;
-      padding: 0;
-    }
-    .hero-image {
-      width: 45%;
-      margin: 0 auto;
-    }
-    .hero-image img {
-      max-width: 220px;
-    }
-    .hero-text {
-      width: 100%;
-      text-align: center;
-      align-items: center;
-    }
-    .hero-heading {
-      border-left: none;
-      padding-left: 0;
-      text-align: center;
-    }
-
-    /* Featured strip */
-    .featured-strip {
-      height: auto;
-      padding: 12px 0;
-    }
-    .featured-strip-inner {
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    .featured-slide {
-      flex: 0 0 28%;
-      padding: 0 5px;
-    }
-
-    /* About: full-width stack */
-    .about-section {
-      padding: 40px 0;
-    }
-    .about-row {
-      flex-direction: column;
-      gap: 30px;
-    }
-    .about-left {
-      width: 100%;
-    }
-    .about-right {
-      width: 100%;
-    }
-    .about-photo {
-      height: 350px;
-    }
-    .featured-carousel {
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .carousel-logo {
-      width: 28%;
-      max-width: 140px;
-    }
-
-    /* Stats: 2x2 grid */
-    .stats-section {
-      padding: 0 0 40px;
-    }
-    .stats-row {
-      gap: 20px 0;
-    }
-    .stat-item {
-      width: 50%;
-      align-items: center;
-      text-align: center;
-    }
-
-    /* Book section: stack everything */
-    .book-section {
-      padding: 40px 0;
-      background-size: 150%;
-      background-position: center bottom;
-    }
-    .book-overview {
-      flex-direction: column;
-    }
-    .book-overview-image {
-      width: 100%;
-      height: 220px;
-    }
-    .book-overview-text {
-      width: 100%;
-      padding: 20px;
-    }
-    .quote-chapters-block {
-      padding: 15px;
-    }
-    .chapters-3col {
-      flex-direction: column;
-      gap: 24px;
-      align-items: center;
-    }
-    .chapters-left {
-      width: 100%;
-      padding-right: 0;
-      text-align: center;
-    }
-    .chapters-left .btn-primary {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .chapters-center {
-      width: 55%;
-    }
-    .chapters-right {
-      width: 100%;
-      padding: 0;
-    }
-
-    /* Football banner */
-    .football-banner {
-      height: 150px;
-    }
-
-    /* Issues: stack image/text */
-    .issues-section {
-      padding: 40px 0;
-    }
-    .issues-row {
-      flex-direction: column;
-    }
-    .issues-row-image {
-      width: 100%;
-      height: 220px;
-    }
-    .issues-row-text {
-      width: 100%;
-      padding: 20px;
-    }
-    .scenario-row {
-      flex-direction: column;
-      gap: 12px;
-    }
-    .scenario-card {
-      width: 100%;
-    }
-
-    /* Testimonials: single column per slide */
-    .testimonials-section {
-      padding: 40px 0;
-    }
-    .testi-slide {
-      flex-direction: column;
-      gap: 16px;
-    }
-    .testi-card {
-      padding: 16px 10px;
-    }
-    .testi-arrow {
-      width: 36px;
-      height: 36px;
-    }
-
-    /* Blog: single column */
-    .blog-section {
-      padding: 40px 0;
-    }
-    .blog-grid {
-      flex-direction: column;
-      gap: 20px;
-    }
-    .blog-card {
-      width: 100%;
-    }
-    .blog-card-image {
-      height: 200px;
-    }
-
-    /* Newsletter: stack */
-    .newsletter-section {
-      padding: 30px 0;
-    }
-    .newsletter-row {
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
-    }
-    .newsletter-form-wrapper {
-      width: 100%;
-      justify-content: center;
-    }
-    .newsletter-form {
-      width: 100%;
-    }
-  }
-
-  /* ===== SMALL PHONES (≤390px) — tighter spacing ===== */
-  @media (max-width: 390px) {
-    .hero-section {
-      padding-top: 120px;
-    }
-    .hero-image {
-      width: 50%;
-    }
-    .hero-image img {
-      max-width: 180px;
-    }
-    .about-photo {
-      height: 280px;
-    }
-    .chapters-center {
-      width: 60%;
-    }
-    .football-banner {
-      height: 120px;
-    }
-  }
-
-  /* ===== TABLET ONLY: 2-col blog grid ===== */
-  @media (min-width: 769px) and (max-width: 991px) {
-    .blog-card {
-      width: 48%;
-    }
-    .blog-grid {
-      flex-direction: row;
-    }
-  }
-</style>

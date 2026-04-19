@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "sanity build public/studio --yes && astro build",
+    "build": "rm -rf public/studio && sanity build public/studio --yes && astro build",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -18,5 +18,8 @@
     "sanity-plugin-media": "^4.1.1",
     "styled-components": "^6.0.0",
     "tailwindcss": "^4.0.6"
+  },
+  "devDependencies": {
+    "@playform/inline": "^0.1.4"
   }
 }
