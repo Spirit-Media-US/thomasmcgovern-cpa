@@ -1,16 +1,10 @@
 @import "tailwindcss";
 
-@font-face{font-family:'Archivo';font-style:normal;font-weight:300;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-300.woff2') format('woff2');}
+/* Critical above-fold fonts ONLY — hero heading + body text.
+   Other weights/families (Archivo 300/500/600/700, Archivo Narrow *, Courgette)
+   moved to public/deferred.css so they don't compete with LCP resources. */
 @font-face{font-family:'Archivo';font-style:normal;font-weight:400;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-400.woff2') format('woff2');}
-@font-face{font-family:'Archivo';font-style:normal;font-weight:500;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-500.woff2') format('woff2');}
-@font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-600.woff2') format('woff2');}
-@font-face{font-family:'Archivo';font-style:normal;font-weight:700;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo/archivo-700.woff2') format('woff2');}
 @font-face{font-family:'Archivo Black';font-style:normal;font-weight:400;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-black/archivo-black-400.woff2') format('woff2');}
-@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:400;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-400.woff2') format('woff2');}
-@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:500;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-500.woff2') format('woff2');}
-@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:600;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-600.woff2') format('woff2');}
-@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:700;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/archivo-narrow/archivo-narrow-700.woff2') format('woff2');}
-@font-face{font-family:'Courgette';font-style:normal;font-weight:400;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/courgette/courgette-400.woff2') format('woff2');}
 
 @theme {
   --color-primary: #064374;
