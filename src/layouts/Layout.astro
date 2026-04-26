@@ -1,4 +1,6 @@
 ---
+import HundredClubBadge from '../components/HundredClubBadge.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -221,6 +223,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
           </div>
           <p style="color: #f5f5f5; font-size: 12px; margin: 0;">
             &copy; {currentYear} Thomas McGovern CPA. All rights reserved. &bull; Powered by <a href="https://spiritmediapublishing.com" style="color: #f5f5f5; text-decoration: underline;">Spirit Media</a>
+            <HundredClubBadge />
           </p>
         </div>
       </div>
