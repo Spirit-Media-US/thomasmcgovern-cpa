@@ -215,7 +215,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(#03213a, rgba(1, 83, 121, 0.79));
+    background-image: linear-gradient(rgba(3, 33, 58, 0.45), rgba(1, 83, 121, 0.45));
     pointer-events: none;
   }
 
@@ -396,7 +396,7 @@
     position: relative;
     padding-top: 30px;
     padding-bottom: 30px;
-    background: #000000;
+    background: #03213a;
   }
   .newsletter-overlay {
     display: none;
