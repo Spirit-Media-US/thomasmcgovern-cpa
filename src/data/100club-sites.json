@@ -179,23 +179,6 @@
 		"regressionNote": "[auto] median-of-5 = 87 on 2026-06-27 (baseline was 98)"
 	},
 	{
-		"slug": "lioncrest-media",
-		"repo": "Spirit-Media-US/lioncrest-media",
-		"prodUrl": "https://lioncrestmedia.com",
-		"previewUrl": "https://lioncrest-media.pages.dev",
-		"measuredAt": "2026-06-27",
-		"perfPattern": "A",
-		"perfNote": "ACCEPTED CAP ~91 (Jay 2026-06-02). Full-bleed mobile hero bg photo is the LCP @~3.1s on Slow-4G and is the SOLE blocker; kept per Kevin 5/29 visual request. Fonts metric-calibrated, CLS/TBT already maxed, font-display:optional set. Verified CSS-bg vs <img> both land ~3s (img tested 2026-06-02, median 90 + CLS regress, reverted). Not a fixable regression — deliberate visual>score tradeoff. Do not auto-fix.",
-		"mobilePerf": 99,
-		"mobilePerfType": "median-of-5 2026-06-27",
-		"intentionalRegression": {
-			"since": "2026-06-22",
-			"reason": "Mobile text-only hero (H1 = LCP) + accepted full-bleed hero-photo cap (Jay 2026-06-02, kept per Kevin 5/29). No code regression — PSI variance around the accepted design.",
-			"acceptedMedian": 91,
-			"decidedBy": "Kevin (2026-06-22)"
-		}
-	},
-	{
 		"slug": "the-pyramid-principle",
 		"repo": "Spirit-Media-US/the-pyramid-principle",
 		"prodUrl": "https://thepyramidprinciple.com",
