@@ -1,8 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '../styles/global.css';
+import MailtoLink from "../components/MailtoLink.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
 
-const success = Astro.url.searchParams.get('success') === 'true';
+const success = Astro.url.searchParams.get("success") === "true";
 ---
 
 <Layout
@@ -36,7 +37,7 @@ const success = Astro.url.searchParams.get('success') === 'true';
             <h2 class="text-primary text-[25px]" style="font-family: var(--font-heading);">Contact Info</h2>
             <div class="flex items-center gap-3 mt-2.5" style="font-family: var(--font-narrow); font-size: 18px;">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <a href="mailto:tmcgovern@thomasmcgovern.cpa" class="hover:text-accent transition-colors" style="font-family: var(--font-narrow);">tmcgovern@thomasmcgovern.cpa</a>
+              <MailtoLink email="tmcgovern@thomasmcgovern.cpa" class="hover:text-accent transition-colors" style="font-family: var(--font-narrow);">Email us</MailtoLink>
             </div>
 
             <hr class="my-10" style="border-color: rgba(97,97,97,0.1);" />
