@@ -1,18 +1,19 @@
 ---
-import HundredClubBadge from '../components/HundredClubBadge.astro';
+import HundredClubBadge from "../components/HundredClubBadge.astro";
+import MailtoLink from "../components/MailtoLink.astro";
 
 interface Props {
-  title: string;
-  description?: string;
-  ogImage?: string;
+	title: string;
+	description?: string;
+	ogImage?: string;
 }
 const {
-  title,
-  description = 'Thomas McGovern CPA — Author of Road to the Final Hour on the future of college sports.',
-  ogImage = 'https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png',
+	title,
+	description = "Thomas McGovern CPA — Author of Road to the Final Hour on the future of college sports.",
+	ogImage = "https://cdn.sanity.io/images/fkqsnbt5/production/ac2af2b09f1199c080cfd8dbf27ececfaf3a2d60-1024x1024.png",
 } = Astro.props;
 const currentYear = new Date().getFullYear();
-const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
+const canonicalURL = new URL(Astro.url.pathname, "https://thomasmcgovern.cpa");
 ---
 <!doctype html>
 <html lang="en">
@@ -75,7 +76,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
         </div>
         <div class="flex items-center gap-1.5">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          <a href="mailto:tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 13px; font-weight: 400; padding: 8px 4px; display: inline-flex; align-items: center; min-height: 36px; line-height: 1.4;">Email us</a>
+          <MailtoLink email="tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 13px; font-weight: 400; padding: 8px 4px; display: inline-flex; align-items: center; min-height: 36px; line-height: 1.4;">Email us</MailtoLink>
         </div>
         </div>
       </div>
@@ -179,7 +180,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://thomasmcgovern.cpa');
           <h3 style="color: #f5f5f5; font-family: var(--font-narrow); font-size: 27px; margin-bottom: 20px;">Get in Touch</h3>
           <div style="display: flex; align-items: center; gap: 10px; margin-top: 20px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <a href="mailto:tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 4px 0;">tmcgovern@thomasmcgovern.cpa</a>
+            <MailtoLink email="tmcgovern@thomasmcgovern.cpa" style="color: #f5f5f5; font-family: var(--font-body); font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 4px 0;">Email us</MailtoLink>
           </div>
         </div>
 
